@@ -4,18 +4,37 @@
 char currentChar;
 boolean EOP;
 static FILE *pita;
+static FILE *command;
+static int retval;
 
 void START(char* filename) {
-    pita = stdin;
+/* Mesin siap dioperasikan. Pita disiapkan untuk dibaca.
+Karakter pertama yang ada pada pita posisinya adalah pada jendela.
+filename merupakan nama file yang berisi pita karakter
+I.S. : sembarang
+F.S. : CC adalah karakter pertama pada pita
+Jika CC != MARK maka EOP akan padam (false)
+Jika CC = MARK maka EOP akan menyala (true) */
+
+    pita = fopen(filename,"r");
     ADV();
 }
 
 void ADV() {
-    fscanf(pita,"%c",&currentChar);
+/* Pita dimajukan satu karakter.
+I.S. : Karakter pada jendela = CC, CC != MARK
+F.S. : CC adalah karakter berikutnya dari CC yang lama,
+
+CC mungkin = MARK
+Jika CC = MARK maka EOP akan menyala (true) */
+
+    retval = fscanf(pita,"%c",&currentChar);
     if (IsEOP()) {
         fclose(pita); 
     }
 }
+
+
 
 char GetCC() {
     return (currentChar);
