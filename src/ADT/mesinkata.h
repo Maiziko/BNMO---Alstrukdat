@@ -7,7 +7,7 @@
 #include "boolean.h"
 #include "mesinkarakter.h"
 
-#define NMax 50
+#define NMax 100
 #define BLANK ' '
 
 typedef struct
@@ -44,6 +44,32 @@ void CopyWord();
    F.S. : currentWord berisi kata yang sudah diakuisisi;
           currentChar = BLANK atau currentChar = MARK;
           currentChar adalah karakter sesudah karakter terakhir yang diakuisisi.
+          Jika panjang kata melebihi NMax, maka sisa kata "dipotong" */
+
+void IgnoreDot();
+/* Mengabaikan satu atau beberapa BLANK dan MARK
+   I.S. : CC sembarang 
+   F.S. : CC ≠ BLANK atau CC = ENTER */
+
+void STARTCOMMAND();
+/* I.S. : CC sembarang 
+   F.S. : EndKata = true, dan CC = ENTER; 
+          atau EndKata = false, CCommand adalah kata yang sudah diakuisisi,
+          CC karakter pertama sesudah karakter terakhir kata */
+
+void ADVCOMMAND();
+/* I.S. : CC adalah karakter pertama kata yang akan diakuisisi 
+   F.S. : CComand adalah kata terakhir yang sudah diakuisisi, 
+          CC adalah karakter pertama dari kata berikutnya, mungkin ENTER
+          Jika CC = ENTER, EndKata = true.		  
+   Proses : Akuisisi kata menggunakan procedure SalinCommand */
+
+void CopyCommand();
+/* Mengakuisisi kata, menyimpan dalam CComand
+   I.S. : CC adalah karakter pertama dari kata
+   F.S. : CComand berisi kata yang sudah diakuisisi; 
+          CC = BLANK atau CC = ENTER; 
+          CC adalah karakter sesudah karakter terakhir yang diakuisisi.
           Jika panjang kata melebihi NMax, maka sisa kata "dipotong" */
 
 #endif
