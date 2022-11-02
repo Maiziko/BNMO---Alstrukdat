@@ -19,13 +19,14 @@ typedef struct
 /* State Mesin Kata */
 extern boolean EndWord;
 extern Word currentWord;
+extern Word CCommand;
 
 void IgnoreBlanks();
 /* Mengabaikan satu atau beberapa BLANK
    I.S. : currentChar sembarang
    F.S. : currentChar ≠ BLANK atau currentChar = MARK */
 
-void STARTWORD();
+void STARTWORD(char* filename);
 /* I.S. : currentChar sembarang
    F.S. : EndWord = true, dan currentChar = MARK;
           atau EndWord = false, currentWord adalah kata yang sudah diakuisisi,
@@ -48,28 +49,28 @@ void CopyWord();
 
 void IgnoreDot();
 /* Mengabaikan satu atau beberapa BLANK dan MARK
-   I.S. : CC sembarang 
-   F.S. : CC ≠ BLANK atau CC = ENTER */
+   I.S. : currentChar sembarang 
+   F.S. : currentChar ≠ BLANK atau currentChar = ENTER */
 
 void STARTCOMMAND();
-/* I.S. : CC sembarang 
-   F.S. : EndKata = true, dan CC = ENTER; 
-          atau EndKata = false, CCommand adalah kata yang sudah diakuisisi,
-          CC karakter pertama sesudah karakter terakhir kata */
+/* I.S. : currentChar sembarang 
+   F.S. : EndWord = true, dan currentChar = ENTER; 
+          atau EndWord = false, CCommand adalah kata yang sudah diakuisisi,
+          currentChar karakter pertama sesudah karakter terakhir kata */
 
 void ADVCOMMAND();
-/* I.S. : CC adalah karakter pertama kata yang akan diakuisisi 
+/* I.S. : currentChar adalah karakter pertama kata yang akan diakuisisi 
    F.S. : CComand adalah kata terakhir yang sudah diakuisisi, 
-          CC adalah karakter pertama dari kata berikutnya, mungkin ENTER
-          Jika CC = ENTER, EndKata = true.		  
-   Proses : Akuisisi kata menggunakan procedure SalinCommand */
+          currentChar adalah karakter pertama dari kata berikutnya, mungkin ENTER
+          Jika currentChar = ENTER, EndWord = true.		  
+   Proses : Akuisisi kata menggunakan procedure CopyCommand */
 
 void CopyCommand();
 /* Mengakuisisi kata, menyimpan dalam CComand
-   I.S. : CC adalah karakter pertama dari kata
+   I.S. : currentChar adalah karakter pertama dari kata
    F.S. : CComand berisi kata yang sudah diakuisisi; 
-          CC = BLANK atau CC = ENTER; 
-          CC adalah karakter sesudah karakter terakhir yang diakuisisi.
+          currentChar = BLANK atau currentChar = ENTER; 
+          currentChar adalah karakter sesudah karakter terakhir yang diakuisisi.
           Jika panjang kata melebihi NMax, maka sisa kata "dipotong" */
 
 #endif
