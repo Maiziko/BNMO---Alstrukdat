@@ -9,6 +9,7 @@
 
 #define NMax 100
 #define BLANK ' '
+#define ENTER '\n'
 
 typedef struct
 {
@@ -25,8 +26,9 @@ void IgnoreBlanks();
 /* Mengabaikan satu atau beberapa BLANK
    I.S. : currentChar sembarang
    F.S. : currentChar ≠ BLANK atau currentChar = MARK */
+void STARTWORD();
 
-void STARTWORD(char* filename);
+void STARTGAME(char* filename);
 /* I.S. : currentChar sembarang
    F.S. : EndWord = true, dan currentChar = MARK;
           atau EndWord = false, currentWord adalah kata yang sudah diakuisisi,
