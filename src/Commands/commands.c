@@ -6,14 +6,16 @@
 void start()
 {
     STARTWORD();
-    if (&currentWord == "START")
+    while (&currentWord != "START")
     {
-        printf("File konfigurasi sistem berhasil dibaca. BNMO berhasil dijalankan.");
-        // Fungsi2 ntar
+        printf("Input Tidak Valid");
+        printf("\n");
     }
-    else
-    {
-        printf("Input tidak valid.");
-        
-    }
+    // Keluar loop, masuk ke command - command lain
+    load();
+}
+
+void load()
+{
+
 }
