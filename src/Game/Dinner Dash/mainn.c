@@ -59,6 +59,7 @@ boolean isEmpty(Queue q);
 boolean isFull(Queue q);
 /* Mengirim true jika tabel penampung elemen q sudah penuh */
 /* yaitu IDX_TAIL akan selalu di belakang IDX_HEAD dalam buffer melingkar*/
+boolean isMember(int urut, Queue q);
 
 int length(Queue q);
 /* Mengirimkan banyaknya elemen queue. Mengirimkan 0 jika q kosong. */
@@ -91,12 +92,6 @@ void displayMasakan(Queue q);
 
 void displaySajian(Queue q);
 
-int Ketahanan();
-
-int Durasi();
-
-int Harga();
-
 #endif
 
 /* *** Kreator *** */
@@ -113,9 +108,9 @@ void CreatePesanan(Queue *q, int urut) {
         IDX_TAIL(*q)++;         
     }
     (*q).buffer[urut].urut = urut;
-    (*q).buffer[urut].durasi = Durasi();
-    (*q).buffer[urut].harga = Harga();
-    (*q).buffer[urut].ketahanan = Ketahanan();
+    (*q).buffer[urut].durasi = (rand() % 5)+1;
+    (*q).buffer[urut].harga = ((rand() % (41)) + 10)*1000;
+    (*q).buffer[urut].ketahanan = (rand() % 5)+1;
     (*q).buffer[urut].d_awal = (*q).buffer[urut].durasi;
 }
 
@@ -126,6 +121,17 @@ boolean isEmpty(Queue q) {
 
 boolean isFull(Queue q) {
     return IDX_HEAD(q) == 0? IDX_TAIL(q) == CAPACITY - 1 : IDX_TAIL(q) == IDX_HEAD(q) - 1; 
+}
+
+boolean isMember(int X, Queue q) {
+    boolean found = false;
+    int i = 0;
+    while(i < length(q) && found == false) {
+        if (q.buffer[i].urut == X) {
+            found = true;
+        } i++;
+    }
+    return found;
 }
 
 int length(Queue q) {
@@ -191,7 +197,7 @@ void displayPesanan(Queue q) {
         for (i = IDX_HEAD(q); i < IDX_TAIL(q)+1; i++) {
             printf("");
             printf("M%d\t|", q.buffer[i].urut);
-            printf("%d\t\t|", q.buffer[i].durasi);
+            printf("%d\t\t|", q.buffer[i].d_awal);
             printf("%d\t\t|", q.buffer[i].ketahanan);
             printf("%d\t\t", q.buffer[i].harga);
             if(i != IDX_TAIL(q)) {
@@ -239,18 +245,6 @@ void displaySajian(Queue q) {
             }
         }
     }      
-}
-
-int Durasi() {
-    return (rand() % 5)+1;
-}
-
-int Ketahanan() {
-    return (rand() % 5)+1;
-}
-
-int Harga() {
-    return ((rand() % (41)) + 10)*1000;
 }
 
 // ini buat yang pasti dilakuin di tiap putaran
@@ -320,76 +314,85 @@ int main() {
         if(cmd == 1) {
             printf("urutan brp: ");
             scanf("%d", &apa);
-
-            if(!isEmpty(masak)) {
-                for(int i = 0; i < length(masak); i++) {
-                    masak.buffer[i].durasi -= 1;  
-                    if (masak.buffer[i].durasi <= 0) {
-                        printf("M%d uda mateng", masak.buffer[apa].urut); 
-                        enqueue(&saji, masak.buffer[apa]);
-                        dequeue(&masak, &(masak.buffer[apa]));                       
+            if(isMember(apa, pesan)) {
+                if(!isEmpty(masak)) {
+                    for(int i = 0; i < length(masak); i++) {
+                        masak.buffer[i].durasi -= 1;  
+                        if (masak.buffer[i].durasi <= 0) {
+                            printf("M%d uda mateng", masak.buffer[apa].urut); 
+                            enqueue(&saji, masak.buffer[apa]);
+                            dequeue(&masak, &(masak.buffer[apa]));                       
+                        }
                     }
                 }
-            }
-            
-            if(!isEmpty(saji)) {
-                for(int i = 0; i < length(saji); i++) {
-                    saji.buffer[i].durasi -= 1;  
-                    if (saji.buffer[i].durasi == 0) {
-                        printf("M%d uda basi", saji.buffer[apa].urut); 
-                        saji.buffer[apa].durasi = saji.buffer[apa].d_awal;
-                        enqueue(&masak, saji.buffer[apa]);
-                        dequeue(&saji, &(saji.buffer[apa]));                       
+                
+                if(!isEmpty(saji)) {
+                    for(int i = 0; i < length(saji); i++) {
+                        saji.buffer[i].durasi -= 1;  
+                        if (saji.buffer[i].durasi == 0) {
+                            printf("M%d uda basi", saji.buffer[apa].urut); 
+                            saji.buffer[apa].durasi = saji.buffer[apa].d_awal;
+                            enqueue(&masak, saji.buffer[apa]);
+                            dequeue(&saji, &(saji.buffer[apa]));                       
+                        }
                     }
                 }
+
+                enqueue(&masak, pesan.buffer[apa]);
+                // dequeue(&pesan, &(pesan.buffer[apa]));
+
+                CreatePesanan(&pesan, urutan);
+                urutan++;
+
+                display(pesan, masak, saji);            
+            } else {
+                printf("Tidak ada pesanan %d pada daftar", apa);
+                continue;
             }
-
-            enqueue(&masak, pesan.buffer[apa]);
-            // dequeue(&pesan, &(pesan.buffer[apa]));
-
-            CreatePesanan(&pesan, urutan);
-            urutan++;
-
-            display(pesan, masak, saji);
 
         } else if (cmd == 2) {
             printf("urutan brp: ");
             scanf("%d", &apa);
-
-            if(!isEmpty(masak)) {
-                for(int i = 0; i < length(masak); i++) {
-                    masak.buffer[i].durasi -= 1;  
-                    if (masak.buffer[i].durasi <= 0) {
-                        printf("M%d uda mateng", masak.buffer[apa].urut); 
-                        enqueue(&saji, masak.buffer[apa]);
-                        dequeue(&masak, &(masak.buffer[apa]));                       
+            if(isMember(apa, saji)) {
+                if(!isEmpty(masak)) {
+                    for(int i = 0; i < length(masak); i++) {
+                        masak.buffer[i].durasi -= 1;  
+                        if (masak.buffer[i].durasi <= 0) {
+                            printf("M%d uda mateng", masak.buffer[apa].urut); 
+                            enqueue(&saji, masak.buffer[apa]);
+                            dequeue(&masak, &(masak.buffer[apa]));                       
+                        }
                     }
                 }
-            }
-            
-            if(!isEmpty(saji)) {
-                for(int i = 0; i < length(saji); i++) {
-                    saji.buffer[i].durasi -= 1;  
-                    if (saji.buffer[i].durasi == 0) {
-                        printf("M%d uda basi", saji.buffer[apa].urut); 
-                        saji.buffer[apa].durasi = saji.buffer[apa].d_awal;
-                        enqueue(&masak, saji.buffer[apa]);
-                        dequeue(&saji, &(saji.buffer[apa]));                       
+                
+                if(!isEmpty(saji)) {
+                    for(int i = 0; i < length(saji); i++) {
+                        saji.buffer[i].durasi -= 1;  
+                        if (saji.buffer[i].durasi <= 0) {
+                            printf("M%d uda basi", saji.buffer[apa].urut); 
+                            saji.buffer[apa].durasi = saji.buffer[apa].d_awal;
+                            enqueue(&masak, saji.buffer[apa]);
+                            dequeue(&saji, &(saji.buffer[apa]));                       
+                        }
                     }
                 }
+
+                saldo += pesan.buffer[apa].harga;
+                
+                // enqueue(&saji, pesan.buffer[apa]);
+                // dequeue(&masak, &(pesan.buffer[apa]));
+                dequeue(&pesan, &(pesan.buffer[apa]));
+                dequeue(&saji, &(pesan.buffer[apa]));
+                pelanggan += 1;
+
+                CreatePesanan(&pesan, urutan);
+                urutan++;
+
+                display(pesan, masak, saji);                 
+            } else {
+                printf("Tidak ada pesanan %d pada daftar", apa);
+                continue;
             }
-
-            saldo += pesan.buffer[apa].harga;
-            
-            // enqueue(&saji, pesan.buffer[apa]);
-            // dequeue(&masak, &(pesan.buffer[apa]));
-            dequeue(&pesan, &(pesan.buffer[apa]));
-            dequeue(&saji, &(pesan.buffer[apa]));
-
-            CreatePesanan(&pesan, urutan);
-            urutan++;
-
-            display(pesan, masak, saji);            
         } else {
             break;
         }
