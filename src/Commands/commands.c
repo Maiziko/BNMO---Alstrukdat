@@ -5,7 +5,8 @@
 
 void start()
 {
-    STARTGAME("stdin");
+    STARTGAME("config.txt");
+    char state = CCommand.Length;
     STARTWORD();
     while (&currentWord != "START")
     {
@@ -19,5 +20,13 @@ void start()
 
 void load()
 {
+
+}
+
+void help()
+{
+    printf("BANTUAN\n");
+    printf("1. START\n");
+    printf("");
 
 }
