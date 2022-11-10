@@ -80,6 +80,7 @@ void help()
 
 void commandLain() {
     // COMMAND yang gajelas masuk ke sini
+    // Niat bakal taro while loop disini ato buat pake case, cuma kudu liat outputnya dulu apaan aq ga ngerti :'))
     printf("Command tidak dikenali, silahkan masukkan command yang valid.");
     printf("\n");
     printf("Jika membutuhkan bantuan, gunakan fungsi 'HELP' tanpa tanda kutip satu.");
