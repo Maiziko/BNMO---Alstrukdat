@@ -77,8 +77,7 @@ void help()
     printf("\n");
 }
 
-void commandLain()
-{
+void commandLain() {
     // COMMAND yang gajelas masuk ke sini
     printf("Command tidak dikenali, silahkan masukkan command yang valid.");
     printf("\n");
