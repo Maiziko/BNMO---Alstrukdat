@@ -6,7 +6,6 @@
 void start()
 {
     STARTGAME("config.txt");
-    char state = CCommand.Length;
     STARTWORD();
     while (&currentWord != "START")
     {
@@ -15,7 +14,12 @@ void start()
         STARTWORD();
     }
     // Keluar loop, masuk ke command - command lain
-    load();
+    ADVWORD();
+    if (&currentWord == "LOAD")
+    {
+        load();
+    }
+    
 }
 
 void load()
@@ -27,6 +31,8 @@ void help()
 {
     printf("BANTUAN\n");
     printf("1. START\n");
-    printf("");
+    printf("    Di dalam file 'config.txt' pada line pertama, tuliskan 'START' tanpa tanda kutip satu, lalu jalankan program.");
+    printf("\n");
+    printf("2. LOAD\n");
 
 }
