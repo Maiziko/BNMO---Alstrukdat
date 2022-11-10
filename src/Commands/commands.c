@@ -14,12 +14,16 @@ void start()
         STARTWORD();
     }
     // Keluar loop, masuk ke command - command lain
+    printf("File konfigurasi sistem berhasil dibaca. BNMO berhasil dijalankan.");
     ADVWORD();
     if (&currentWord == "LOAD")
     {
         load();
     }
-    
+    else
+    {
+        commandLain();
+    }
 }
 
 void load()
@@ -35,4 +39,11 @@ void help()
     printf("\n");
     printf("2. LOAD\n");
 
+}
+
+void commandLain()
+{
+    // COMMAND yang gajelas masuk ke sini
+    printf("Command tidak dikenali, silahkan masukkan command yang valid.");
+    printf("\n");
 }
