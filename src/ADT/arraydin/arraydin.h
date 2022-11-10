@@ -6,11 +6,15 @@
 #define true 1
 #define false 0
 
+#include "../mesinkata/mesinkata.h"
+
 #define InitialSize 10
 
 typedef int IdxType;
-typedef int ElType;
-typedef struct {
+typedef Word ElType;
+
+typedef struct
+{
     ElType *A;
     int Capacity;
     int Neff;
@@ -61,9 +65,61 @@ int GetCapacity(ArrayDin array);
 void InsertAt(ArrayDin *array, ElType el, IdxType i);
 
 /**
+ * Fungsi untuk menambahkan elemen baru di akhir array.
+ * Prekondisi: array terdefinisi
+ */
+void InsertLast(ArrayDin *array, ElType el);
+
+/**
+ * Fungsi untuk menambahkan elemen baru di awal array.
+ * Prekondisi: array terdefinisi
+ */
+void InsertFirst(ArrayDin *array, ElType el);
+
+/**
  * Fungsi untuk menghapus elemen di index ke-i ArrayDin
  * Prekondisi: array terdefinisi, i di antara 0..Length(array).
  */
 void DeleteAt(ArrayDin *array, IdxType i);
+
+/**
+ * Fungsi untuk menghapus elemen terakhir ArrayDin
+ * Prekondisi: array tidak kosong
+ */
+void DeleteLast(ArrayDin *array);
+
+/**
+ * Fungsi untuk menghapus elemen pertama ArrayDin
+ * Prekondisi: array tidak kosong
+ */
+void DeleteFirst(ArrayDin *array);
+
+/**
+ * Fungsi untuk melakukan print suatu ArrayDin.
+ * Print dilakukan dengan format: [elemen-1, elemen-2, ..., elemen-n]
+ * dan diakhiri newline.
+ * Prekondisi: array terdefinisi
+ */
+void PrintArrayDin(ArrayDin array);
+
+/**
+ * Fungsi untuk melakukan reverse suatu ArrayDin.
+ * Prekondisi: array terdefinisi
+ */
+void ReverseArrayDin(ArrayDin *array);
+
+/**
+ * Fungsi untuk melakukan copy suatu ArrayDin.
+ * Prekondisi: array terdefinisi
+ */
+ArrayDin CopyArrayDin(ArrayDin array);
+
+/**
+ * Fungsi untuk melakukan search suatu ArrayDin.
+ * Index pertama yang ditemukan akan dikembalikan.
+ * Jika tidak ditemukan, akan mengembalikan -1.
+ * Prekondisi: array terdefinisi
+ */
+IdxType SearchArrayDin(ArrayDin array, ElType el);
 
 #endif

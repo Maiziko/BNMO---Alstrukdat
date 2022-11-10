@@ -10,30 +10,30 @@ void IgnoreBlanks()
     /* Mengabaikan Satu atau beberapa BLANK
        I.S  : currentChar sembarang
        F.S  : currentChar != BLANK atau currentChar != ENTER */
-    while ((currentChar == BLANK) || (currentChar != ENTER))
+    while ((currentChar == BLANK) || (currentChar == ENTER))
     {
         ADV();
     }
 }
 
-void STARTWORD()
-{
-    /* I.S. : currentChar sembarang
-       F.S. : EndWord = true, dan currentChar = MARK;
-              atau EndWord = false, currentWord adalah kata yang sudah diakuisisi,
-              currentChar karakter pertama sesudah karakter terakhir kata */
-    START();
-    IgnoreBlanks();
-    if (currentChar == ENTER)
-    {
-        EndWord = true;
-    }
-    else
-    {
-        EndWord = false;
-        ADVWORD();
-    }
-}
+// void STARTWORD()
+// {
+//     /* I.S. : currentChar sembarang
+//        F.S. : EndWord = true, dan currentChar = MARK;
+//               atau EndWord = false, currentWord adalah kata yang sudah diakuisisi,
+//               currentChar karakter pertama sesudah karakter terakhir kata */
+//     START();
+//     IgnoreBlanks();
+//     if (currentChar == ENTER)
+//     {
+//         EndWord = true;
+//     }
+//     else
+//     {
+//         EndWord = false;
+//         ADVWORD();
+//     }
+// }
 
 void STARTGAME(char *filename)
 {
@@ -52,7 +52,6 @@ void STARTGAME(char *filename)
     {
         EndWord = false;
         ADVWORD();
-        CopyWord();
     }
 }
 
@@ -70,7 +69,8 @@ void ADVWORD()
         EndWord = true;
     }
     else
-    {
+    {   
+        EndWord = false;
         CopyWord();
         IgnoreBlanks();
     }
@@ -86,7 +86,7 @@ void CopyWord()
               Jika panjang kata melebihi NMax, maka sisa kata "dipotong" */
 
     int i = 0;
-    while ((currentChar != MARK) && (currentChar != BLANK) && (i < NMax))
+    while ((currentChar != MARK) && (currentChar != ENTER) && i < NMax)
     {
         currentWord.TabWord[i] = currentChar;
         ADV();
@@ -100,7 +100,7 @@ void IgnoreDot()
     /* Mengabaikan satu atau beberapa BLANK dan MARK
        I.S. : currentChar sembarang
        F.S. : currentChar ≠ BLANK atau currentChar = ENTER */
-    while ((currentChar == BLANK) && (currentChar == '.'))
+    while ((currentChar == BLANK) || (currentChar == '.'))
     {
         ADVC();
     }
@@ -153,11 +153,81 @@ void CopyCommand()
               currentChar adalah karakter sesudah karakter terakhir yang diakuisisi.
               Jika panjang kata melebihi NMax, maka sisa kata "dipotong" */
     int j = 0;
-    while ((currentChar != BLANK) && (currentChar != ENTER) && j != NMax)
+    while ((currentChar != ENTER) && j != NMax)
     {
         CCommand.TabWord[j] = currentChar;
         ADVC();
         j++;
     }
     CCommand.Length = (j < NMax) ? j : NMax;
+}
+
+/* Fungsi Tambahan */
+boolean IsKataSama(Word InputCommand, Word Command)
+/* Mengirimkan true jika K1 = K2 : Length dan elemen tiap arraynya sama */
+{
+    boolean sama = true;
+    if (InputCommand.Length != Command.Length)
+    {
+        return !sama;
+    }
+    else
+    {
+        int i = 0;
+        while (sama && (i < Command.Length))
+        {
+            if (InputCommand.TabWord[i] != Command.TabWord[i])
+            {
+                sama = false;
+            }
+            i++;
+        }
+        return sama;
+    }
+}
+
+void PrintWord(Word K)
+/* Mencetak kata ke layar
+   I.S. : Kata K terdefinisi
+   F.S. : Kata K tercetak pada layar */
+{
+    for (int i = 0; i < K.Length; i++)
+    {
+        printf("%c", K.TabWord[i]);
+    }
+    printf("\n");
+}
+
+int stringLength(char *string)
+/* Mengirimkan panjang sebuah string */
+{
+    int len = 0;
+    while (string[len] != '\0')
+    {
+        len++;
+    }
+    return len;
+}
+
+Word toKata(char *command)
+/* Mengirimkan kata yang elemen of arraynya berasal dari command */
+{
+    int i;
+    Word output;
+    for (i = 0; i < stringLength(command); i++)
+    {
+        output.TabWord[i] = command[i];
+    }
+    output.Length = stringLength(command);
+    return output;
+}
+
+void wordStringCopy(char *dest, Word src)
+{
+    int i;
+    for (i = 0; i < src.Length && src.TabWord[i] != '\0'; ++i)
+    {
+        dest[i] = src.TabWord[i];
+    }
+    dest[i] = '\0';
 }

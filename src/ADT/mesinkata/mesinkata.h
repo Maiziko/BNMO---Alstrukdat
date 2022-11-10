@@ -4,8 +4,8 @@
 #ifndef __MESINKATA_H__
 #define __MESINKATA_H__
 
-#include "boolean.h"
-#include "mesinkarakter.h"
+#include "../boolean.h"
+#include "../mesinkarakter/mesinkarakter.h"
 
 #define NMax 100
 #define BLANK ' '
@@ -26,9 +26,8 @@ void IgnoreBlanks();
 /* Mengabaikan satu atau beberapa BLANK
    I.S. : currentChar sembarang
    F.S. : currentChar ≠ BLANK atau currentChar = MARK */
-void STARTWORD();
 
-void STARTGAME(char* filename);
+void STARTGAME(char *filename);
 /* I.S. : currentChar sembarang
    F.S. : EndWord = true, dan currentChar = MARK;
           atau EndWord = false, currentWord adalah kata yang sudah diakuisisi,
@@ -51,28 +50,43 @@ void CopyWord();
 
 void IgnoreDot();
 /* Mengabaikan satu atau beberapa BLANK dan MARK
-   I.S. : currentChar sembarang 
+   I.S. : currentChar sembarang
    F.S. : currentChar ≠ BLANK atau currentChar = ENTER */
 
 void STARTCOMMAND();
-/* I.S. : currentChar sembarang 
-   F.S. : EndWord = true, dan currentChar = ENTER; 
+/* I.S. : currentChar sembarang
+   F.S. : EndWord = true, dan currentChar = ENTER;
           atau EndWord = false, CCommand adalah kata yang sudah diakuisisi,
           currentChar karakter pertama sesudah karakter terakhir kata */
 
 void ADVCOMMAND();
-/* I.S. : currentChar adalah karakter pertama kata yang akan diakuisisi 
-   F.S. : CComand adalah kata terakhir yang sudah diakuisisi, 
+/* I.S. : currentChar adalah karakter pertama kata yang akan diakuisisi
+   F.S. : CComand adalah kata terakhir yang sudah diakuisisi,
           currentChar adalah karakter pertama dari kata berikutnya, mungkin ENTER
-          Jika currentChar = ENTER, EndWord = true.		  
+          Jika currentChar = ENTER, EndWord = true.
    Proses : Akuisisi kata menggunakan procedure CopyCommand */
 
 void CopyCommand();
 /* Mengakuisisi kata, menyimpan dalam CComand
    I.S. : currentChar adalah karakter pertama dari kata
-   F.S. : CComand berisi kata yang sudah diakuisisi; 
-          currentChar = BLANK atau currentChar = ENTER; 
+   F.S. : CComand berisi kata yang sudah diakuisisi;
+          currentChar = BLANK atau currentChar = ENTER;
           currentChar adalah karakter sesudah karakter terakhir yang diakuisisi.
           Jika panjang kata melebihi NMax, maka sisa kata "dipotong" */
+
+boolean IsKataSama(Word InputCommand, Word Command);
+/* Mengirimkan true jika K1 = K2 : Length dan elemen tiap arraynya sama */
+
+void PrintWord(Word K);
+/* Mencetak kata ke layar
+   I.S. : Kata K terdefinisi
+   F.S. : Kata K tercetak pada layar */
+
+int stringLength(char *string);
+/* Mengirimkan panjang sebuah string */
+
+Word toKata(char *command);
+/* Mengirimkan kata yang elemen of arraynya berasal dari command */
+void wordStringCopy(char *dest, Word src);
 
 #endif

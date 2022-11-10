@@ -2,67 +2,129 @@
 #include <stdio.h>
 
 /* *** Kreator *** */
-void CreateQueue(Queue *q) {
+void CreateQueue(Queue *q)
+{
     IDX_HEAD(*q) = IDX_UNDEF;
     IDX_TAIL(*q) = IDX_UNDEF;
 }
 
 /* ********* Prototype ********* */
-boolean isEmpty(Queue q) {
+void CreateMem(memmen *m)
+{
+    m->juml = 0;
+    for (int i = 0; i < 10; i++)
+    {
+        (*m).Din[i].ID = IDX_UNDEF;
+        (*m).Din[i].Durasi = IDX_UNDEF;
+        (*m).Din[i].Ketahanan = IDX_UNDEF;
+        (*m).Din[i].Harga = IDX_UNDEF;
+    }
+}
+boolean isEmpty(Queue q)
+{
     return (IDX_HEAD(q) == IDX_UNDEF) && (IDX_TAIL(q) == IDX_UNDEF);
 }
 
-boolean isFull(Queue q) {
-    return IDX_HEAD(q) == 0? IDX_TAIL(q) == CAPACITY - 1 : IDX_TAIL(q) == IDX_HEAD(q) - 1; 
+boolean isFull(Queue q)
+{
+    return IDX_HEAD(q) == 0 ? IDX_TAIL(q) == CAPACITY - 1 : IDX_TAIL(q) == IDX_HEAD(q) - 1;
 }
 
-int length(Queue q) {
-    if (isEmpty(q)) {
+int length(Queue q)
+{
+    if (isEmpty(q))
+    {
         return 0;
-    } else {
-        if (IDX_TAIL(q) < IDX_HEAD(q)) {
+    }
+    else
+    {
+        if (IDX_TAIL(q) < IDX_HEAD(q))
+        {
             return (CAPACITY - (IDX_HEAD(q) - IDX_TAIL(q) - 1));
-        } else {
+        }
+        else
+        {
             return (IDX_TAIL(q) - IDX_HEAD(q) + 1);
-        }      
+        }
     }
 }
 
 /* *** Primitif Add/Delete *** */
-void enqueue(Queue *q, ElType val) {
-    if (isEmpty(*q)) {
+void enqueue(Queue *q, Eltype val)
+{
+    if (isEmpty(*q))
+    {
         IDX_HEAD(*q) = 0;
         IDX_TAIL(*q) = 0;
-    } else if (IDX_TAIL(*q) == (CAPACITY-1)) {
+    }
+    else if (IDX_TAIL(*q) == (CAPACITY - 1))
+    {
         IDX_TAIL(*q) = 0;
-    } else {
-        IDX_TAIL(*q)++;         
-    } TAIL(*q) = val;
+    }
+    else
+    {
+        IDX_TAIL(*q)
+        ++;
+    }
+    (*q).buffer[(*q).idxTail] = val;
 }
 
-void dequeue(Queue *q, ElType *val) {
-    *val = HEAD(*q);
-    if (IDX_HEAD(*q) == IDX_TAIL(*q)) {
+void dequeue(Queue *q, Eltype *val)
+{
+    *val = (*q).buffer[(*q).idxHead];
+    if (IDX_HEAD(*q) == IDX_TAIL(*q))
+    {
         IDX_HEAD(*q) = IDX_UNDEF;
         IDX_TAIL(*q) = IDX_UNDEF;
-    } else {
-        IDX_HEAD(*q)++; }
+    }
+    else
+    {
+        IDX_HEAD(*q)
+        ++;
+    }
+}
+
+void dequeuee(Queue *q, Eltype *val)
+{
+    *val = (*q).buffer[(*q).idxHead];
+    if (IDX_HEAD(*q) == IDX_TAIL(*q))
+    {
+        IDX_HEAD(*q) = IDX_UNDEF;
+        IDX_TAIL(*q) = IDX_UNDEF;
+    }
+    else
+    {
+        for (int i = IDX_HEAD(*q); i < IDX_TAIL(*q); i++)
+        {
+            (*q).buffer[i] = (*q).buffer[i + 1];
+        }
+        IDX_TAIL(*q)--;
+        // memindahkan elemen head ke elemen awal
+    }
 }
 
 /* *** Display Queue *** */
-void displayQueue(Queue q) {
-    if (isEmpty(q)) {
-        printf("[]\n"); }
-    else {
+void displayQueue(Queue q)
+{
+    if (isEmpty(q))
+    {
+        printf("[]\n");
+    }
+    else
+    {
         int i;
         printf("[");
-        for (i = IDX_HEAD(q); i <= IDX_TAIL(q); i++) {
-            if (i == IDX_TAIL(q)) {
+        for (i = IDX_HEAD(q); i <= IDX_TAIL(q); i++)
+        {
+            if (i == IDX_TAIL(q))
+            {
                 printf("%d", q.buffer[i]);
-            } else {
+            }
+            else
+            {
                 printf("%d,", q.buffer[i]);
             }
         }
         printf("]\n");
-    }   
+    }
 }

@@ -1,11 +1,12 @@
 #include <stdio.h>
-#include "mesinkata.c"
-#include "mesinkarakter.c"
+#include "../../ADT/mesinkata/mesinkata.c"
+#include "../../ADT/mesinkarakter/mesinkarakter.c"
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include "../../ADT/boolean.h"
 
-int randomDadu()
+int random()
 {
     srand((unsigned)time(0));
     return (rand() % 100) + 1;
@@ -23,35 +24,36 @@ int toInteger(Word kata)
     return result;
 }
 
-int main()
+void RNG()
 {
-    int count = randomDadu();
-    int n;
+    int RandAngka = random();
     int hitung = 0;
     printf("Tebakan: ");
-    STARTWORD();
+    STARTCOMMAND();
     Word Kata;
     Kata = currentWord;
-    while (toInteger(Kata) != count)
+    while (toInteger(Kata) != RandAngka)
     {
-        if (toInteger(Kata) > count)
+        if (toInteger(Kata) > RandAngka)
         {
             printf("Lebih Kecil\n");
             printf("Tebakan: ");
-            STARTWORD();
+            STARTCOMMAND();
         }
-        else if (toInteger(Kata) < count)
+        else if (toInteger(Kata) < RandAngka)
         {
             printf("Lebih Besar\n");
             printf("Tebakan: ");
-            STARTWORD();
+            STARTCOMMAND();
         }
         Kata = currentWord;
         hitung += 1;
     }
-    printf("Ya, X adalah %d\n", count);
+    printf("Ya, X adalah %d\n", RandAngka);
     printf("Anda salah menebak dalam %d kali percobaan\n", hitung); // Percobaan menebak yang gagal
     printf("Score anda adalah %d\n", 100 - hitung);
     // Perhitungan Score yang disetujui adalah 100 untuk nilai full
-    return 0;
 }
+
+
+

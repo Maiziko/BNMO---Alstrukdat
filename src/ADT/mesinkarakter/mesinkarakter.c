@@ -7,7 +7,7 @@ static FILE *pita;
 static FILE *command;
 static int retval;
 
-void START()
+void START(char *filename)
 {
     /* Mesin siap dioperasikan. Pita disiapkan untuk dibaca.
     Karakter pertama yang ada pada pita posisinya adalah pada jendela.
@@ -17,7 +17,7 @@ void START()
     Jika CC != MARK maka EOP akan padam (false)
     Jika CC = MARK maka EOP akan menyala (true) */
 
-    pita = stdin;
+    pita = fopen(filename, "r");
     ADV();
 }
 
@@ -33,7 +33,7 @@ void ADV()
     retval = fscanf(pita, "%c", &currentChar);
     if (IsEOP())
     {
-        // fclose(pita); membiarkan agar pita terus dibaca 
+        fclose(pita);
     }
 }
 
@@ -57,9 +57,6 @@ void ADVC()
     F.S. : CC adalah karakter berikutnya dari CC yang lama,*/
     retval = fscanf(pita, "%c", &currentChar);
     EOP = (currentChar == ENTER);
-    if (EOP)
-    {
-    }
 }
 
 char GetCC()
