@@ -10,8 +10,7 @@ void IgnoreBlanks()
     /* Mengabaikan Satu atau beberapa BLANK
        I.S  : currentChar sembarang
        F.S  : currentChar != BLANK atau currentChar != ENTER */
-    while ((currentChar == BLANK) || (currentChar != ENTER))
-    {
+    while ((currentChar == BLANK)) {
         ADV();
     }
 }
@@ -35,27 +34,6 @@ void STARTWORD()
     }
 }
 
-void STARTGAME(char *filename)
-{
-    /* I.S. : currentChar sembarang
-       F.S. : EndWord = true, dan currentChar = MARK;
-              atau EndWord = false, currentWord adalah kata yang sudah diakuisisi,
-              currentChar karakter pertama sesudah karakter terakhir kata */
-
-    START(filename);
-    IgnoreBlanks();
-    if (currentChar == MARK)
-    {
-        EndWord = true;
-    }
-    else
-    {
-        EndWord = false;
-        ADVWORD();
-        CopyWord();
-    }
-}
-
 void ADVWORD()
 {
     /* I.S. : currentChar adalah karakter pertama kata yang akan diakuisisi
@@ -65,7 +43,7 @@ void ADVWORD()
        Proses : Akuisisi kata menggunakan procedure CopyWord */
 
     IgnoreBlanks();
-    if (currentChar == MARK && !EndWord)
+    if (currentChar == ENTER)
     {
         EndWord = true;
     }
@@ -93,6 +71,51 @@ void CopyWord()
         i++;
     }
     currentWord.Length = i;
+}
+
+void STARTGAME(char *filename)
+{
+    /* I.S. : currentChar sembarang
+       F.S. : EndWord = true, dan currentChar = MARK;
+              atau EndWord = false, currentWord adalah kata yang sudah diakuisisi,
+              currentChar karakter pertama sesudah karakter terakhir kata */
+
+    START(filename);
+    IgnoreBlanks();
+    if (currentChar == MARK)
+    {
+        EndWord = true;
+    }
+    else
+    {
+        EndWord = false;
+        ADVGAME();
+        CopyWord();
+    }
+}
+
+void ADVGAME() {
+    IgnoreBlanks();
+    if (currentChar == MARK) {
+        EndWord = true;
+    }
+    else {
+        EndWord = false;
+        CopyGame();
+        IgnoreBlanks();
+    }
+}
+
+void CopyGame(){
+    currentWord.Length = 0;
+    while ((currentChar != MARK) && (currentChar != ENTER)) {
+        if (currentWord.Length < NMax) {
+            currentWord.TabWord[currentWord.Length++] = currentChar;
+            ADVGAME();
+        } else {
+            break;
+        }
+    }
 }
 
 void IgnoreDot()

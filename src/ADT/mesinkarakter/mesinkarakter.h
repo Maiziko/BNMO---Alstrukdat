@@ -4,7 +4,7 @@
 #ifndef __MESIN_KAR_H_
 #define __MESIN_KAR_H_
 
-#include "boolean.h"
+#include "../boolean.h"
 #include <stdio.h> 
 
 #define MARK '.'
@@ -14,7 +14,7 @@
 extern char currentChar;
 extern boolean EOP;
 
-void START(char* filename);
+void START();
 /* Mesin siap dioperasikan. Pita disiapkan untuk dibaca.
    Karakter pertama yang ada pada pita posisinya adalah pada jendela.
    Pita baca diambil dari stdin.
@@ -30,7 +30,7 @@ void ADV();
           currentChar mungkin = MARK
           Jika  currentChar = MARK maka EOP akan menyala (true) */
 
-void STARTG();
+void STARTG(char* filename);
 
 void ADVG();
 /* Pita dimajukan satu karakter.
