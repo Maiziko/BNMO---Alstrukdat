@@ -70,12 +70,14 @@ void help()
     printf("    Di dalam file 'config.txt' pada line pertama, tuliskan 'START' tanpa tanda kutip satu, lalu jalankan program.");
     printf("\n");
     printf("2. LOAD\n");
+    printf("    Untuk menjalankan command LOAD, di dalam file 'config.txt' pada line berikutnya, tuliskan 'LOAD <namafile.txt>' tanpa tanda kutip satu, lalu jalankan program.");
+    printf("\n");
 
 }
 
-void commandLain()
-{
+void commandLain() {
     // COMMAND yang gajelas masuk ke sini
     printf("Command tidak dikenali, silahkan masukkan command yang valid.");
     printf("\n");
+    printf("Jika membutuhkan bantuan, gunakan fungsi 'HELP' tanpa tanda kutip satu.");
 }
