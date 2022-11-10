@@ -72,9 +72,10 @@ void help()
     printf("2. LOAD\n");
     printf("    Untuk menjalankan command LOAD, di dalam file 'config.txt' pada line berikutnya, tuliskan 'LOAD <namafile.txt>' tanpa tanda kutip satu, lalu jalankan program.");
     printf("\n");
-    printf("3. CREATEGAME\n");
+    printf("3. CREATE GAME\n");
     printf("    Untuk menjalankan command CREATEGAME, di dalam file 'config.txt' pada line berikutnya, tuliskan 'CREATEGAME' lalu masukkan nama game yang akan ditambah");
     printf("\n");
+    printf("4. LIST GAME\n");
 }
 
 void commandLain() {
