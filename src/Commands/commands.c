@@ -2,6 +2,8 @@
 
 // START
 #include "mesinkata.h"
+#include <stdio.h>
+#include <stdlib.h>
 
 void start()
 {
@@ -29,6 +31,36 @@ void start()
 void load()
 {
 
+}
+
+void create() {
+
+}
+
+void list() {
+
+}
+
+void delete() {
+
+}
+
+void queue() {
+
+}
+
+void play() {
+
+}
+
+void skip(int n) {
+    
+}
+
+void quit() {
+    printf("Anda keluar dari game BNMO");
+    printf("Bye Bye ^U^");
+    exit;
 }
 
 void help()

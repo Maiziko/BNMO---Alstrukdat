@@ -320,6 +320,7 @@ int main() {
                         masak.buffer[i].durasi -= 1;  
                         if (masak.buffer[i].durasi <= 0) {
                             printf("M%d uda mateng", masak.buffer[apa].urut); 
+                            apa = masak.buffer[apa].urut;
                             enqueue(&saji, masak.buffer[apa]);
                             dequeue(&masak, &(masak.buffer[apa]));                       
                         }
@@ -359,6 +360,7 @@ int main() {
                         masak.buffer[i].durasi -= 1;  
                         if (masak.buffer[i].durasi <= 0) {
                             printf("M%d uda mateng", masak.buffer[apa].urut); 
+                            apa = masak.buffer[apa].urut;
                             enqueue(&saji, masak.buffer[apa]);
                             dequeue(&masak, &(masak.buffer[apa]));                       
                         }
@@ -381,6 +383,7 @@ int main() {
                 
                 // enqueue(&saji, pesan.buffer[apa]);
                 // dequeue(&masak, &(pesan.buffer[apa]));
+                apa = masak.buffer[apa].urut;
                 dequeue(&pesan, &(pesan.buffer[apa]));
                 dequeue(&saji, &(pesan.buffer[apa]));
                 pelanggan += 1;
@@ -396,7 +399,7 @@ int main() {
         } else {
             break;
         }
-        printf("\nNEXTTTTTTT\n");
+        printf("\n=====================================================\n");
         printf("SALDO : %d\n", saldo);
     }
 }
