@@ -16,13 +16,16 @@ void START(char *filename)
     F.S. : CC adalah karakter pertama pada pita
     Jika CC != MARK maka EOP akan padam (false)
     Jika CC = MARK maka EOP akan menyala (true) */
+<<<<<<< HEAD
 
     pita = fopen(filename, "r");
+=======
+    pita = stdin;
+>>>>>>> fc1601a522ff3d98096e8d145598c34ce0d77e31
     ADV();
 }
 
-void ADV()
-{
+void ADV() {
     /* Pita dimajukan satu karakter.
     I.S. : Karakter pada jendela = CC, CC != MARK
     F.S. : CC adalah karakter berikutnya dari CC yang lama,
@@ -31,32 +34,34 @@ void ADV()
     Jika CC = MARK maka EOP akan menyala (true) */
 
     retval = fscanf(pita, "%c", &currentChar);
+<<<<<<< HEAD
     if (IsEOP())
     {
         fclose(pita);
     }
+=======
+    EOP = (currentChar == MARK);
+>>>>>>> fc1601a522ff3d98096e8d145598c34ce0d77e31
 }
 
-void COMMAND()
-{
-    /*  Mesin siap dioperasikan. Pita disiapkan untuk dibaca.
-        Karakter pertama yang ada pada pita posisinya adalah pada jendela.
-        filename merupakan nama file yang berisi pita karakter
-        I.S. : sembarang
-        F.S. : CC adalah karakter pertama pada pita
-        Jika CC != ENTER maka EOP akan padam (false)
-        Jika CC = ENTER maka EOP akan menyala (true) */
-    pita = stdin;
-    ADVC();
+void STARTG(char *filename) {
+    pita = fopen(filename,"r");
+    ADVG();
 }
 
-void ADVC()
+void ADVG()
 {
     /* Pita dimajukan satu karakter.
     I.S. : Karakter pada jendela = CC, CC != ENTER
     F.S. : CC adalah karakter berikutnya dari CC yang lama,*/
     retval = fscanf(pita, "%c", &currentChar);
     EOP = (currentChar == ENTER);
+<<<<<<< HEAD
+=======
+    if (EOP) {
+        fclose(pita);
+    }
+>>>>>>> fc1601a522ff3d98096e8d145598c34ce0d77e31
 }
 
 char GetCC()
