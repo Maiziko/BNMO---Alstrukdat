@@ -34,7 +34,7 @@ void ADV() {
 
 void STARTG(char *filename) {
     pita = fopen(filename,"r");
-    ADV();
+    ADVG();
 }
 
 void ADVG()
