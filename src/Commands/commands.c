@@ -58,7 +58,7 @@ void skip(int n) {
 }
 
 void quit() {
-    printf("Anda keluar dari game BNMO");
+    printf(" Anda keluar dari game BNMO");
     printf("Bye Bye ^U^");
     exit;
 }
