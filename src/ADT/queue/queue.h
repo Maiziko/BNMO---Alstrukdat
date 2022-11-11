@@ -12,7 +12,7 @@
 
 /* Definisi elemen dan address */
 typedef int ElType;
-// typedef Word Eltype;
+typedef Word Eltype;
 
 typedef struct
 {
