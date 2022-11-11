@@ -314,15 +314,20 @@ int main() {
         if(cmd == 1) {
             printf("urutan brp: ");
             scanf("%d", &apa);
+
+            for(int i = 0; i < length(pesan); i++) {
+                printf("\n[%d]\n", pesan.buffer[i].urut);
+            }
+
             if(isMember(apa, pesan)) {
                 if(!isEmpty(masak)) {
                     for(int i = 0; i < length(masak); i++) {
                         masak.buffer[i].durasi -= 1;  
                         if (masak.buffer[i].durasi <= 0) {
-                            printf("M%d uda mateng", masak.buffer[apa].urut); 
-                            apa = masak.buffer[apa].urut;
-                            enqueue(&saji, masak.buffer[apa]);
-                            dequeue(&masak, &(masak.buffer[apa]));                       
+                            printf("\n-> M%d uda mateng\n", masak.buffer[i].urut); 
+                            // apa = masak.buffer[apa].urut;
+                            enqueue(&saji, masak.buffer[i]);
+                            dequeue(&masak, &(masak.buffer[i]));                       
                         }
                     }
                 }
@@ -331,10 +336,10 @@ int main() {
                     for(int i = 0; i < length(saji); i++) {
                         saji.buffer[i].durasi -= 1;  
                         if (saji.buffer[i].durasi == 0) {
-                            printf("M%d uda basi", saji.buffer[apa].urut); 
-                            saji.buffer[apa].durasi = saji.buffer[apa].d_awal;
-                            enqueue(&masak, saji.buffer[apa]);
-                            dequeue(&saji, &(saji.buffer[apa]));                       
+                            printf("\n-> M%d uda basi\n", saji.buffer[i].urut); 
+                            saji.buffer[i].durasi = saji.buffer[i].d_awal;
+                            enqueue(&masak, saji.buffer[i]);
+                            dequeue(&saji, &(saji.buffer[i]));                       
                         }
                     }
                 }
@@ -348,44 +353,57 @@ int main() {
                 display(pesan, masak, saji);            
             } else {
                 printf("Tidak ada pesanan %d pada daftar", apa);
+                printf("\n=====================================================\n");
                 continue;
             }
 
         } else if (cmd == 2) {
             printf("urutan brp: ");
             scanf("%d", &apa);
+
+            for(int i = 0; i < length(pesan); i++) {
+                printf("\n[%d]\n", pesan.buffer[i].urut);
+            }
+
             if(isMember(apa, saji)) {
+            // if(apa == masak.buffer[apa].urut) {
+                saldo += pesan.buffer[apa].harga;
+
                 if(!isEmpty(masak)) {
                     for(int i = 0; i < length(masak); i++) {
                         masak.buffer[i].durasi -= 1;  
-                        if (masak.buffer[i].durasi <= 0) {
-                            printf("M%d uda mateng", masak.buffer[apa].urut); 
-                            apa = masak.buffer[apa].urut;
-                            enqueue(&saji, masak.buffer[apa]);
-                            dequeue(&masak, &(masak.buffer[apa]));                       
-                        }
-                    }
-                }
-                
-                if(!isEmpty(saji)) {
-                    for(int i = 0; i < length(saji); i++) {
-                        saji.buffer[i].durasi -= 1;  
-                        if (saji.buffer[i].durasi <= 0) {
-                            printf("M%d uda basi", saji.buffer[apa].urut); 
-                            saji.buffer[apa].durasi = saji.buffer[apa].d_awal;
-                            enqueue(&masak, saji.buffer[apa]);
-                            dequeue(&saji, &(saji.buffer[apa]));                       
+                        if (masak.buffer[i].durasi == 0) {
+                            printf("\n-> M%d uda mateng\n", masak.buffer[i].urut); 
+                            // apa = masak.buffer[apa].urut;
+                            enqueue(&saji, masak.buffer[i]);
+                            dequeue(&masak, &(masak.buffer[i]));                       
                         }
                     }
                 }
 
-                saldo += pesan.buffer[apa].harga;
-                
                 // enqueue(&saji, pesan.buffer[apa]);
-                // dequeue(&masak, &(pesan.buffer[apa]));
-                apa = masak.buffer[apa].urut;
-                dequeue(&pesan, &(pesan.buffer[apa]));
+                // apa = masak.buffer[apa].urut;
                 dequeue(&saji, &(pesan.buffer[apa]));
+                dequeue(&pesan, &(pesan.buffer[apa]));
+                // for(int i = 0; i < length(saji); i++) {
+                //     if (saji.buffer[i].urut == apa) {
+                //         dequeue(&pesan, &(pesan.buffer[i]));
+                //         dequeue(&saji, &(pesan.buffer[i]));                      
+                //     }
+                // }  
+                
+                if(!isEmpty(saji)) {
+                    for(int i = 0; i < length(saji); i++) {
+                        saji.buffer[i].durasi -= 1;  
+                        if (saji.buffer[i].durasi == 0) {
+                            printf("\n-> M%d uda basi\n", saji.buffer[i].urut); 
+                            saji.buffer[i].durasi = saji.buffer[i].d_awal;
+                            enqueue(&masak, saji.buffer[i]);
+                            dequeue(&saji, &(saji.buffer[i]));                       
+                        }
+                    }
+                }          
+
                 pelanggan += 1;
 
                 CreatePesanan(&pesan, urutan);
@@ -394,6 +412,7 @@ int main() {
                 display(pesan, masak, saji);                 
             } else {
                 printf("Tidak ada pesanan %d pada daftar", apa);
+                printf("\n=====================================================\n");
                 continue;
             }
         } else {
@@ -402,4 +421,13 @@ int main() {
         printf("\n=====================================================\n");
         printf("SALDO : %d\n", saldo);
     }
+    printf("\n=====================================================\n");
+    if(length(pesan) == 7) {
+    printf("Permainan Berakhir, sudah mencapai 7 antrian\n");
+    printf("SALDO AKHIR : %d\n", saldo);        
+    } else if (pelanggan == 15) {
+        printf("Permainan Berakhir, sudah mencapai 15 pelanggan\n");
+        printf("SALDO AKHIR : %d\n", saldo);   
+    }
+    printf("\n=====================================================\n");
 }
