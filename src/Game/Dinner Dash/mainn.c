@@ -159,12 +159,23 @@ void enqueue(Queue *q, ElType val) {
 }
 
 void dequeue(Queue *q, ElType *val) {
-    *val = HEAD(*q);
+    // *val = HEAD(*q);
+    // if (IDX_HEAD(*q) == IDX_TAIL(*q)) {
+    //     IDX_HEAD(*q) = IDX_UNDEF;
+    //     IDX_TAIL(*q) = IDX_UNDEF;
+    // } else {
+    //     IDX_HEAD(*q)++; }
+    *val = (*q).buffer[(*q).idxHead];
     if (IDX_HEAD(*q) == IDX_TAIL(*q)) {
         IDX_HEAD(*q) = IDX_UNDEF;
         IDX_TAIL(*q) = IDX_UNDEF;
     } else {
-        IDX_HEAD(*q)++; }
+        for (int i = IDX_HEAD(*q); i < IDX_TAIL(*q); i++) {
+            (*q).buffer[i] = (*q).buffer[i + 1];
+        }
+        IDX_TAIL(*q)--;
+        // memindahkan elemen head ke elemen awal
+    }
 }
 
 /* *** Display Queue *** */
@@ -302,7 +313,7 @@ int main() {
     printf("\n(^U^) Selamat Datang di DINNER DASH (^U^)\n\n");
     // printf("SALDO : %d\n", saldo);
     display(pesan, masak, saji);
-    printf("\n1. COOK\n2. SERVE\n");
+    printf("\n1. COOK\n2. SERVE\n3. SKIP\n");
 
     // ini putarannya
     while(length(pesan) < 7 && pelanggan != 15) {
@@ -415,7 +426,33 @@ int main() {
                 printf("\n=====================================================\n");
                 continue;
             }
-        } else {
+        } else if(cmd == 3) {
+            if(!isEmpty(masak)) {
+                for(int i = 0; i < length(masak); i++) {
+                    masak.buffer[i].durasi -= 1;  
+                    if (masak.buffer[i].durasi == 0) {
+                        printf("\n-> M%d uda mateng\n", masak.buffer[i].urut); 
+                        // apa = masak.buffer[apa].urut;
+                        enqueue(&saji, masak.buffer[i]);
+                        dequeue(&masak, &(masak.buffer[i]));                       
+                    }
+                }
+            }
+            if(!isEmpty(saji)) {
+                for(int i = 0; i < length(saji); i++) {
+                    saji.buffer[i].durasi -= 1;  
+                    if (saji.buffer[i].durasi == 0) {
+                        printf("\n-> M%d uda basi\n", saji.buffer[i].urut); 
+                        saji.buffer[i].durasi = saji.buffer[i].d_awal;
+                        enqueue(&masak, saji.buffer[i]);
+                        dequeue(&saji, &(saji.buffer[i]));                       
+                    }
+                }
+            }   
+            CreatePesanan(&pesan, urutan);
+            urutan++;             
+        } 
+        else {
             break;
         }
         printf("\n=====================================================\n");
@@ -423,11 +460,9 @@ int main() {
     }
     printf("\n=====================================================\n");
     if(length(pesan) == 7) {
-    printf("Permainan Berakhir, sudah mencapai 7 antrian\n");
-    printf("SALDO AKHIR : %d\n", saldo);        
+    printf("Permainan Berakhir, sudah mencapai 7 antrian\n");    
     } else if (pelanggan == 15) {
-        printf("Permainan Berakhir, sudah mencapai 15 pelanggan\n");
-        printf("SALDO AKHIR : %d\n", saldo);   
-    }
+        printf("Permainan Berakhir, sudah mencapai 15 pelanggan\n");   
+    } printf("SALDO AKHIR : %d", saldo);
     printf("\n=====================================================\n");
 }
