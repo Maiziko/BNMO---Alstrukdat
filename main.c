@@ -179,14 +179,29 @@ void SAVE(ArrayDin file, Word kata)
 /* *** ******* ******* ******* ******** ******* ******** Program Utama ******* ******** *** ******* ******* ******* ******** */
 int main()
 {
-    printf("___       ________________ _____________________  ____________\n");
-    printf("__ |     / /__  ____/__  / __  ____/_  __ \\__   |/  /__  ____/\n");
-    printf("__ | /| / /__  __/  __  /  _  /    _  / / /_  /|_/ /__  __/   \n");
-    printf("__ |/ |/ / _  /___  _  /___/ /___  / /_/ /_  /  / / _  /___   \n");
-    printf("____/|__/  /_____/  /_____/\\____/  \\____/ /_/  /_/  /_____/  \n");
-    printf("______________________________________________________________\n");
-    printf("BNMO | Kelompok 04 | IF2111 Algoritma dan Struktur Data\n");
-    printf("--------------------------------------------------------\n");
+    printf("----------------------------------------------------------------------------------------------------------------------------------------------------------------------\n");
+    printf("\n");
+    printf("     BBBBBBBBBBBBBBBBBBBBBBBBBBB          NNNNNNNNNN                 NNNNN          MMMMMMMMM                     MMMMMMMMM          OOOOOOOOOOOOOOOOOOOOOOOOOOOOOO\n");
+    printf("     BBBBBBBBBBBBBBBBBBBBBBBBBBB          NNNNNNNNNNN                NNNNN          MMMMMMMMMM                   MMMMMMMMMM          OOOOOOOOOOOOOOOOOOOOOOOOOOOOOO\n");
+    printf("     BBBBB                BBBBBB          NNNNN  NNNNN               NNNNN          MMMMM MMMMM                 MMMMM MMMMM          OOOOO                    OOOOO\n");
+    printf("     BBBBB                BBBBBB          NNNNN   NNNNN              NNNNN          MMMMM  MMMMM               MMMMM  MMMMM          OOOOO                    OOOOO\n");
+    printf("     BBBBB                BBBBBB          NNNNN    NNNNN             NNNNN          MMMMM   MMMMM             MMMMM   MMMMM          OOOOO                    OOOOO\n");
+    printf("     BBBBB                BBBBBB          NNNNN     NNNNN            NNNNN          MMMMM    MMMMM           MMMMM    MMMMM          OOOOO                    OOOOO\n");
+    printf("     BBBBB                BBBBBB          NNNNN      NNNNN           NNNNN          MMMMM     MMMMM         MMMMM     MMMMM          OOOOO                    OOOOO\n");
+    printf("     BBBBB                BBBBBB          NNNNN       NNNNN          NNNNN          MMMMM      MMMMM       MMMMM      MMMMM          OOOOO                    OOOOO\n");
+    printf("     BBBBBBBBBBBBBBBBBBBBBBBBBB           NNNNN        NNNNN         NNNNN          MMMMM       MMMMM     MMMMM       MMMMM          OOOOO                    OOOOO\n");
+    printf("     BBBBBBBBBBBBBBBBBBBBBBBBB            NNNNN         NNNNN        NNNNN          MMMMM        MMMMM   MMMMM        MMMMM          OOOOO                    OOOOO\n");
+    printf("     BBBBBBBBBBBBBBBBBBBBBBBBBBB          NNNNN          NNNNN       NNNNN          MMMMM         MMMMM MMMMM         MMMMM          OOOOO                    OOOOO\n");
+    printf("     BBBBB                 BBBBBB         NNNNN           NNNNN      NNNNN          MMMMM          MMMMMMMMM          MMMMM          OOOOO                    OOOOO\n");
+    printf("     BBBBB                 BBBBBB         NNNNN            NNNNN     NNNNN          MMMMM                             MMMMM          OOOOO                    OOOOO\n");
+    printf("     BBBBB                 BBBBBB         NNNNN             NNNNN    NNNNN          MMMMM                             MMMMM          OOOOO                    OOOOO\n");
+    printf("     BBBBB                 BBBBBB         NNNNN              NNNNN   NNNNN          MMMMM                             MMMMM          OOOOO                    OOOOO\n");
+    printf("     BBBBB                 BBBBBB         NNNNN               NNNNN  NNNNN          MMMMM                             MMMMM          OOOOO                    OOOOO\n");
+    printf("     BBBBB                 BBBBBB         NNNNN                NNNNN NNNNN          MMMMM                             MMMMM          OOOOO                    OOOOO\n");
+    printf("     BBBBBBBBBBBBBBBBBBBBBBBBBBBB         NNNNN                 NNNNNNNNNN          MMMMM                             MMMMM          OOOOOOOOOOOOOOOOOOOOOOOOOOOOOO\n");
+    printf("     BBBBBBBBBBBBBBBBBBBBBBBBBBBB         NNNNN                  NNNNNNNNN          MMMMM                             MMMMM          OOOOOOOOOOOOOOOOOOOOOOOOOOOOOO\n");
+    printf("\n");
+    printf("----------------------------- Kelas K3 ---------------------- IF2111 Algoritma dan Struktur Data STI -------------------------- Kelompok 4 ---------------------------\n");
     printf("Silahkan Masukkan COMMAND (START/LOAD) untuk memulai : ");
     STARTCOMMAND();
     printf("\n");
