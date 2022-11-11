@@ -8,32 +8,33 @@
 #include "../mesinkata/mesinkata.h"
 
 #define IDX_UNDEF -1
-#define CAPACITY 20
+#define CAPACITY 10
 
 /* Definisi elemen dan address */
-typedef int ElType;
+typedef int ElTypee;
 typedef Word Eltype;
 
 typedef struct
 {
-        ElType buffer[CAPACITY];
+        Eltype buffer[CAPACITY];
         int idxHead;
         int idxTail;
 } Queue;
 
-typedef struct {
-        int urut;
-        int durasi;
-        int ketahanan;
-        int harga;
-        int d_awal;
-} dintype;
+typedef struct
+{
+        ElTypee ID;
+        ElTypee Durasi;
+        ElTypee Ketahanan;
+        ElTypee Harga;
+        ElTypee Juml;
+} infotype;
 
 typedef struct
 {
-        dintype din[CAPACITY];
+        infotype Din[10];
         int juml;
-} dinQueue;
+} memmen;
 
 /* ********* AKSES (Selektor) ********* */
 /* Jika q adalah Queue, maka akses elemen : */
@@ -49,61 +50,38 @@ void CreateQueue(Queue *q);
 /* - Index head bernilai IDX_UNDEF */
 /* - Index tail bernilai IDX_UNDEF */
 /* Proses : Melakukan alokasi, membuat sebuah q kosong */
-void CreatePesanan(dinQueue *q);
-
-void InsertPesanan(dinQueue *q, int NoUrut);
-
+void CreateMem(memmen *m);
 /* ********* Prototype ********* */
 boolean isEmpty(Queue q);
 /* Mengirim true jika q kosong: lihat definisi di atas */
 boolean isFull(Queue q);
 /* Mengirim true jika tabel penampung elemen q sudah penuh */
 /* yaitu IDX_TAIL akan selalu di belakang IDX_HEAD dalam buffer melingkar*/
-boolean isMember(int urut, dinQueue q);
-boolean isDinEmpty(dinQueue q);
-/* Mengirim true jika q kosong: lihat definisi di atas */
-boolean isDinFull(dinQueue q);
 
 int length(Queue q);
 /* Mengirimkan banyaknya elemen queue. Mengirimkan 0 jika q kosong. */
 
 /* *** Primitif Add/Delete *** */
-void enqueue(Queue *q, ElType val);
+void enqueue(Queue *q, Eltype val);
 /* Proses: Menambahkan val pada q dengan aturan FIFO */
 /* I.S. q mungkin kosong, tabel penampung elemen q TIDAK penuh */
 /* F.S. val menjadi TAIL yang baru, IDX_TAIL "mundur" dalam buffer melingkar. */
 
-void dequeue(Queue *q, ElType *val);
+void dequeue(Queue *q, Eltype *val);
 /* Proses: Menghapus val pada q dengan aturan FIFO */
 /* I.S. q tidak mungkin kosong */
 /* F.S. val = nilai elemen HEAD pd I.S., IDX_HEAD "mundur";
         q mungkin kosong */
-
-void enqueueDin(Queue *q, dintype val);
-/* Proses: Menambahkan val pada q dengan aturan FIFO */
-/* I.S. q mungkin kosong, tabel penampung elemen q TIDAK penuh */
-/* F.S. val menjadi TAIL yang baru, IDX_TAIL "mundur" dalam buffer melingkar. */
-
-void dequeueDin(Queue *q, dintype *val);
-/* Proses: Menghapus val pada q dengan aturan FIFO */
-/* I.S. q tidak mungkin kosong */
-/* F.S. val = nilai elemen HEAD pd I.S., IDX_HEAD "mundur";
-        q mungkin kosong */
+void dequeuee(Queue *q, Eltype *val);
 
 /* *** Display Queue *** */
 void displayQueue(Queue q);
-/* Proses : Menuliskan isi Queue dengan traversal, Queue ditulis di antara kurung 
-   siku; antara dua elemen dipisahkan dengan separator "koma", tanpa tambahan 
+/* Proses : Menuliskan isi Queue dengan traversal, Queue ditulis di antara kurung
+   siku; antara dua elemen dipisahkan dengan separator "koma", tanpa tambahan
    karakter di depan, di tengah, atau di belakang, termasuk spasi dan enter */
 /* I.S. q boleh kosong */
 /* F.S. Jika q tidak kosong: [e1,e2,...,en] */
 /* Contoh : jika ada tiga elemen bernilai 1, 20, 30 akan dicetak: [1,20,30] */
 /* Jika Queue kosong : menulis [] */
-
-void displayPesanan(dinQueue q);
-
-void displayMasakan(dinQueue q);
-
-void displaySajian(dinQueue q);
 
 #endif

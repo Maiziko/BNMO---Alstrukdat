@@ -8,24 +8,18 @@ void CreateQueue(Queue *q)
     IDX_TAIL(*q) = IDX_UNDEF;
 }
 
-void CreatePesanan(dinQueue *q) {
-    (*q).juml = IDX_UNDEF;
-}
-
 /* ********* Prototype ********* */
-void InsertPesanan(dinQueue *q, int urut) {
-    if (isDinEmpty(*q)) {
-        (*q).juml = 0;
-    } else {
-        (*q).juml++;         
+void CreateMem(memmen *m)
+{
+    m->juml = 0;
+    for (int i = 0; i < 10; i++)
+    {
+        (*m).Din[i].ID = IDX_UNDEF;
+        (*m).Din[i].Durasi = IDX_UNDEF;
+        (*m).Din[i].Ketahanan = IDX_UNDEF;
+        (*m).Din[i].Harga = IDX_UNDEF;
     }
-    (*q).din[urut].urut = urut;
-    (*q).din[urut].durasi = (rand() % 5)+1;
-    (*q).din[urut].harga = ((rand() % (41)) + 10)*1000;
-    (*q).din[urut].ketahanan = (rand() % 5)+1;
-    (*q).din[urut].d_awal = (*q).din[urut].durasi;
 }
-
 boolean isEmpty(Queue q)
 {
     return (IDX_HEAD(q) == IDX_UNDEF) && (IDX_TAIL(q) == IDX_UNDEF);
@@ -34,27 +28,6 @@ boolean isEmpty(Queue q)
 boolean isFull(Queue q)
 {
     return IDX_HEAD(q) == 0 ? IDX_TAIL(q) == CAPACITY - 1 : IDX_TAIL(q) == IDX_HEAD(q) - 1;
-}
-
-boolean isMember(int X, dinQueue q) {
-    boolean found = false;
-    int i = 0;
-    while(i < lengthDin(q) && found == false) {
-        if (q.din[i].urut == X) {
-            found = true;
-        } i++;
-    }
-    return found;
-}
-
-boolean isDinEmpty(dinQueue q)
-{
-    return q.juml == 0;
-}
-
-boolean isDinFull(dinQueue q)
-{
-    return q.juml == CAPACITY;
 }
 
 int length(Queue q)
@@ -77,7 +50,7 @@ int length(Queue q)
 }
 
 /* *** Primitif Add/Delete *** */
-void enqueue(Queue *q, ElType val)
+void enqueue(Queue *q, Eltype val)
 {
     if (isEmpty(*q))
     {
@@ -96,7 +69,7 @@ void enqueue(Queue *q, ElType val)
     (*q).buffer[(*q).idxTail] = val;
 }
 
-void dequeue(Queue *q, ElType *val)
+void dequeue(Queue *q, Eltype *val)
 {
     *val = (*q).buffer[(*q).idxHead];
     if (IDX_HEAD(*q) == IDX_TAIL(*q))
@@ -111,7 +84,7 @@ void dequeue(Queue *q, ElType *val)
     }
 }
 
-void dequeuee(Queue *q, ElType *val)
+void dequeuee(Queue *q, Eltype *val)
 {
     *val = (*q).buffer[(*q).idxHead];
     if (IDX_HEAD(*q) == IDX_TAIL(*q))
@@ -129,8 +102,6 @@ void dequeuee(Queue *q, ElType *val)
         // memindahkan elemen head ke elemen awal
     }
 }
-
-void enqueueDin(Queue *q, dintype val);
 
 /* *** Display Queue *** */
 void displayQueue(Queue q)
@@ -156,83 +127,4 @@ void displayQueue(Queue q)
         }
         printf("]\n");
     }
-}
-
-void displayQueue(Queue q) {
-    if (isEmpty(q)) {
-        printf("[]\n"); }
-    else {
-        int i;
-        printf("[");
-        for (i = IDX_HEAD(q); i <= IDX_TAIL(q); i++) {
-            if (i == IDX_TAIL(q)) {
-                printf("%d", q.buffer[i]);
-            } else {
-                printf("%d,", q.buffer[i]);
-            }
-        }
-        printf("]\n");
-    }   
-}
-
-void displayPesanan(Queue q) {
-    printf("\nDAFTAR PESANAN\n");
-    printf("Makanan\t|Durasi memasak\t|Ketahanan\t|Harga\t\n");
-    printf("------------------------------------------------\t\n");
-    if (isEmpty(q)) {
-        printf("\t|\n\t\t\n");
-    }
-    else {
-        int i;
-        for (i = IDX_HEAD(q); i < IDX_TAIL(q)+1; i++) {
-            printf("");
-            printf("M%d\t|", q.buffer[i].urut);
-            printf("%d\t\t|", q.buffer[i].d_awal);
-            printf("%d\t\t|", q.buffer[i].ketahanan);
-            printf("%d\t\t", q.buffer[i].harga);
-            if(i != IDX_TAIL(q)) {
-                printf("\n");
-            }
-        }
-    }      
-}
-
-void displayMasakan(Queue q) {
-    printf("\nDaftar Makanan yang sedang dimasak\n");
-    printf("Makanan\t|Sisa Durasi memasak\t\n");
-    printf("-----------------------------\t\n");
-    if (isEmpty(q)) {
-        printf("\t|\n\t\t\n"); 
-    }
-    else {
-        int i;
-        for (i = IDX_HEAD(q); i < IDX_TAIL(q)+1; i++) {
-            printf("");
-            printf("M%d\t|", q.buffer[i].urut);
-            printf("%d\t\t", q.buffer[i].durasi);
-            if(i != IDX_TAIL(q)) {
-                printf("\n");
-            }
-        }
-    }      
-}
-
-void displaySajian(Queue q) {
-    printf("\nDaftar Makanan yang dapat disajikan\n");
-    printf("Makanan\t|Sisa Ketahanan memasak\t\n");
-    printf("-----------------------------\t\n");
-    if (isEmpty(q)) {
-        printf("\t|\n\t\t\n");
-    }
-    else {
-        int i;
-        for (i = IDX_HEAD(q); i < IDX_TAIL(q)+1; i++) {
-            printf("");
-            printf("M%d\t|", q.buffer[i].urut);
-            printf("%d\t\t", q.buffer[i].ketahanan);
-            if(i != IDX_TAIL(q)) {
-                printf("\n");
-            }
-        }
-    }      
 }
