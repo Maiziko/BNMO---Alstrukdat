@@ -19,9 +19,12 @@ void START(char *filename)
 <<<<<<< HEAD
 
     pita = fopen(filename, "r");
+<<<<<<< HEAD
+=======
 =======
     pita = stdin;
 >>>>>>> fc1601a522ff3d98096e8d145598c34ce0d77e31
+>>>>>>> 52991f5ae262ead82e97899e2a2094c85b0917e8
     ADV();
 }
 
@@ -58,10 +61,13 @@ void ADVG()
     EOP = (currentChar == ENTER);
 <<<<<<< HEAD
 =======
+<<<<<<< HEAD
+=======
     if (EOP) {
         fclose(pita);
     }
 >>>>>>> fc1601a522ff3d98096e8d145598c34ce0d77e31
+>>>>>>> 52991f5ae262ead82e97899e2a2094c85b0917e8
 }
 
 char GetCC()

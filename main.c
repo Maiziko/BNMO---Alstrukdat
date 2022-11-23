@@ -13,10 +13,17 @@
 
 /* *** ******* ******* ******* ******** ******* ******** File Header ******* ******** *** ******* ******* ******* ******** */
 
+<<<<<<< HEAD
+#include "src/ADT/mesinkata/mesinkata.h"
+#include "src/ADT/mesinkarakter/mesinkarakter.h"
+#include "src/ADT/queue/queue.h"
+#include "src/ADT/arraydin/arraydin.h"
+=======
 #include "src/ADT/mesinkata/mesinkata.c"
 #include "src/ADT/mesinkarakter/mesinkarakter.c"
 #include "src/ADT/queue/queue.c"
 #include "src/ADT/arraydin/arraydin.c"
+>>>>>>> 52991f5ae262ead82e97899e2a2094c85b0917e8
 
 /* *** ******* ******* ******* ******** ******* ******** Fungsi Pembantu ******* ******** *** ******* ******* ******* ******** */
 
@@ -409,14 +416,22 @@ int main()
                 }
             }
             wordStringCopy(kata, Game.buffer[Game.idxHead]);
+<<<<<<< HEAD
+
+=======
             printf("%s\n", kata);
+>>>>>>> 52991f5ae262ead82e97899e2a2094c85b0917e8
             if (IsKataSama(toKata(kata), toKata("RNG")))
             {
                 printf("Loading %s ...", kata);
                 printf("\n");
                 RNG();
             }
+<<<<<<< HEAD
+            else if (IsKataSama(Game.buffer[Game.idxHead], toKata("Diner DASH")))
+=======
             else if (IsKataSama(toKata(kata), toKata("Diner DASH")))
+>>>>>>> 52991f5ae262ead82e97899e2a2094c85b0917e8
             {
                 printf("Loading %s ...", kata);
                 printf("\n");
@@ -424,7 +439,11 @@ int main()
                 // Ini game Dinner DASH
                 printf("Selamat datang di game Diner DASH. Uji kecepatan anda dalam melayani pelanggan.\n");
             }
+<<<<<<< HEAD
+            else if (!IsKataSama(Game.buffer[Game.idxHead], toKata("Diner DASH")) && !IsKataSama(toKata(kata), toKata("RNG")) && Game.idxHead != IDX_UNDEF)
+=======
             else if (!IsKataSama(toKata(kata), toKata("Diner DASH")) && !IsKataSama(toKata(kata), toKata("RNG")) && Game.idxHead != IDX_UNDEF)
+>>>>>>> 52991f5ae262ead82e97899e2a2094c85b0917e8
             {
 
                 char karak[100];
@@ -457,9 +476,22 @@ int main()
                 }
             }
 
+<<<<<<< HEAD
+            else if (skip > Game.idxTail || Game.idxHead == IDX_UNDEF)
+            {
+                printf("Tidak ada permainan lagi dalam daftar game-mu.\n");
+                if (!isEmpty(Game))
+                {
+                    for (i = Game.idxHead; i < Game.idxTail + 1; i++)
+                    {
+                        dequeuee(&Game, &(Game.buffer[i - 1]));
+                    }
+                }
+=======
             else if (skip > Game.idxTail || isEmpty(Game))
             {
                 printf("Tidak ada permainan lagi dalam daftar game-mu.\n");
+>>>>>>> 52991f5ae262ead82e97899e2a2094c85b0917e8
                 printf("\n");
             }
 
@@ -479,7 +511,11 @@ int main()
                 // Ini game Dinner DASH
                 printf("Selamat datang di game Diner DASH. Uji kecepatan anda dalam melayani pelanggan.\n");
             }
+<<<<<<< HEAD
+            else if (!IsKataSama((Game.buffer[Game.idxHead]), toKata("RNG")) && !IsKataSama((Game.buffer[Game.idxHead]), toKata("Diner DASH")) && Game.idxHead != IDX_UNDEF)
+=======
             else if (!IsKataSama((Game.buffer[Game.idxHead]), toKata("RNG")) && !IsKataSama((Game.buffer[Game.idxHead]), toKata("Diner DASH")) || !isEmpty(Game))
+>>>>>>> 52991f5ae262ead82e97899e2a2094c85b0917e8
             {
                 char karak[100];
                 wordStringCopy(karak, Game.buffer[Game.idxHead]);

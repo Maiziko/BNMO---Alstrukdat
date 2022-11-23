@@ -1,4 +1,28 @@
 {
+<<<<<<< HEAD
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "C/C++ Runner: Debug Session",
+      "type": "cppdbg",
+      "request": "launch",
+      "args": [],
+      "stopAtEntry": false,
+      "externalConsole": true,
+      "cwd": "c:/Users/gyanm/Pictures/IF2111_TB1_03_04",
+      "program": "c:/Users/gyanm/Pictures/IF2111_TB1_03_04/build/Debug/outDebug",
+      "MIMode": "gdb",
+      "miDebuggerPath": "gdb",
+      "setupCommands": [
+        {
+          "description": "Enable pretty-printing for gdb",
+          "text": "-enable-pretty-printing",
+          "ignoreFailures": true
+        }
+      ]
+    }
+  ]
+=======
     "configurations": [
         {
             "name": "C/C++: gcc.exe build and debug active file",
@@ -28,4 +52,5 @@
         }
     ],
     "version": "2.0.0"
+>>>>>>> 52991f5ae262ead82e97899e2a2094c85b0917e8
 }

@@ -11,6 +11,9 @@ void IgnoreBlanks()
        I.S  : currentChar sembarang
        F.S  : currentChar != BLANK atau currentChar != ENTER */
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 52991f5ae262ead82e97899e2a2094c85b0917e8
     while ((currentChar == BLANK) || (currentChar == ENTER))
     {
 =======
@@ -38,6 +41,8 @@ void IgnoreBlanks()
 //         ADVWORD();
 //     }
 // }
+<<<<<<< HEAD
+=======
 
 <<<<<<< HEAD
 void STARTGAME(char *filename)
@@ -59,6 +64,7 @@ void STARTGAME(char *filename)
         ADVWORD();
     }
 }
+>>>>>>> 52991f5ae262ead82e97899e2a2094c85b0917e8
 
 =======
 >>>>>>> fc1601a522ff3d98096e8d145598c34ce0d77e31
@@ -118,8 +124,12 @@ void STARTGAME(char *filename)
     else
     {
         EndWord = false;
+<<<<<<< HEAD
+        ADVWORD();
+=======
         ADVGAME();
         CopyWord();
+>>>>>>> 52991f5ae262ead82e97899e2a2094c85b0917e8
     }
 }
 
@@ -128,13 +138,37 @@ void ADVGAME() {
     if (currentChar == MARK) {
         EndWord = true;
     }
+<<<<<<< HEAD
+    else
+    {   
+        EndWord = false;
+        CopyWord();
+=======
     else {
         EndWord = false;
         CopyGame();
+>>>>>>> 52991f5ae262ead82e97899e2a2094c85b0917e8
         IgnoreBlanks();
     }
 }
 
+<<<<<<< HEAD
+void CopyWord()
+{
+    /* Mengakuisisi kata, menyimpan dalam currentWord
+       I.S. : currentChar adalah karakter pertama dari kata
+       F.S. : currentWord berisi kata yang sudah diakuisisi;
+              currentChar = BLANK atau currentChar = MARK;
+              currentChar adalah karakter sesudah karakter terakhir yang diakuisisi.
+              Jika panjang kata melebihi NMax, maka sisa kata "dipotong" */
+
+    int i = 0;
+    while ((currentChar != MARK) && (currentChar != ENTER) && i < NMax)
+    {
+        currentWord.TabWord[i] = currentChar;
+        ADV();
+        i++;
+=======
 void CopyGame(){
     currentWord.Length = 0;
     while ((currentChar != MARK) && (currentChar != ENTER)) {
@@ -144,6 +178,7 @@ void CopyGame(){
         } else {
             break;
         }
+>>>>>>> 52991f5ae262ead82e97899e2a2094c85b0917e8
     }
 }
 

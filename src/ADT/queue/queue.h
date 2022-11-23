@@ -84,4 +84,10 @@ void displayQueue(Queue q);
 /* Contoh : jika ada tiga elemen bernilai 1, 20, 30 akan dicetak: [1,20,30] */
 /* Jika Queue kosong : menulis [] */
 
+<<<<<<< HEAD
+void DelMem(memmen *mem, ElTypee val);
+
 #endif
+=======
+#endif
+>>>>>>> 52991f5ae262ead82e97899e2a2094c85b0917e8

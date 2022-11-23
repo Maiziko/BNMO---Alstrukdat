@@ -98,7 +98,12 @@ void dequeuee(Queue *q, Eltype *val)
         {
             (*q).buffer[i] = (*q).buffer[i + 1];
         }
+<<<<<<< HEAD
+        IDX_TAIL(*q)
+        --;
+=======
         IDX_TAIL(*q)--;
+>>>>>>> 52991f5ae262ead82e97899e2a2094c85b0917e8
         // memindahkan elemen head ke elemen awal
     }
 }
@@ -127,4 +132,29 @@ void displayQueue(Queue q)
         }
         printf("]\n");
     }
+<<<<<<< HEAD
 }
+
+void DelMem(memmen *mem, ElTypee val)
+{
+    int i = 0;
+    if ((*mem).juml > 1)
+    {
+        for (i = 0; i < (*mem).juml; i++)
+        {
+            if ((*mem).Din[i].ID == val)
+            {
+                (*mem).juml -= 1;
+            }
+        }
+    }
+    else if ((*mem).juml == 1)
+    {
+
+        (*mem).Din[0].Durasi = IDX_UNDEF;
+        (*mem).juml -= 1;
+    }
+}
+=======
+}
+>>>>>>> 52991f5ae262ead82e97899e2a2094c85b0917e8
