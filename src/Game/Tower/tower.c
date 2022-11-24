@@ -86,7 +86,6 @@ boolean isTowerAvail(Stack awal, Stack S1, Stack S2) {
 // }
 
 int main() {
-    boolean win = true;
     int val, skor, step = 0;
     Stack A, B, C, finish;
     char awal, akhir;
@@ -107,7 +106,7 @@ int main() {
     displayTower(B, 'B');
     displayTower(C, 'C'); 
 
-    while (!isFull(C) && win == true) {
+    while (!isFull(C)) {
 
         printf("==============================\n");
         printf("Tiang Asal : ");
@@ -196,7 +195,6 @@ int main() {
             } else {
                 printf("Masukkan tidak valid!\n");
                 continue;
-                // win = false;
             }
         }
         
@@ -239,7 +237,6 @@ int main() {
             } else {
                 printf("Masukkan tidak valid!\n");
                 continue;
-                // win = false;
             }
         }
 
@@ -282,7 +279,6 @@ int main() {
             } else {
                 printf("Masukkan tidak valid!\n");
                 continue;
-                // win = false;
             }
         }        
 
@@ -292,15 +288,9 @@ int main() {
         displayTower(B, 'B');
         displayTower(C, 'C');  
     }
-    if (win == true) {
         printf("==============================\n");
         printf("\tKamu Berhasil!  \n");
         printf("\t  steps : %d\n", step);
         printf("==============================\n");        
-    } else {
-        printf("==============================\n");
-        printf("\tKamu Kalah :(  \n");
-        printf("\t  steps : %d\n", step);
-        printf("==============================\n"); 
-    }
+    
 }
