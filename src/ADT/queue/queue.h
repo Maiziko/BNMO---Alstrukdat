@@ -27,7 +27,7 @@ typedef struct
         ElTypee Durasi;
         ElTypee Ketahanan;
         ElTypee Harga;
-        ElTypee Juml;
+        ElTypee D_awal;
 } infotype;
 
 typedef struct
@@ -54,6 +54,10 @@ void CreateMem(memmen *m);
 /* ********* Prototype ********* */
 boolean isEmpty(Queue q);
 /* Mengirim true jika q kosong: lihat definisi di atas */
+
+boolean isMEmpty(memmen q);
+/* Mengirim true jika q kosong: lihat definisi di atas */
+
 boolean isFull(Queue q);
 /* Mengirim true jika tabel penampung elemen q sudah penuh */
 /* yaitu IDX_TAIL akan selalu di belakang IDX_HEAD dalam buffer melingkar*/
@@ -67,11 +71,23 @@ void enqueue(Queue *q, Eltype val);
 /* I.S. q mungkin kosong, tabel penampung elemen q TIDAK penuh */
 /* F.S. val menjadi TAIL yang baru, IDX_TAIL "mundur" dalam buffer melingkar. */
 
+void enqueuem(memmen *m, infotype val);
+/* Proses: Menambahkan val pada q dengan aturan FIFO */
+/* I.S. q mungkin kosong, tabel penampung elemen q TIDAK penuh */
+/* F.S. val menjadi TAIL yang baru, IDX_TAIL "mundur" dalam buffer melingkar. */
+
 void dequeue(Queue *q, Eltype *val);
 /* Proses: Menghapus val pada q dengan aturan FIFO */
 /* I.S. q tidak mungkin kosong */
 /* F.S. val = nilai elemen HEAD pd I.S., IDX_HEAD "mundur";
         q mungkin kosong */
+
+void delmen(memmen *m, infotype *val);
+/* Proses: Menghapus val pada q dengan aturan FIFO */
+/* I.S. q tidak mungkin kosong */
+/* F.S. val = nilai elemen HEAD pd I.S., IDX_HEAD "mundur";
+        q mungkin kosong */   
+
 void dequeuee(Queue *q, Eltype *val);
 
 /* *** Display Queue *** */
@@ -84,10 +100,6 @@ void displayQueue(Queue q);
 /* Contoh : jika ada tiga elemen bernilai 1, 20, 30 akan dicetak: [1,20,30] */
 /* Jika Queue kosong : menulis [] */
 
-<<<<<<< HEAD
 void DelMem(memmen *mem, ElTypee val);
 
 #endif
-=======
-#endif
->>>>>>> 52991f5ae262ead82e97899e2a2094c85b0917e8
