@@ -24,7 +24,7 @@ int main() {
 	int keluar = 0;	
 	int loopIndex = 0;
 	int sudahditebak = 0; 
-	char tebak[16];
+	char tebak[16]; 
 	char hurufMasuk;	
 	
 	while ( numCorrect < panjangKata ) {     // game loop	
