@@ -14,7 +14,7 @@ int main() {
 		"bebek",
         "halo"	
 	};
-	
+	printf(" ===========================================||  H A N G M A N ||===========================================");
 	int randomIndex = rand() % 7; // index for random word
 	int kesempatan = 10;
 	int numCorrect = 0;
@@ -29,7 +29,7 @@ int main() {
 	
 	while ( numCorrect < panjangKata ) {     // game loop	
 	
-		printf("\n\nSelamat datang di Hangman!\nKata:");
+		printf("\n\nSelamat datang di Hangman! \nKata:");
 	
 		for( loopIndex = 0; loopIndex < panjangKata; loopIndex++) {
 		
