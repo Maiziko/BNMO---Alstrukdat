@@ -15,7 +15,7 @@ int main() {
         "halo"	
 	};
 	printf(" \n ===========================================||  H A N G M A N ||===========================================");
-	printf(" \n [ ketik 'keluar' jika ingin keluar dari permainan ]");
+	printf(" \n [ ketik 'keluar' jika ingin keluar dari permainan ]\n");
 	int randomIndex = rand() % 7; // index for random word
 	int kesempatan = 10;
 	int numCorrect = 0;
