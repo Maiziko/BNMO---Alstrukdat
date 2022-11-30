@@ -24,9 +24,9 @@
 #include "src/Game/RNG/RNG.h"
 #include "src/Game/SnakeOnMeteor/snakeonmeteor.h"
 #include "src/ADT/map/map.h"
-// #include "src/Game/HANGMAN/hangman.h"
+#include "src/Game/HANGMAN/hangman.h"
 #include "src/Game/GameBuatan/gamebuatan.h"
-// #include "src/Game/DinnerDash/Dinner_Dash.h"
+#include "src/Game/DinnerDash/Dinner_Dash.h"
 // fungsi pembantu ;
 /*****************************************************************Fungsi SAVE & LOAD **********************************************/
 
@@ -356,40 +356,38 @@ int main()
 
             if (IsKataSama(toKata(kata), toKata("RNG")))
             {
+                pushGame(&History, toKata("RNG"));
                 printf("\n");
                 RNG();
-                pushGame(&History, toKata("RNG"));
             }
             else if (IsKataSama(Game.buffer[Game.idxHead], toKata("Diner DASH")))
             {
                 // Dinner_Dash();
-
                 // Ini game Dinner DASH
                 pushGame(&History, toKata("Diner DASH"));
             }
             else if (IsKataSama(Game.buffer[Game.idxHead], toKata("Tower Of Hanoi")))
             {
+                pushGame(&History, toKata("Tower of Hanoi"));
                 printf("\n");
                 printf("Selamat datang di game %s\n", kata);
                 TowerOfHanoi();
-                pushGame(&History, toKata("Tower of Hanoi"));
-                
             }
             else if (IsKataSama(Game.buffer[Game.idxHead], toKata("Kerang Ajaib")))
             {
-                KerangAjaib();
                 pushGame(&History, toKata("Kerang Ajaib"));
+                KerangAjaib();
             }
             else if (IsKataSama(Game.buffer[Game.idxHead], toKata("Hangman")))
             {
+                pushGame(&History, toKata("Hangman"));
                 printf("Game Hangman belum tersedia \n");
                 // Hangman();
-                pushGame(&History, toKata("Hangman"));
             }
             else if (IsKataSama(Game.buffer[Game.idxHead], toKata("Snake On Meteor")))
             {
-                SnakeOnMeteor();
                 pushGame(&History, toKata("Snake on Meteor"));
+                SnakeOnMeteor();
             }
             else if (IsKataSama(Game.buffer[Game.idxHead], toKata("DINOSAUR IN EARTH")) || IsKataSama(toKata(kata), toKata("RISEWOMAN")) || IsKataSama(toKata(kata), toKata("EIFFEL TOWER")) && Game.idxHead != IDX_UNDEF)
             {
@@ -602,7 +600,7 @@ int main()
             printf("\n");
         }
 
-        /* *** ******* ******* ******* ******** ******* ******** SCORE BOARD ******* ******** *** ******* ******* ******* ******** */
+        /* *** ******* ******* ******* ******** ******* ******** SCOREBOARD ******* ******** *** ******* ******* ******* ******** */
         else if ((IsKataSama(toKata(nas), toKata("SCOREBOARD")))) {
             printf("\n");
             printf("+========================================================================================+\n");
@@ -618,9 +616,10 @@ int main()
             printf("|                                    DAFTAR HISTORY (^-^)                                |\n");
             printf("+========================================================================================+\n");
             printf("\n");
-            for(int i = 0; i < IDX_TOP(History); i++){
+            for(int i = 0; i <= IDX_TOP(History); i++){
                 printf("%d. ", i+1);
                 PrintWord(TOP(History));
+                popGame(&History, &TOP(History));
             }
 
         }

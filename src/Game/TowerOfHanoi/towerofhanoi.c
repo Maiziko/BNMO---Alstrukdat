@@ -1,8 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "../../ADT/stack/stack.h"
-#include "../../ADT/mesinkata/mesinkata.h"
-#include "../../ADT/mesinkarakter/mesinkarakter.h"
+#include "../../ADT/stack/stack.c"
+#include "../../ADT/mesinkata/mesinkata.c"
+#include "../../ADT/mesinkarakter/mesinkarakter.c"
 
 void displayTower(Stack S, char X)
 {
@@ -279,5 +279,4 @@ void TowerOfHanoi()
     } else {
         data.score = 0;
     } 
-    // return data;
 }
