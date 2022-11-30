@@ -1,99 +1,132 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <time.h>
-#include <string.h>
+#include "hangman.h"
 
-int main() {
-	srand(time(NULL));
-	char tebakKata[][16] = {
-		"ayam", 
-		"mata",
-		"smart",
-		"kudanil",
-		"kucing",
-		"bebek",
-        "halo"	
-	};
-	printf(" \n ===========================================||  H A N G M A N ||===========================================");
-	printf(" \n [ ketik 'keluar' jika ingin keluar dari permainan ]\n");
-	int randomIndex = rand() % 7; // index for random word
-	int kesempatan = 10;
-	int numCorrect = 0;
-	int oldCorrect = 0;
-	int panjangKata = strlen(tebakKata[randomIndex]);
-	int tebakHuruf[8] = { 0,0,0,0,0,0,0,0 };
-	int keluar = 0;	
-	int loopIndex = 0;
-	int sudahditebak = 0; 
-	char tebak[16]; 
-	char hurufMasuk;	
-	
-	while ( numCorrect < panjangKata ) {     // game loop	
-	
-		printf("\n\nSelamat datang di Hangman! \nKata:");
-	
-		for( loopIndex = 0; loopIndex < panjangKata; loopIndex++) {
-		
-			if(tebakHuruf[loopIndex] == 1) {
-				printf("%c",tebakKata[randomIndex][loopIndex]);				
-			} else {
-				printf("-");
-			}
-		
-		}	
-		
-		printf("\n");
-        printf("Kesempatan :%d\n",kesempatan);
-		printf("Masukkan tebakan:");
-		fgets(tebak, 16, stdin);
-		
-		if( strncmp(tebak, "keluar", 4) == 0) {
-			keluar = 1;
-			break;
-		}
-		
-		hurufMasuk = tebak[0];
-		sudahditebak = 0; 
-		oldCorrect = numCorrect;
-		
-		for( loopIndex = 0; loopIndex < panjangKata; loopIndex++) {
-		
-			if(tebakHuruf[loopIndex] == 1) {
-				if(tebakKata[randomIndex][loopIndex] == hurufMasuk) {
-					sudahditebak = 1; 
-					break;
-				} 
-				continue;
-			}
-		
-			if( hurufMasuk == tebakKata[randomIndex][loopIndex] ) {
-				tebakHuruf[loopIndex] = 1;
-				numCorrect++;				
-			}		
-		}	
-		
-		if( oldCorrect == numCorrect && sudahditebak == 0) {
-			kesempatan--;
-			printf("Maaf, jawaban anda salah:(\n");
-			if (kesempatan == 0) {
-				break;
-			}
-		} else {
-			printf("Yay jawaban anda benar! :)\n");
-		}
-	
-	} 
-	
-	if( keluar == 1 ) {	 // while loop
-		printf("\nAnda telah keluar dari permainan\n");
-	} else if (kesempatan == 0) {
-		printf("\n Maaf tebakan anda salah! jawabannya adalah : %s\n",
-		tebakKata[randomIndex]);	
-	} else  {	
-		printf("\nBerhasil menebak kata %s! SELAMAT ANDA MENANG!! :) \n", tebakKata[randomIndex]);
-		main();
-	} 
-	
-	return 0;
+ArrayDin read(ArrayDin dest, char * filename) {
+    Word current;
+    dest = MakeArrayDin();
+    int i = 0;
+    STARTWORD("lib.txt");
+    while(!EndWord) {
+        current = currentWord;
+        InsertAt(&dest, current, i);
+        ADVWORD();
+        i++;
+    }
+    return dest;
 }
 
+Word getRandom(ArrayDin list) {
+    time_t t;
+    srand((unsigned)time(&t));
+    return Get(list, rand() % list.Neff + 1);
+}
+
+boolean isDone(Word ans, ArrayDin * tries) {
+    boolean p;
+    for (int j = 0; j < ans.Length; j++) {
+        p = false;
+        for (int k = 0; k < (*tries).Neff; k++) {
+            if ((*tries).A[k].TabWord[0] == ans.TabWord[j]) {
+            p = true;
+            }      
+        }
+    } return p;
+}
+
+boolean isIn(Word ans, Word guess) {
+    boolean ada = false;
+    int i = 0;
+    while (!ada && i < ans.Length) {
+        if (ans.TabWord[i] == guess.TabWord[0]) {
+            ada = true;
+        } i++;
+    }
+    return ada;
+}
+
+void hangman() {
+    ArrayDin tries = MakeArrayDin(), lib = read(lib, "lib.txt");
+    int chances = 10;
+    Word guess, ans;
+    ArrayDin tes = lib;
+    typedef struct {
+    int score;
+    Word name;
+    } player;
+    player data;
+    data.score = 0;
+ 
+    printf("==============================\n");
+    printf("\t   HANGMAN  \t\n");
+    printf("==============================\n");
+
+    while (chances > 0) {
+        tries = MakeArrayDin();
+        ans = getRandom(lib);
+
+        for(int i = 0; i < ans.Length; i ++) {
+            printf("_ ");
+        }
+        printf("\n");
+        boolean win = false;
+
+        while (!win) {
+            int m = 0;
+            printf("Tebak : ");
+            STARTCOMMAND();
+            printf("\n");
+
+            while (isMemberOf(tries, CCommand)) {
+                printf("Huruf sudah ditebak. Coba lagi!\n");
+                printf("Tebak : ");
+                STARTCOMMAND();
+                printf("\n");
+            }
+
+            if (!isIn(ans, CCommand)) {
+                chances -= 1;
+            }
+
+            InsertAt(&tries, CCommand, m++);
+
+            printf("Tebakan sebelumnya : ");
+            for (int k = 0; k < tries.Neff; k++) {
+                printf("%c ", tries.A[k].TabWord[0]); 
+            } printf("\n");
+
+            boolean q = true;
+            for (int j = 0; j < ans.Length; j++) {
+                boolean p = false;
+                for (int k = 0; k < tries.Neff; k++) {
+                    if (tries.A[k].TabWord[0] == ans.TabWord[j]) {
+                    printf("%c ", tries.A[k].TabWord[0]);
+                    p = true;
+                    }      
+                }
+                if (!p) {  
+                    printf("_ ");
+                    q = false;
+                }
+            } printf("\n");
+
+            if (chances <= 0) {
+                printf("Kesempatan kamu habis!\n");
+                break;
+            }
+
+            printf("Kesempatan : %d\n", chances);
+            printf("==============================\n");
+
+            if (q == true) {
+                data.score += ans.Length;
+                DeleteAt(&lib, SearchArrayDin(lib, ans));
+                DeallocateArrayDin(&tries);
+                win = true;
+            }
+
+        }   
+    }
+    printf("==============================\n");
+    printf("PERMAINAN SELESAI!\nSkor Kamu : %d\nMASUKKAN USERNAME : ", data.score);
+    STARTCOMMAND();
+    data.name = CCommand;
+}

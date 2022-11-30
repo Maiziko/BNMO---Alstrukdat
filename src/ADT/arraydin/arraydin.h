@@ -138,6 +138,7 @@ IdxType SearchArrayDin(ArrayDin array, ElType el);
 
 void ListGame(ArrayDin file);
 
+boolean isMemberOf(ArrayDin array, ElType el);
 // Untuk Dinner Dash
 
 #endif

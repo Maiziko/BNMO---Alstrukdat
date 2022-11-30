@@ -232,10 +232,21 @@ IdxType SearchArrayDin(ArrayDin array, ElType el)
     {
         if (IsKataSama(array.A[i], el))
         {
-            return 1;
+            return i;
         }
     }
     return -1;
+}
+
+boolean isMemberOf(ArrayDin array, ElType el) {
+    for (int i = 0; i < array.Neff; i++)
+    {
+        if (IsKataSama(array.A[i], el))
+        {
+            return true;
+        }
+    }
+    return false;    
 }
 
 void ListGame(ArrayDin file)
