@@ -33,6 +33,7 @@ typedef struct
         int ekor;
         int juml;
 } Dinner_food;
+
 typedef struct
 {
         Eltype buffer[CAPACITYY];

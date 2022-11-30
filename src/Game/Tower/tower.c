@@ -45,46 +45,6 @@ boolean isTowerAvail(Stack awal, Stack S1, Stack S2) {
     return (TOP(S1) > TOP(awal) || TOP(S2) > TOP(awal) || isEmpty(S1) || isEmpty(S2));
 }
 
-// void pindah(char awal, char akhir) {
-//     extern A, B, C, step;
-//     if (awal == 'A') {
-//         while (akhir == 'A') {
-//             printf("\nMasukkan tidak valid!\n");
-//             printf("Tiang Tujuan: ");
-//             STARTCOMMAND();
-//             akhir = toABC(CCommand); 
-//         }
-//         if (akhir == 'B') {
-//             if (TOP(B) > TOP(A) || isEmpty(B)) {
-//                 push(&B, TOP(A));
-//                 printf("Memindahkan piringan ke B...\n");
-//                 step++;
-//             } else {
-//                 while (akhir == 'B' || akhir == 'A') {
-//                     printf("Masukkan tidak valid!\n");
-//                     printf("Tiang Tujuan: ");
-//                     STARTCOMMAND();
-//                     akhir = toABC(CCommand);
-//                 } 
-//             }
-//         } else if (akhir == 'C') {
-//             if (TOP(C) > TOP(A) || isEmpty(C)) {
-//                 push(&C, TOP(A));
-//                 printf("Memindahkan piringan ke C...\n");
-//                 step++;
-//             } else {
-//                 while (akhir == 'C' || akhir == 'A') {
-//                     printf("Masukkan tidak valid!\n");
-//                     printf("Tiang Tujuan: ");
-//                     STARTCOMMAND();
-//                     akhir = toABC(CCommand);
-//                 } 
-//             }
-//         }
-//         pop(&A, &val);
-//     }
-// }
-
 int main() {
     int val, skor, step = 0;
     Stack A, B, C, finish;
@@ -175,7 +135,7 @@ int main() {
                         printf("Tiang Tujuan: ");
                         STARTCOMMAND();
                         akhir = toABC(CCommand);
-                    } 
+                    } push(&C, TOP(A));
                 }
             } else if (akhir == 'C') {
                 if (TOP(C) > TOP(A) || isEmpty(C)) {
@@ -188,7 +148,7 @@ int main() {
                         printf("Tiang Tujuan: ");
                         STARTCOMMAND();
                         akhir = toABC(CCommand);
-                    } 
+                    } push(&B, TOP(A));
                 }
             }
             pop(&A, &val);            
@@ -217,7 +177,7 @@ int main() {
                             printf("Tiang Tujuan: ");
                             STARTCOMMAND();
                             akhir = toABC(CCommand);
-                        } 
+                        } push(&C, TOP(B));
                     }
                 } else if (akhir == 'C') {
                     if (TOP(C) > TOP(B) || isEmpty(C)) {
@@ -230,7 +190,7 @@ int main() {
                             printf("Tiang Tujuan: ");
                             STARTCOMMAND();
                             akhir = toABC(CCommand);
-                        } 
+                        } push(&A, TOP(B));
                     }
                 }
                 pop(&B, &val);            
@@ -259,7 +219,7 @@ int main() {
                             printf("Tiang Tujuan: ");
                             STARTCOMMAND();
                             akhir = toABC(CCommand);
-                        } 
+                        } push(&B, TOP(C));
                     }
                 } else if (akhir == 'B') {
                     if (TOP(B) > TOP(C) || isEmpty(B)) {
@@ -272,7 +232,7 @@ int main() {
                             printf("Tiang Tujuan: ");
                             STARTCOMMAND();
                             akhir = toABC(CCommand);
-                        } 
+                        } push(&A, TOP(B));
                     }
                 }
                 pop(&C, &val);                

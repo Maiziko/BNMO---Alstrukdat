@@ -279,5 +279,5 @@ void TowerOfHanoi()
     } else {
         data.score = 0;
     } 
-    return data;
+    // return data;
 }

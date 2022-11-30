@@ -95,6 +95,8 @@ int main()
     ArrayDin file = MakeArrayDin();
     Queue Game;
     CreateQueue(&Game);
+    History History;
+    CreateHistory(&History);
     int skip = 0;
     int i = 0;
     int j = 0;
@@ -356,31 +358,38 @@ int main()
             {
                 printf("\n");
                 RNG();
+                pushGame(&History, toKata("RNG"));
             }
             else if (IsKataSama(Game.buffer[Game.idxHead], toKata("Diner DASH")))
             {
                 // Dinner_Dash();
 
                 // Ini game Dinner DASH
+                pushGame(&History, toKata("Diner DASH"));
             }
             else if (IsKataSama(Game.buffer[Game.idxHead], toKata("Tower Of Hanoi")))
             {
                 printf("\n");
                 printf("Selamat datang di game %s\n", kata);
                 TowerOfHanoi();
+                pushGame(&History, toKata("Tower of Hanoi"));
+                
             }
             else if (IsKataSama(Game.buffer[Game.idxHead], toKata("Kerang Ajaib")))
             {
                 KerangAjaib();
+                pushGame(&History, toKata("Kerang Ajaib"));
             }
             else if (IsKataSama(Game.buffer[Game.idxHead], toKata("Hangman")))
             {
                 printf("Game Hangman belum tersedia \n");
                 // Hangman();
+                pushGame(&History, toKata("Hangman"));
             }
             else if (IsKataSama(Game.buffer[Game.idxHead], toKata("Snake On Meteor")))
             {
                 SnakeOnMeteor();
+                pushGame(&History, toKata("Snake on Meteor"));
             }
             else if (IsKataSama(Game.buffer[Game.idxHead], toKata("DINOSAUR IN EARTH")) || IsKataSama(toKata(kata), toKata("RISEWOMAN")) || IsKataSama(toKata(kata), toKata("EIFFEL TOWER")) && Game.idxHead != IDX_UNDEF)
             {
@@ -582,7 +591,7 @@ int main()
         }
 
         /* *** ******* ******* ******* ******** ******* ******** SAVE GAME ******* ******** *** ******* ******* ******* ******** */
-        else if ((IsKataSama(toKata(nas), toKata("SAVE"))))
+        else if ((IsKataSama(CCommand, toKata("SAVE"))))
         {
 
             SAVE(file, CCommand);
@@ -593,6 +602,29 @@ int main()
             printf("\n");
         }
 
+        /* *** ******* ******* ******* ******** ******* ******** SCORE BOARD ******* ******** *** ******* ******* ******* ******** */
+        else if ((IsKataSama(toKata(nas), toKata("SCOREBOARD")))) {
+            printf("\n");
+            printf("+========================================================================================+\n");
+            printf("|                                   DAFTAR SCOREBOARD (^-^)                              |\n");
+            printf("+========================================================================================+\n");
+            printf("\n");
+        }
+
+        /* *** ******* ******* ******* ******** ******* ******** HISTORY ******* ******** *** ******* ******* ******* ******** */
+        else if ((IsKataSama(CCommand, toKata("HISTORY")))) {
+            printf("\n");
+            printf("+========================================================================================+\n");
+            printf("|                                    DAFTAR HISTORY (^-^)                                |\n");
+            printf("+========================================================================================+\n");
+            printf("\n");
+            for(int i = 0; i < IDX_TOP(History); i++){
+                printf("%d. ", i+1);
+                PrintWord(TOP(History));
+            }
+
+        }
+
         /* *** ******* ******* ******* ******** ******* ******** QUIT ******* ******** *** ******* ******* ******* ******** */
         else if (!IsKataSama(CCommand, toKata("QUIT")))
         {
@@ -600,7 +632,8 @@ int main()
             printf("COMMAND YANG DIINPUT TIDAK VALID T_T .\n");
             printf("\n");
         }
-    }
+
+ }
     printf("\n");
     if ((IsKataSama(CCommand, toKata("QUIT"))))
     {
