@@ -9,11 +9,20 @@ void CreateStack(Stack *s)
 {
     IDX_TOP(*s) = IDX_UNDEF;
 }
+
+void CreateHistory(History *h){
+    IDX_TOP(*h) = IDX_UNDEF;
+}
+
 /* ************ Prototype ************ */
 boolean isEmpty(Stack s)
 /* Mengirim true jika s kosong: lihat definisi di atas */
 {
     return IDX_TOP(s) == IDX_UNDEF;
+}
+
+boolean isHistEmpty(Stack h){
+    return IDX_TOP(h) == IDX_UNDEF;
 }
 
 boolean isFull(Stack s)
@@ -33,6 +42,12 @@ void push(Stack *s, ElTType val)
     TOP(*s) = val;
 }
 
+void pushGame(History *h, GameType game){
+    IDX_TOP(*h)
+    ++;
+    TOP(*h) = game;    
+}
+
 /* ************ Menghapus sebuah elemen Stack ************ */
 void pop(Stack *s, ElTType *val)
 /* Menghapus val dari Stack s */
@@ -42,4 +57,10 @@ void pop(Stack *s, ElTType *val)
     *val = TOP(*s);
     IDX_TOP(*s)
     --;
+}
+
+void popGame(History *h, GameType *game){
+    *game = TOP(*h);
+    IDX_TOP(*h)
+    --;    
 }

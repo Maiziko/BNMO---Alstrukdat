@@ -33,6 +33,10 @@ void STARTGAME(char *filename);
           atau EndWord = false, currentWord adalah kata yang sudah diakuisisi,
           currentChar karakter pertama sesudah karakter terakhir kata */
 
+void STARTWORD(char *filename);
+
+void ADVKATA();
+
 void ADVWORD();
 /* I.S. : currentChar adalah karakter pertama kata yang akan diakuisisi
    F.S. : currentWord adalah kata terakhir yang sudah diakuisisi,

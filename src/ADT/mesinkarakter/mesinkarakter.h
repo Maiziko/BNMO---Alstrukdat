@@ -23,7 +23,7 @@ void STARTG(char *filename);
           Jika currentChar != MARK maka EOP akan padam (false)
           Jika currentChar = MARK maka EOP akan menyala (true) */
 
-void START();
+void START(char *filename);
 
 void ADV();
 /* Pita dimajukan satu karakter.

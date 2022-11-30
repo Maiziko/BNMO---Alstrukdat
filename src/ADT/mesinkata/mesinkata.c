@@ -16,21 +16,22 @@ void IgnoreBlanks()
     }
 }
 
-void STARTWORD()
+void STARTWORD(char *filename)
 {
     /* I.S. : currentChar sembarang
        F.S. : EndWord = true, dan currentChar = MARK;
               atau EndWord = false, currentWord adalah kata yang sudah diakuisisi,
               currentChar karakter pertama sesudah karakter terakhir kata */
+    START(filename);
     IgnoreBlanks();
-    if (currentChar == ENTER)
+    if (currentChar == MARK)
     {
         EndWord = true;
     }
     else
     {
         EndWord = false;
-        ADVWORD();
+        ADVKATA();
     }
 }
 
@@ -63,7 +64,28 @@ void ADVWORD()
        Proses : Akuisisi kata menggunakan procedure CopyWord */
 
     IgnoreBlanks();
-    if (currentChar == MARK && !EndWord)
+    if (currentChar == MARK)
+    {
+        EndWord = true;
+    }
+    else
+    {
+        EndWord = false;
+        CopyWord();
+        IgnoreBlanks();
+    }
+}
+
+void ADVKATA()
+{
+    /* I.S. : currentChar adalah karakter pertama kata yang akan diakuisisi
+       F.S. : currentWord adalah kata terakhir yang sudah diakuisisi,
+              currentChar adalah karakter pertama dari kata berikutnya, mungkin MARK
+              Jika currentChar = MARK, EndWord = true.
+       Proses : Akuisisi kata menggunakan procedure CopyWord */
+
+    IgnoreBlanks();
+    if (currentChar == ENTER)
     {
         EndWord = true;
     }
