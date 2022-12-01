@@ -20,7 +20,7 @@ void KerangAjaib()
     printf("| 1. Command 'Q' untuk keluar dari game kerang ajaib  |\n");
     printf("+-----------------------------------------------------+\n");
     printf("\n");
-    printf("MAU NANYA APA NICH......HEHE :  ");
+    printf("MAU NANYA APA NIH......HEHE :  ");
     STARTCOMMAND();
 
     while (IsKataSama(CCommand, toKata("QUIT")))
@@ -28,7 +28,7 @@ void KerangAjaib()
         printf("\n");
         printf("COMMAND GAK VALID !! \n");
         printf("\n");
-        printf("MAU NANYA APA NICH......HEHE :  ");
+        printf("MAU NANYA APA NIH......HEHE :  ");
         STARTCOMMAND();
         abstrak = random(10);
     }
@@ -90,7 +90,7 @@ void KerangAjaib()
             printf("\n");
         }
 
-        printf("MAU NANYA APA NICH......HEHE :  ");
+        printf("MAU NANYA APA NIH......HEHE :  ");
         STARTCOMMAND();
         abstrak = random(10);
     }
