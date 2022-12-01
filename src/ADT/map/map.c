@@ -33,6 +33,10 @@ void createEmpty(map *M)
     (*M).Count = Nill;
 }
 
+void createEmptyData(data *M){
+    (*M).Count = Nill;
+}
+
 /* ********* Predikat Untuk test keadaan KOLEKSI ********* */
 boolean isMt(Map M)
 {
@@ -65,6 +69,19 @@ valuetype Value(Map M, keytype k)
     return Undefined;
 }
 
+value scoreIs(data M, keyName k){
+    int i = 0;
+    while (i < M.Count)
+    {
+        if (IsKataSama(M.Element[i].name, k))
+        {
+            return M.Element[i].score;
+        }
+        i++;
+    }
+    return Undefined;    
+}
+
 void Insert(Map *M, keytype k, valuetype v)
 {
     /* Menambahkan Elmt sebagai elemen Map M. */
@@ -77,6 +94,15 @@ void Insert(Map *M, keytype k, valuetype v)
         (*M).Elements[(*M).Count].Key = k;
         (*M).Count += 1;
     }
+}
+
+void InsertData(data *M, keyName k, value v){
+    if (!IsDataValid(*M, k))
+    {
+        (*M).Element[(*M).Count].score = v;
+        (*M).Element[(*M).Count].name= k;
+        (*M).Count += 1;
+    }    
 }
 
 void Delete(Map *M, keytype k)
@@ -114,6 +140,20 @@ boolean IsMember(Map M, keytype k)
     while (i < M.Count && !found)
     {
         if (M.Elements[i].Key == k)
+        {
+            found = true;
+        }
+        i++;
+    }
+    return found;
+}
+
+boolean IsDataValid(data M, keyName k){
+    boolean found = false;
+    int i = 0;
+    while (i < M.Count && !found)
+    {
+        if (IsKataSama(M.Element[i].name, k))
         {
             found = true;
         }
