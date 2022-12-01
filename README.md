@@ -10,6 +10,8 @@ Anggota Kelompok 04:
 - 18221019 Anindita Putri Paramarta
 - 18221027 Muhammad Rifky Fachrizain
 
+# HOW TO RUN ? 
+
 gcc -o program src/ADT/mesinkarakter/mesinkarakter.c src/ADT/mesinkata/mesinkata.c src/ADT/arraydin/arraydin.c src/ADT/queue/queue.c src/ADT/stack/stack.c src/ADT/SaveLoad/load.c src/ADT/SaveLoad/save.c src/Game/TowerOfHanoi/towerofhanoi.c src/Game/RNG/RNG.c src/Game/SnakeOnMeteor/snakeonmeteor.c src/ADT/map/map.c src/Game/GameBuatan/gamebuatan.c main.c
 
 ./program
