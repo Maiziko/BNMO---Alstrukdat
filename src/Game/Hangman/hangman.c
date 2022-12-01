@@ -128,5 +128,10 @@ void hangman() {
     printf("==============================\n");
     printf("PERMAINAN SELESAI!\nSkor Kamu : %d\nMASUKKAN USERNAME : ", data.score);
     STARTCOMMAND();
+    printf("==============================\n");
     data.name = CCommand;
+}
+
+int main() {
+    hangman();
 }

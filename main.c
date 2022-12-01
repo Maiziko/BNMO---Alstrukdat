@@ -1,5 +1,5 @@
 /* *** ******* ******* ******* ******** ******* ******** KELOMPOK 04 ******* ******** *** ******* ******* ******* ******** */
-/* 18221007 Nurshafa Qonita */
+/* 18221007 Nurshafa Qanita */
 /* 18221008 Gyan Maiziko */
 /* 18221018 Jennifer Grachel A */
 /* 18221019 Anindita Putri Paramarta */
