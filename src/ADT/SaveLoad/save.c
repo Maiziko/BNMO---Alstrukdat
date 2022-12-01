@@ -6,10 +6,6 @@
 void SAVE(ArrayDin file, Word CCommand)
 {
     FILE *fptr;
-    char gm[100];
-    char gm1[100];
-    char gm2[100];
-    char m[100];
     char filetext[100];
     int i = 0;
     int j = 0;
@@ -22,32 +18,9 @@ void SAVE(ArrayDin file, Word CCommand)
 
     for (j = 0; j < CCommand.Length; j++)
     {
-        gm[j] = CCommand.TabWord[j];
-    }
-    gm[j] = '\0';
-
-    for (j = 0; j < CCommand.Length; j++)
-    {
-        m[j] = CCommand.TabWord[j + 5];
-    }
-
-    for (j = 0; j < CCommand.Length; j++)
-    {
-        gm1[j] = gm[j + 5];
-    }
-    gm1[j] = '\0';
-
-    for (j = 0; j < CCommand.Length; j++)
-    {
         filetext[j + 5] = CCommand.TabWord[j + 5];
     }
     filetext[j] = '\0';
-
-    for (j = 0; j < 4; j++)
-    {
-        gm2[j] = CCommand.TabWord[j];
-    }
-    gm2[j] = '\0';
 
     fptr = fopen(filetext, "w");
     for (int i = 0; i < file.Neff; i++)
@@ -85,8 +58,16 @@ void HELP()
     printf("\n");
     printf("9. SKIPGAME <n> - Masukkan COMMAND          : SKIPGAME <n>  jika ingin berpindah pada <n> game berikutnya\n");
     printf("\n");
-    printf("10. HELP - Jika Tidak tahu COMMAND yang sesuai\n");
+    printf("10. SCOREBOARD                              : Untuk melihat scoreboard game permainan sebelumnya\n");
     printf("\n");
-    printf("11. QUIT - Jika Ingin Keluar dari mesin BNMO\n");
+    printf("11. RESET SCOREBOARD                        : Untuk menghapus Scoreboard yang ada sesuai keinginanmu \n");
+    printf("\n");
+    printf("12. HISTORY <n>                             : Menampilkan history permainanmu sebanyak n permainan \n");
+    printf("\n");
+    printf("13. RESET HISTORY                           : Menghapus semua history yang ada\n");
+    printf("\n");
+    printf("14. HELP - Jika Tidak tahu COMMAND yang sesuai\n");
+    printf("\n");
+    printf("15. QUIT - Jika Ingin Keluar dari mesin BNMO\n");
     printf("\n");
 }
