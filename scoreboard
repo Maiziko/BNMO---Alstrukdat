@@ -1,0 +1,65 @@
+void scoreboard (int score){
+  printf("Selamat, kamu berhasil menyelesaikan game ini!\n");
+  printf("Score kamu adalah %d\n", score);
+  printf("Masukkan nama kamu: "); STARTWORD();
+  char *nama = (char*) malloc (sizeof(char) * currentWord.Length+1);
+  WordToString(currentWord, nama);
+  printf("Selamat %s, kamu berhasil menyelesaikan game ini!\n", nama);
+  printf("Score kamu adalah %d\n", score);
+  printf("Masukkan nama file yang ingin disimpan: "); STARTWORD();
+  char *file = (char*) malloc (sizeof(char) * currentWord.Length+1);
+  WordToString(currentWord, file);
+  SAVE(file);
+  printf("Data berhasil di save\n");
+  printf("Anda keluar dari game BNMO.\n");
+  printf("Bye bye ...\n");
+}
+/* Menampilkan scoreboard ketika player berhasil menyelesaikan game */
+
+void SCOREBOARD(){
+  for (int i = 0; i < ScoreBoardGame.Neff; i++)
+  {
+    printf("**** SCOREBOARD GAME Diner DASH ****\n");
+    printf("|     Nama     |     Score     |\n");
+    printf("| ---------------------------- |\n");
+
+    printf("| -----------------------------|\n\n");    
+
+    printf("**** SCOREBOARD GAME RNG ****\n");
+    printf("|     Nama     |     Score     |\n");
+    printf("| ---------------------------- |\n");
+
+    printf("| -----------------------------|\n\n");
+
+    printf("**** SCOREBOARD GAME TOWER OF HANOI ****\n");
+    printf("|     Nama     |     Score     |\n");
+    printf("| ---------------------------- |\n");
+
+    printf("| ---------------------------- |\n");
+
+    printf("**** SCOREBOARD GAME TOWER OF HANOI ****\n");
+    printf("|     Nama     |     Score     |\n");
+    printf("| ---------------------------- |\n");
+
+    
+    printf("| ---------------------------- |\n");
+    
+    printf("**** SCOREBOARD GAME SNAKE ON METEOR ****\n");
+    printf("|     Nama     |     Score     |\n");
+    printf("| ---------------------------- |\n");
+
+    
+    printf("| ---------------------------- |\n");
+    
+
+  printf("**** SCOREBOARD GAME HANGMAN ****\n");
+    printf("|     Nama     |     Score     |\n");
+    printf("| ---------------------------- |\n");
+
+    
+    printf("| ---------------------------- |\n");
+    
+  }
+}
+/* Menampilkan ScoreBoard pemain ditiap game */
+
