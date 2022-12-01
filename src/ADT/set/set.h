@@ -24,6 +24,6 @@ void addToSet(Set *S, Eltype e);
 
 void removeFromSet(Set *S, Eltype e);
 
-boolean isIn(Set S, Eltype e);
+boolean isInSet(Set S, Eltype e);
 
 #endif

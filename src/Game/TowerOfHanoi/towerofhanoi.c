@@ -1,8 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "../../ADT/stack/stack.c"
-#include "../../ADT/mesinkata/mesinkata.c"
-#include "../../ADT/mesinkarakter/mesinkarakter.c"
+#include "../../ADT/stack/stack.h"
+#include "../../ADT/mesinkata/mesinkata.h"
+#include "../../ADT/mesinkarakter/mesinkarakter.h"
 
 void displayTower(Stack S, char X)
 {

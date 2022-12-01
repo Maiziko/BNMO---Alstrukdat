@@ -24,7 +24,8 @@
 #include "src/Game/RNG/RNG.h"
 #include "src/Game/SnakeOnMeteor/snakeonmeteor.h"
 #include "src/ADT/map/map.h"
-#include "src/Game/HANGMAN/hangman.h"
+#include "src/ADT/set/set.h"
+#include "src/Game/Hangman/Hangman.h"
 #include "src/Game/GameBuatan/gamebuatan.h"
 #include "src/Game/DinnerDash/Dinner_Dash.h"
 // fungsi pembantu ;
@@ -90,6 +91,9 @@ int main()
     char num[10];
     char nummm[10];
     char namagame[50];
+
+    // data 
+
     int l = 0;
     int temp = 0;
     ArrayDin file = MakeArrayDin();
@@ -381,8 +385,7 @@ int main()
             else if (IsKataSama(Game.buffer[Game.idxHead], toKata("Hangman")))
             {
                 pushGame(&History, toKata("Hangman"));
-                printf("Game Hangman belum tersedia \n");
-                // Hangman();
+                Hangman();
             }
             else if (IsKataSama(Game.buffer[Game.idxHead], toKata("Snake On Meteor")))
             {
@@ -464,8 +467,8 @@ int main()
                     }
                     else if (IsKataSama(Game.buffer[Game.idxHead], toKata("Hangman")))
                     {
-                        printf("Game Hangman belum tersedia \n");
-                        // Hangman();
+                        // printf("Game Hangman belum tersedia \n");
+                        Hangman();
                     }
                     else if (IsKataSama(Game.buffer[Game.idxHead], toKata("Snake On Meteor")))
                     {

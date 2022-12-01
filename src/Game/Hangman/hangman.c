@@ -1,4 +1,4 @@
-#include "hangman.h"
+#include "Hangman.h"
 
 ArrayDin read(ArrayDin dest, char * filename) {
     Word current;
@@ -43,17 +43,12 @@ boolean isIn(Word ans, Word guess) {
     return ada;
 }
 
-void hangman() {
+void Hangman() {
     ArrayDin tries = MakeArrayDin(), lib = read(lib, "lib.txt");
     int chances = 10;
     Word guess, ans;
     ArrayDin tes = lib;
-    typedef struct {
-    int score;
-    Word name;
-    } player;
-    player data;
-    data.score = 0;
+    int score = 0;
  
     printf("==============================\n");
     printf("\t   HANGMAN  \t\n");
@@ -117,7 +112,7 @@ void hangman() {
             printf("==============================\n");
 
             if (q == true) {
-                data.score += ans.Length;
+                score += ans.Length;
                 DeleteAt(&lib, SearchArrayDin(lib, ans));
                 DeallocateArrayDin(&tries);
                 win = true;
@@ -126,12 +121,11 @@ void hangman() {
         }   
     }
     printf("==============================\n");
-    printf("PERMAINAN SELESAI!\nSkor Kamu : %d\nMASUKKAN USERNAME : ", data.score);
+    printf("PERMAINAN SELESAI!\nSkor Kamu : %d\nMASUKKAN USERNAME : ", score);
     STARTCOMMAND();
     printf("==============================\n");
-    data.name = CCommand;
 }
 
-int main() {
-    hangman();
-}
+// int main() {
+//     Hangman();
+// }

@@ -9,14 +9,14 @@ boolean isSetEmpty(Set S){
 }
 
 void addToSet(Set *S, Eltype e){
-    if (!isIn(*S, e)){
+    if (!isInSet(*S, e)){
         (*S).buffer[(*S).Length] = e;
         (*S).Length += 1;
     }
 }
 
 void removeFromSet(Set *S, Eltype e){
-    if (isIn(*S, e)){
+    if (isInSet(*S, e)){
         int i = 0;
         boolean found = false;
         while (i < (*S).Length && !found)
@@ -37,7 +37,7 @@ void removeFromSet(Set *S, Eltype e){
     }
 }
 
-boolean isIn(Set S, Eltype e){
+boolean isInSet(Set S, Eltype e){
     boolean found = false;
     int i = 0;
     while (i < S.Length && !found)

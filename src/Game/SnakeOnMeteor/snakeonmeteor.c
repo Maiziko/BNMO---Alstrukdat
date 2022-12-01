@@ -1,10 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-#include "../../ADT/map/map.h"
-#include "../../ADT/mesinkata/mesinkata.h"
-#include "../../ADT/mesinkarakter/mesinkarakter.h"
-#include "../../ADT/listlinier/listlinier.h"
+#include "../../ADT/map/map.c"
+#include "../../ADT/mesinkata/mesinkata.c"
+#include "../../ADT/mesinkarakter/mesinkarakter.c"
+#include "../../ADT/listlinier/listlinier.c"
 
 void MoveUp(map new, char pemain, char makanan)
 {
@@ -84,7 +84,7 @@ int RandPosisi()
     return (rand() % 5) + 1;
 }
 
-void SnakeOnMeteor()
+int main()
 {
     /**/
     printf("\n");
