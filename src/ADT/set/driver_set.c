@@ -1,6 +1,4 @@
-#include "set.c"
-#include "../mesinkarakter/mesinkarakter.c"
-#include "../mesinkata/mesinkata.c"
+#include "set.h"
 
 int main(){
     Set S;
