@@ -1,33 +1,34 @@
 #include "set.h"
 
 void CreateSet(Set *S){
-    return (*S).Length = Nil;
+    (*S).Length = Nil;
 }
 
 boolean isSetEmpty(Set S){
     return S.Length == Nil;
 }
 
-void add(Set *S, Eltype e){
+void addToSet(Set *S, Eltype e){
     if (!isIn(*S, e)){
         (*S).buffer[(*S).Length] = e;
         (*S).Length += 1;
     }
 }
 
-void remove(Set *S, Eltype e){
+void removeFromSet(Set *S, Eltype e){
     if (isIn(*S, e)){
         int i = 0;
         boolean found = false;
         while (i < (*S).Length && !found)
         {
-            if (IsKataSama((*S).buffer[(*S).Length],e))
+            if (IsKataSama((*S).buffer[i],e))
             {
                 (*S).Length--;
-                while (i < (*S).Length)
+                int j = i;
+                while (j < (*S).Length)
                 {
-                    (*S).buffer[i] = (*S).buffer[i + 1];
-                    i++;
+                    (*S).buffer[j] = (*S).buffer[j + 1];
+                    j++;
                 }
                 found = true;
             }
@@ -41,7 +42,7 @@ boolean isIn(Set S, Eltype e){
     int i = 0;
     while (i < S.Length && !found)
     {
-        if (IsKataSama(S.buffer[S.Length],e))
+        if (IsKataSama(S.buffer[i],e))
         {
             found = true;
         }

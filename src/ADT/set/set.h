@@ -20,9 +20,9 @@ void CreateSet(Set *S);
 
 boolean isSetEmpty(Set S);
 
-void add(Set *S, Eltype e);
+void addToSet(Set *S, Eltype e);
 
-void remove(Set *S, Eltype e);
+void removeFromSet(Set *S, Eltype e);
 
 boolean isIn(Set S, Eltype e);
 
