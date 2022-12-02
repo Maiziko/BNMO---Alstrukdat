@@ -453,7 +453,6 @@ int main()
                         score = RNG(&score);
                         printf("SILAHKAN MASUKKAN USERNAMEMU : ");
                         STARTCOMMAND();
-                        
                     }
                     else if (IsKataSama((Game.buffer[Game.idxHead]), toKata("Diner DASH")) && !ISEMPTY(Game))
                     {
@@ -625,34 +624,38 @@ int main()
             printf("|                                    DAFTAR HISTORY (^-^)                                |\n");
             printf("+========================================================================================+\n");
             printf("\n");
-            if (IDX_TOP(History) == Nill){
+            if (IDX_TOP(History) == Nill)
+            {
                 printf("Wah belum ada game yang dimainkan :(\n");
             }
-            else{
-                for (int i = 0; i <= IDX_TOP(History); i++){
+            else
+            {
+                for (int i = 0; i <= IDX_TOP(History); i++)
+                {
                     printf("%d. ", i + 1);
                     PrintWord(TOP(History));
                     popGame(&History, &TOP(History));
                 }
             }
         }
-        else if (IsKataSama(CCommand, toKata("RESET HISTORY"))){
+        else if (IsKataSama(CCommand, toKata("RESET HISTORY")))
+        {
             printf("History yang sudah direset tidak dapat dikembalikan, Apakah kamu yakin ingin mereset historymu?\n");
-            if ("Ya"){
-            CreateStack(&History);
+            if ("Ya")
+            {
+                CreateStack(&History);
             }
-            else if ("Tidak"){
+            else if ("Tidak")
+            {
                 printf("Reset history dibatalkan\n");
                 printf("Berikut daftar historymu yang belum direset : \n");
-                for(int i = 0; i < IDX_TOP(History); i++)
+                for (int i = 0; i < IDX_TOP(History); i++)
                 {
-                    printf("%d. ", i+1);
+                    printf("%d. ", i + 1);
                     PrintWord(TOP(History));
                 }
             }
         }
-
-        
 
         /* *** ******* ******* ******* ******** ******* ******** QUIT ******* ******** *** ******* ******* ******* ******** */
         else if (!IsKataSama(CCommand, toKata("QUIT")))
