@@ -6,7 +6,7 @@
 #include "../../ADT/boolean.h"
 #include "../RNG/RNG.h"
 
-void KerangAjaib()
+int KerangAjaib(int *score)
 {
     int i = 0;
     int abstrak = random(10);
@@ -98,6 +98,8 @@ void KerangAjaib()
     {
         printf("\n");
         printf("MAKASIH UDAH MAIN KERANG AJAIB, .....!!!\n");
+        (*score) += 10;
+        printf("Score kamu adalah %d", (*score));
     }
 
     printf("\n");
