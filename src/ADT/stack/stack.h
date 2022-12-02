@@ -69,5 +69,6 @@ void popGame(History *h, GameType *game);
 /* Menghapus val dari Stack s */
 /* I.S. s tidak mungkin kosong */
 /* F.S. val adalah nilai elemen TOP yang lama, IDX_TOP berkurang 1 */
+void displayHistory(History h);
 
 #endif
