@@ -271,4 +271,5 @@ int DinnerDash(int *score)
             STARTCOMMAND();
         }
     }
+    return (*score);
 }

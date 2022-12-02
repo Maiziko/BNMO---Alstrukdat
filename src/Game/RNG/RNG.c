@@ -95,8 +95,8 @@ int RNG(int *score)
     {
         printf("\n");
         printf("KAMU TIDAK MENDAPATKAN SKOR, KARENA KAMU TIDAK BERHASIL MENEBAK ANGKANYA (T-T).\n");
-        score = 0;
+        *score = 0;
         printf("\n");
     }
-    return score;
+    return (*score);
 }

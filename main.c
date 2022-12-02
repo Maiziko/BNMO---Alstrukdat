@@ -364,6 +364,8 @@ int main()
                 pushGame(&History, toKata("RNG"));
                 printf("\n");
                 RNG(&score);
+                printf("SILAHKAN MASUKKAN USERNAME MU : ");
+                STARTCOMMAND();
             }
             else if (IsKataSama(Game.buffer[Game.idxHead], toKata("Diner DASH")))
             {
@@ -387,6 +389,7 @@ int main()
             {
                 pushGame(&History, toKata("Hangman"));
                 score = Hangman(&score);
+                printf("%d\n", score);
             }
             else if (IsKataSama(Game.buffer[Game.idxHead], toKata("Snake On Meteor")))
             {
