@@ -625,13 +625,34 @@ int main()
             printf("|                                    DAFTAR HISTORY (^-^)                                |\n");
             printf("+========================================================================================+\n");
             printf("\n");
-            for (int i = 0; i <= IDX_TOP(History); i++)
-            {
-                printf("%d. ", i + 1);
-                PrintWord(TOP(History));
-                popGame(&History, &TOP(History));
+            if (IDX_TOP(History) == Nill){
+                printf("Wah belum ada game yang dimainkan :(\n");
+            }
+            else{
+                for (int i = 0; i <= IDX_TOP(History); i++){
+                    printf("%d. ", i + 1);
+                    PrintWord(TOP(History));
+                    popGame(&History, &TOP(History));
+                }
             }
         }
+        else if (IsKataSama(CCommand, toKata("RESET HISTORY"))){
+            printf("History yang sudah direset tidak dapat dikembalikan, Apakah kamu yakin ingin mereset historymu?\n");
+            if ("Ya"){
+            CreateStack(&History);
+            }
+            else if ("Tidak"){
+                printf("Reset history dibatalkan\n");
+                printf("Berikut daftar historymu yang belum direset : \n");
+                for(int i = 0; i < IDX_TOP(History); i++)
+                {
+                    printf("%d. ", i+1);
+                    PrintWord(TOP(History));
+                }
+            }
+        }
+
+        
 
         /* *** ******* ******* ******* ******** ******* ******** QUIT ******* ******** *** ******* ******* ******* ******** */
         else if (!IsKataSama(CCommand, toKata("QUIT")))
