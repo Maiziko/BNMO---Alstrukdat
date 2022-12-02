@@ -13,8 +13,9 @@ int tointeger(char kat)
     return (kat - '0');
 }
 
-int dinerDASH(int *score)
-{
+int dinerDASH()
+{   
+    int score = 0;
     printf("\n");
     printf("+========================================================================================+\n");
     printf("|                          SELAMAT DATANG DI GAME Diner DASH <^-^>                       |\n");

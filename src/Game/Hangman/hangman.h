@@ -17,4 +17,4 @@ boolean isIn(Word ans, Word guess);
 
 // void addPlayerData()
 
-int Hangman(int *score);
+int Hangman();
