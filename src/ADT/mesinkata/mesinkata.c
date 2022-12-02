@@ -296,3 +296,28 @@ int toInt(char kata)
         break;
     }
 }
+
+char *convertInttoStr(int x)
+{
+    int i, copy, digit;
+    int len = 0;
+    copy = x;
+    while (copy != 0)
+    {
+        len++;
+        copy /= 10;
+    }
+    char *str = malloc(len * sizeof(char));
+    while (str == NULL)
+    {
+        str = malloc(len * sizeof(char));
+    }
+    for (i = 0; i < len; i++)
+    {
+        digit = x % 10;
+        x = x / 10;
+        str[len - (i + 1)] = digit + '0';
+    }
+    str[len] = '\0';
+    return str;
+}
