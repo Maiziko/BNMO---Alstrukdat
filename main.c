@@ -367,7 +367,7 @@ int main()
             }
             else if (IsKataSama(Game.buffer[Game.idxHead], toKata("Diner DASH")))
             {
-                Dinner_Dash(&score);
+                DinnerDash(&score);
                 // Ini game Dinner DASH
                 pushGame(&History, toKata("Diner DASH"));
             }
@@ -500,7 +500,6 @@ int main()
                         wordStringCopy(kata, Game.buffer[Game.idxHead]);
                         pushGame(&History, toKata(kata));
                         printf("\n");
-                        score = &RandAngka;
                         printf("Score anda atas game %s adalah %d\n", kata, RandAngka);
                         printf("\n");
                     }
@@ -651,7 +650,7 @@ int main()
             printf("History yang sudah direset tidak dapat dikembalikan, Apakah kamu yakin ingin mereset historymu?\n");
             if ("Ya")
             {
-                CreateStack(&History);
+                CreateHistory(&History);
             }
             else if ("Tidak")
             {
