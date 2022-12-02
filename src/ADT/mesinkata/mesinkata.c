@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <math.h>
 #include "mesinkata.h"
 
 boolean EndWord;
@@ -260,6 +261,7 @@ char toChar(Word COMAND)
     return output;
 }
 
+
 int toInt(char kata)
 {
     switch (kata)
@@ -295,4 +297,17 @@ int toInt(char kata)
         return 0;
         break;
     }
+}
+
+int toInteger(Word kata)
+{
+    int i = kata.Length-1;
+    int result = 0, exp = 0;
+    while (i >= 0)
+    {
+        result = result + toInt(kata.TabWord[i]) * pow(10, exp);
+        i--;
+        exp++;
+    }
+    return result;
 }

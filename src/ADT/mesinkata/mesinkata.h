@@ -97,4 +97,6 @@ char toChar(Word COMAND);
 /* Mengirimkan karakter dari kata */
 
 int toInt(char kata);
+
+int toInteger(Word kata);
 #endif

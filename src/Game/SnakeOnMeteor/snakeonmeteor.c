@@ -84,7 +84,7 @@ int RandPosisi()
     return (rand() % 5) + 1;
 }
 
-int main()
+int SnakeOnMeteor()
 {
     /**/
     printf("\n");

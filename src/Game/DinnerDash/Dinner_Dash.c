@@ -13,7 +13,7 @@ int tointeger(char kat)
     return (kat - '0');
 }
 
-int main()
+int dinerDASH()
 {
     printf("\n");
     printf("+========================================================================================+\n");

@@ -1,26 +1,14 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-#include "../../ADT/mesinkata/mesinkata.h"
-#include "../../ADT/mesinkarakter/mesinkarakter.h"
-#include "../../ADT/boolean.h"
+#include "../../ADT/mesinkata/mesinkata.c"
+#include "../../ADT/mesinkarakter/mesinkarakter.c"
+// #include "../../ADT/boolean.c"
 // #include "../../ADT/map/map.h"
-int random(int x)
+int generateRandom(int x)
 {
     srand((unsigned)time(0));
     return (rand() % x) + 1;
-}
-
-int toInteger(Word kata)
-{
-    int i = 0;
-    int result = 0;
-    while (i < kata.Length)
-    {
-        result = result * 10 + (kata.TabWord[i] - '0');
-        i++;
-    }
-    return result;
 }
 
 int RNG()
@@ -31,7 +19,7 @@ int RNG()
     printf("+=========================================================================================================================+\n");
     printf("\n");
     int score, angka = 100;
-    int RandAngka = random(angka);
+    int RandAngka = generateRandom(angka);
     int hitung = 0;
     printf("+============================+\n");
     printf(" MASUKKAN ANGKA TEBAKANMU : ");

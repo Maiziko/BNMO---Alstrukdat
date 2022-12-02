@@ -8,20 +8,6 @@
 #include "../../ADT/map/map.c"
 #include "../../ADT/set/set.c"
 
-int toInteger(Word kata)
-{
-    int i = kata.Length-1;
-    int result = 0, exp = 0;
-    while (i >= 0)
-    {
-        result = result + toInt(kata.TabWord[i]) * pow(10, exp);
-        i--;
-        exp++;
-    }
-
-    return result;
-}
-
 void loadData(char * filename){
     ArrayDin gamefile = MakeArrayDin();
     ArrayData dataplayer = MakeArrayData();
