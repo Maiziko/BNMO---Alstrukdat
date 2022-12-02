@@ -2,18 +2,18 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-#include "../../ADT/mesinkata/mesinkata.c"
-#include "../../ADT/mesinkarakter/mesinkarakter.c"
-#include "../../ADT/queue/queue.c"
-#include "../../ADT/arraydin/arraydin.c"
-#include "../RNG/RNG.c"
+#include "../../ADT/mesinkata/mesinkata.h"
+#include "../../ADT/mesinkarakter/mesinkarakter.h"
+#include "../../ADT/queue/queue.h"
+#include "../../ADT/arraydin/arraydin.h"
+#include "../RNG/RNG.h"
 
 int tointeger(char kat)
 {
     return (kat - '0');
 }
 
-int main()
+int DinnerDash(int *score)
 {
     printf("\n");
     printf("+========================================================================================+\n");
@@ -41,6 +41,8 @@ int main()
     int harga;
     int Durasi;
     int Ketahanan;
+    int count_m = 0;
+    int count_s = 0;
 
     time_t t;
     srand((unsigned)time(0));
@@ -51,7 +53,7 @@ int main()
 
     // Bikin pesan
     // int j = 0;
-    while (pesan.juml <= 7 && pelanggan < 15 && masak.juml <= 5)
+    while (pesan.juml < 7 && pelanggan <= 15 && masak.juml <= 5)
     {
         printf("SALDO : %d\n", saldo);
         printf("\n");
@@ -64,12 +66,10 @@ int main()
             if (pesan.Din[i].Harga == IDX_UNDEf)
             {
                 harga = (rand() % 40 + 10) * 1000;
-                pesan.Din[i].Harga = harga;
                 Durasi = rand() % 5 + 1;
-                pesan.Din[i].Durasi = Durasi;
                 Ketahanan = rand() % 5 + 1;
-                pesan.Din[i].Ketahanan = Ketahanan;
                 pesan.Din[i].ID = i;
+                entermenu(&pesan, i, harga, Durasi, Ketahanan);
             }
             printf("M%d \t\t | %d\t\t\t | %d\t\t | %d\t\n", pesan.Din[i].ID, pesan.Din[i].Durasi, pesan.Din[i].Ketahanan, pesan.Din[i].Harga);
         }
@@ -89,7 +89,10 @@ int main()
             int i = 0;
             for (i = idx_Kepala(masak); i < masak.juml; i++)
             {
-                printf("M%d \t| %d\t\t\t\n", masak.Din[i].ID, masak.Din[i].Durasi);
+                if (masak.Din[i].Durasi > 0)
+                {
+                    printf("M%d \t| %d\t\t\t\n", masak.Din[i].ID, masak.Din[i].Durasi);
+                }
             }
         }
         printf("\n");
@@ -101,14 +104,20 @@ int main()
         {
             printf("\t|\t\t\t\n");
         }
+
         else
         {
             int i = 0;
-            for (i = 0; i < (idx_ekor(saji) + 1); i++)
+            for (i = 0; i < (saji.juml); i++)
             {
-                printf("M%d \t| %d\t\t\t\n", saji.Din[i].ID, saji.Din[i].Ketahanan);
+                if (saji.Din[i].Ketahanan > 0)
+                {
+                    printf("M%d \t| %d\t\t\t\n", saji.Din[i].ID, saji.Din[i].Ketahanan);
+                }
             }
         }
+        printf("\n");
+        printf("\n");
 
         printf("================================================================\n");
         printf("MASUKKAN COMMAND : ");
@@ -140,68 +149,78 @@ int main()
         {
             if (IsKataSama(toKata(command1), toKata("COOK")) && ((command[5]) == (CCommand.TabWord[5])) && tointeger(command[6]) == tointeger(CCommand.TabWord[6]))
             {
-
-                enqdin(&masak, &pesan, m);
-                if (saji.juml != IDX_UNDEf)
+                for (int i = 0; i < pesan.juml; i++)
                 {
-                    for (int i = 0; i < (idx_ekor(saji) + 1); i++)
+                    if (m == pesan.Din[i].ID)
                     {
-                        saji.Din[i].Ketahanan -= 1;
-                        if (saji.Din[i].Ketahanan == 0)
+                        enqdin(&masak, &pesan, m);
+                        for (int i = idx_Kepala(masak); i < (masak.juml - 1); i++)
                         {
-                            printf("Makanan M%d telah basi\n", saji.Din[i].ID);
+                            masak.Din[i].Durasi -= 1;
+                            if (masak.Din[i].Durasi == 0)
+                            {
+                                enqdin(&saji, &masak, i);
+                            }
+                            else
+                            {
+                                enqdin(&temp_masak, &masak, i);
+                            }
                         }
+                        for (int i = 0; i < (saji.juml - 1); i++)
+                        {
+                            saji.Din[i].Ketahanan--;
+                            if (saji.Din[i].Ketahanan == 0)
+                            {
+                                printf("Makanan M%d telah Basi\n", saji.Din[i].ID);
+                                saji.juml -= 1;
+                            }
+                        }
+                        pesan.juml++;
                     }
                 }
-
-                for (int i = idx_Kepala(masak); i < (masak.juml - 1); i++)
-                {
-                    masak.Din[i].Durasi -= 1;
-                    if (masak.Din[i].Durasi == 0)
-                    {
-                        enqdin(&saji, &masak, i);
-                    }
-                }
-
-                pesan.juml++;
             }
-            else if (IsKataSama(toKata(commm), toKata("SERVE")) && IsKataSama(toKata(&command[6]), toKata(&CCommand.TabWord[6])) && IsKataSama(toKata(&command[7]), toKata(&CCommand.TabWord[7])))
-            {
 
-                if (saji.juml != IDX_UNDEf)
+            else if (IsKataSama(toKata(commm), toKata("SERVE")) && IsKataSama(toKata(&command[6]), toKata(&CCommand.TabWord[6])) && (tointeger(command[7]) == tointeger(CCommand.TabWord[7])))
+            {
+                for (int j = 0; j < saji.juml; j++)
                 {
-                    for (int i = 0; i < (idx_ekor(saji) + 1); i++)
+                    if (n == saji.Din[j].ID && saji.Din[j].Ketahanan != 0)
                     {
-                        saji.Din[i].Ketahanan -= 1;
-                        // if (saji.Din[i].Ketahanan == 0)
-                        // {
-                        //     DelDin(&saji, i);
-                        // }
-                    }
-                }
-                for (int i = idx_Kepala(masak); i < (masak.juml - 1); i++)
-                {
-                    masak.Din[i].Durasi -= 1;
-                    if (masak.Din[i].Durasi == 0)
-                    {
-                        // DelDin(&masak);
-                        enqdin(&saji, &masak, (i));
-                    }
-                }
-                if (saji.juml != IDX_UNDEf)
-                {
-                    for (int i = 0; i < (idx_ekor(saji) + 1); i++)
-                    {
-                        if (saji.Din[i].ID == n)
+                        for (int i = 0; i < masak.juml; i++)
                         {
-                            // DelDin(&saji, i);
-                            printf("Berhasil mengantar M%d ke pelanggan\n", n);
-                            saldo += pesan.Din[n].Harga;
-                            pelanggan++;
+                            masak.Din[i].Durasi -= 1;
+                            if (masak.Din[i].Durasi == 0)
+                            {
+                                enqdin(&saji, &masak, i);
+                            }
                         }
+                        if (saji.juml != IDX_UNDEf)
+                        {
+                            for (int i = 0; i < (saji.juml); i++)
+                            {
+                                if (saji.Din[i].ID == n && saji.Din[i].Ketahanan > 0)
+                                {
+                                    if (saji.juml != IDX_UNDEf)
+                                    {
+                                        for (int i = 0; i < (idx_ekor(saji) + 1); i++)
+                                        {
+                                            saji.Din[i].Ketahanan -= 1;
+                                            if (saji.Din[i].Ketahanan == 0)
+                                            {
+                                                printf("Makanan M%d telah Basi\n", saji.Din[i].ID);
+                                            }
+                                        }
+                                    }
+                                    saji.Din[i].Ketahanan = 0;
+                                    saldo += saji.Din[i].Harga;
+                                    pelanggan++;
+                                    printf("Berhasil mengantar M%d ke pelanggan\n", n);
+                                }
+                            }
+                        }
+                        pesan.juml++;
                     }
                 }
-                pesan.juml++;
             }
             else if (IsKataSama(toKata(command1), toKata("SKIP")))
             {
@@ -212,25 +231,34 @@ int main()
                         saji.Din[i].Ketahanan -= 1;
                         if (saji.Din[i].Ketahanan == 0)
                         {
-                            // DelDin(&saji, i);
+                            saji.juml -= 1;
                         }
                     }
                 }
-                for (int i = idx_Kepala(masak); i < (masak.juml - 1); i++)
+                for (int i = idx_Kepala(masak); i < masak.juml; i++)
                 {
                     masak.Din[i].Durasi -= 1;
                     if (masak.Din[i].Durasi == 0)
                     {
-                        // DelDin(&masak);
-                        enqdin(&saji, &masak, (i));
+                        enqdin(&saji, &masak, i);
                     }
                 }
-                pelanggan++;
                 pesan.juml++;
+                pelanggan++;
             }
             else
             {
                 printf("COMMAND TIDAK VALID\n");
+            }
+            if (pesan.juml == 7 || pelanggan == 15 || masak.juml == 5)
+            {
+                printf("\n");
+                printf("================================================================\n");
+                printf("SAYANG SEKALI ANTRIAN SUDAH PENUH\n");
+                (*score) = saldo / 1000;
+                printf("SCORE ANDA ADALAH %d \n", (*score));
+                printf("================================================================\n");
+                printf("\n");
             }
         }
         while (((!IsKataSama(CCommand, toKata("COOK")) && ((command[5]) != (CCommand.TabWord[5])) && tointeger(command[6]) != tointeger(CCommand.TabWord[6]))))
@@ -241,5 +269,4 @@ int main()
             STARTCOMMAND();
         }
     }
-    return 0;
 }
