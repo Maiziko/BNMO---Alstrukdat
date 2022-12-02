@@ -7,11 +7,12 @@
 #define false 0
 
 #include "../mesinkata/mesinkata.h"
-
+#include "../map/map.h"
 
 #define InitialSize 10
 
 typedef int IdxType;
+typedef data dataType;
 typedef Word ElType;
 
 typedef struct
@@ -20,6 +21,12 @@ typedef struct
     int Capacity;
     int Neff;
 } ArrayDin;
+
+typedef struct {
+    dataType *A;
+    int Capacity;
+    int Neff;
+} ArrayData;
 
 typedef struct
 {
@@ -40,6 +47,8 @@ typedef struct
  * F.S. Terbentuk ArrayDin kosong dengan ukuran InitialSize
  */
 ArrayDin MakeArrayDin();
+
+ArrayData MakeArrayData();
 
 /**
  * Destruktor
@@ -77,6 +86,8 @@ int GetCapacity(ArrayDin array);
  * Prekondisi: array terdefinisi, i di antara 0..Length(array).
  */
 void InsertAt(ArrayDin *array, ElType el, IdxType i);
+
+void InsertDataAt(ArrayData *array, dataType el, int i);
 
 /**
  * Fungsi untuk menambahkan elemen baru di akhir array.

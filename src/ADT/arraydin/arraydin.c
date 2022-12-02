@@ -18,6 +18,13 @@ ArrayDin MakeArrayDin()
     return array;
 }
 
+ArrayData MakeArrayData(){
+    ArrayData array;
+    array.A = (dataType *)malloc(InitialSize * sizeof(dataType));
+    array.Neff = 0;
+    return array;    
+}
+
 /**
  * Destruktor
  * I.S. ArrayDin terdefinisi
@@ -97,6 +104,47 @@ void InsertAt(ArrayDin *array, ElType el, IdxType i)
         }
         free((*array).A);
         (*array).A = (ElType *)malloc(((*array).Capacity * 2) * sizeof(ElType));
+        for (j = 0; j < i; j++)
+        {
+            (*array).A[j] = tempArray.A[j];
+        }
+        (*array).A[i] = el;
+        for (j = i; j < (*array).Capacity; j++)
+        {
+            (*array).A[j + 1] = tempArray.A[j];
+        }
+        free(tempArray.A);
+        (*array).Capacity = (*array).Capacity * 2;
+        (*array).Neff += 1;
+    }
+}
+
+
+void InsertDataAt(ArrayData *array, dataType el, int i){
+    if ((*array).Capacity > (*array).Neff)
+    {
+        int j;
+        for (j = (*array).Neff; j > i; j--)
+        {
+            (*array).A[j] = (*array).A[j - 1];
+        }
+        (*array).A[i] = el;
+        (*array).Neff += 1;
+    }
+    else
+    {
+        ArrayData tempArray;
+        tempArray.A = (dataType *)malloc((*array).Capacity * sizeof(dataType));
+        int j;
+        for (j = 0; j < (*array).Neff; j++)
+        {
+            for (int i = 0; i < (*array).A[j].Count; i++)
+            {
+                tempArray.A[j] = (*array).A[j];
+            }
+        }
+        free((*array).A);
+        (*array).A = (dataType *)malloc(((*array).Capacity * 2) * sizeof(dataType));
         for (j = 0; j < i; j++)
         {
             (*array).A[j] = tempArray.A[j];

@@ -95,4 +95,6 @@ void wordStringCopy(char *dest, Word src);
 /* Mengcopy kata ke string */
 char toChar(Word COMAND);
 /* Mengirimkan karakter dari kata */
+
+int toInt(char kata);
 #endif
