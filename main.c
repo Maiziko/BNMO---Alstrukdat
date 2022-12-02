@@ -91,7 +91,7 @@ int main()
     char num[10];
     char nummm[10];
     char namagame[50];
-    int score;
+    int score = 0;
 
     // data
 
@@ -103,7 +103,6 @@ int main()
     History History;
     CreateHistory(&History);
     int skip = 0;
-    int score = 0;
     int i = 0;
     int j = 0;
     for (j = 0; j < 4; j++)
@@ -151,7 +150,7 @@ int main()
         {
             printf("\n");
             printf("File %s tidak ditemukan\n", namafile);
-            printf("\n");
+            printf("\n"); 
             printf("SILAHKAN  MASUKKAN  COMMAND (START/LOAD <namafile.txt>) : ");
             STARTCOMMAND();
             system("cls");

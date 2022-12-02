@@ -32,11 +32,13 @@
 /*****************************************************************Fungsi SAVE & LOAD **********************************************/
 
 // ngambil kata sebelum spasi
-Word copyword(Word CCommand){
+Word copyword(Word CCommand)
+{
     int i = 0;
     Word tempword;
     tempword.Length = 0;
-    while (i < CCommand.Length && CCommand.TabWord[i] != ' ') {
+    while (i < CCommand.Length && CCommand.TabWord[i] != ' ')
+    {
         tempword.TabWord[i] = CCommand.TabWord[i];
         tempword.Length++;
         i++;
@@ -44,16 +46,19 @@ Word copyword(Word CCommand){
     return tempword;
 }
 
-Word readfilename(Word currentWord){
+Word readfilename(Word currentWord)
+{
     int i = 0;
     int n = 0;
     Word tempword;
     tempword.Length = 0;
-    while (i < CCommand.Length && CCommand.TabWord[i] != ' ') {
+    while (i < CCommand.Length && CCommand.TabWord[i] != ' ')
+    {
         i++;
     }
     i++;
-    while (i < CCommand.Length && CCommand.TabWord[i] != '\n') {
+    while (i < CCommand.Length && CCommand.TabWord[i] != '\n')
+    {
         tempword.TabWord[n] = CCommand.TabWord[i];
         tempword.Length++;
         i++;
@@ -67,7 +72,8 @@ int main()
 {
     ArrayDin gamefile = MakeArrayDin();
     ArrayData dataplayer = MakeArrayData();
-    History history; CreateHistory(&history);
+    History history;
+    CreateHistory(&history);
 
     // HELP();
     printf("\n");
@@ -75,21 +81,24 @@ int main()
     STARTCOMMAND();
     Word tempword = copyword(CCommand);
 
-    if (IsKataSama(tempword, toKata("START"))){
+    if (IsKataSama(tempword, toKata("START")))
+    {
         printf("p");
     }
 
-    else {
-        while (!IsKataSama(tempword, toKata("LOAD"))) {
-            printf("\nMasukkan salah!\n");   
+    else
+    {
+        while (!IsKataSama(tempword, toKata("LOAD")))
+        {
+            printf("\nMasukkan salah!\n");
             printf("SILAHKAN  MASUKKAN  COMMAND (START/LOAD <namafile.txt>) : ");
             STARTCOMMAND();
             tempword = copyword(CCommand);
         }
-        Load(readfilename(CCommand),gamefile,dataplayer,history);
-        for(int i = 0; i < gamefile.Neff; i++) {
+        Load(readfilename(CCommand), gamefile, dataplayer, history);
+        for (int i = 0; i < gamefile.Neff; i++)
+        {
             PrintWord(gamefile.A[i]);
         }
     }
-
 }
