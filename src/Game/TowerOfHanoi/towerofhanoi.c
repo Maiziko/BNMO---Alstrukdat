@@ -57,7 +57,7 @@ boolean isTowerAvail(Stack awal, Stack S1, Stack S2)
     return (TOP(S1) > TOP(awal) || TOP(S2) > TOP(awal) || isEmpty(S1) || isEmpty(S2));
 }
 
-int TowerOfHanoi()
+int TowerOfHanoi(int *score)
 {
     typedef struct
     {
@@ -340,16 +340,19 @@ int TowerOfHanoi()
     if (step == 31)
     {
         data.score = 100;
+        (*score) = 100;
     }
     else if (step > 31 && step <= 69)
     {
         data.score = 100 - (step - 31);
+        (*score) = 100 - (step - 31);
     }
     else
     {
         data.score = 0;
+        (*score) = 0;
     }
-    return data.score;
+    return (*score);
 }
 
 int main(){

@@ -87,6 +87,7 @@ int RandPosisi()
 int SnakeOnMeteor()
 {
     /**/
+
     printf("\n");
     printf("+===========================================================================+\n");
     printf("|               SELAMAT DATANG DI GAME SNAKE ON METEOR  {*-*}               |\n");

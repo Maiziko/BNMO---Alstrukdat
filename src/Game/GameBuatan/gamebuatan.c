@@ -103,4 +103,5 @@ int KerangAjaib(int *score)
     }
 
     printf("\n");
+    return (*score);
 }
