@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <math.h>
 #include "../../ADT/stack/stack.c"
 #include "../../ADT/arraydin/arraydin.c"
 #include "../../ADT/mesinkata/mesinkata.c"
@@ -9,34 +10,27 @@
 
 int toInteger(Word kata)
 {
-    int i = kata.Length;
-    int result = 0;
+    int i = kata.Length - 1;
+    int result = 0, exp = 0;
     while (i >= 0)
     {
-        result = result * 10 + toInt(kata.TabWord[i]);
+        result = result + toInt(kata.TabWord[i]) * pow(10, exp);
         i--;
+        exp++;
     }
 
     return result;
 }
 
-int main()
+void loadData(char *filename)
 {
     ArrayDin gamefile = MakeArrayDin();
     ArrayData dataplayer = MakeArrayData();
     History history;
     CreateHistory(&history);
-    data RNGPlayers, DinerDashPlayers, HangmanPlayers, TowerPlayers, SnakePlayers;
-    createEmptyData(&RNGPlayers);
-    createEmptyData(&DinerDashPlayers);
-    createEmptyData(&HangmanPlayers);
-    createEmptyData(&TowerPlayers);
-    createEmptyData(&SnakePlayers);
+    STARTWORD(filename);
 
-    STARTWORD("config.txt");
-
-    // while(!EndWord) {
-    int totalgame = toInt(currentWord.TabWord[0]);
+    int totalgame = toInteger(currentWord);
     for (int i = 0; i < totalgame; i++)
     {
         ADVWORD();
@@ -44,7 +38,7 @@ int main()
     }
 
     ADVWORD();
-    int temp = toInt(currentWord.TabWord[0]);
+    int temp = toInteger(currentWord);
     for (int i = 0; i < temp; i++)
     {
         ADVWORD();
@@ -52,25 +46,28 @@ int main()
     }
 
     for (int i = 0; i < totalgame; i++)
-    {
+    { // total game
         ADVWORD();
-        Word tempname, tempscore;
         data tempdata;
         createEmptyData(&tempdata);
+        tempdata.game = gamefile.A[i];
         temp = toInt(currentWord.TabWord[0]);
         for (int j = 0; j < temp; j++)
-        {
+        { // total players
+            Word tempname, tempscore;
+            tempscore.Length = 0;
+            tempname.Length = 0;
             ADVWORD();
             int k = 0;
-            for (int i = 0; i < currentWord.Length; i++)
-            {
-                if (currentWord.TabWord[i] == ' ')
+            for (int n = 0; n < currentWord.Length; n++)
+            { // data players
+                if (currentWord.TabWord[n] == ' ')
                 {
-                    for (int p = 0; p < currentWord.Length - i; p++)
+                    for (int p = 0; p < currentWord.Length - n; p++)
                     {
-                        tempscore.TabWord[p] = currentWord.TabWord[i + 1];
+                        tempscore.TabWord[p] = currentWord.TabWord[n + 1];
                         tempscore.Length++;
-                        i++;
+                        n++;
                     }
                     break;
                 }
@@ -83,6 +80,14 @@ int main()
             InsertDataAt(&dataplayer, tempdata, i);
         }
     }
-    // }
-
 }
+// <<<<<<< HEAD
+//     // }
+
+// =======
+// }
+
+// int main(){
+//     loadData("config.txt");
+// >>>>>>> 16a56fa7bef3ca82765f9d0c2272e7e3b97da6b8
+// }

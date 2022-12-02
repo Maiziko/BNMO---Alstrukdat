@@ -23,14 +23,14 @@ int toInteger(Word kata)
     return result;
 }
 
-int RNG(int *score)
+int RNG()
 {
     system("cls");
     printf("+=========================================================================================================================+\n");
     printf("| S E L A M A T   D A T A N G  D I  G A M E  R N G  U J I  K E B E R U N T U N G A N M U  D E N G A N  M E N E B A K   X. |\n");
     printf("+=========================================================================================================================+\n");
     printf("\n");
-    int angka = 100;
+    int score, angka = 100;
     int RandAngka = random(angka);
     int hitung = 0;
     printf("+============================+\n");
@@ -85,9 +85,9 @@ int RNG(int *score)
         printf("\n");
         printf("KAMU MENEBAK ANGKANYA DALAM %d KALI PERCOBAAN {^-^} !!! \n", hitung); // Percobaan menebak yang gagal
         printf("\n");
-        (*score) = 100 - hitung;
+        score = 100 - hitung;
         printf("+============================+\n");
-        printf("    SCORE  KAMU  ADALAH %d\n", (*score));
+        printf("    SCORE  KAMU  ADALAH %d\n", score);
         printf("+============================+\n");
         printf("\n");
     }
@@ -95,7 +95,8 @@ int RNG(int *score)
     {
         printf("\n");
         printf("KAMU TIDAK MENDAPATKAN SKOR, KARENA KAMU TIDAK BERHASIL MENEBAK ANGKANYA (T-T).\n");
-        (*score) = 0;
+        score = 0;
         printf("\n");
     }
+    return score;
 }

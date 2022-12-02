@@ -11,6 +11,6 @@ int random(int x);
 int toInteger(Word kata);
 /* Mengembalikan nilai integer dari kata */
 
-int RNG(int *score);
+int RNG();
 /* I.S. Sembarang */
 /* F.S. Mengembalikan nilai random */

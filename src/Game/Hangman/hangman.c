@@ -55,11 +55,12 @@ boolean isIn(Word ans, Word guess)
     return ada;
 }
 
-int Hangman(int *score)
+int Hangman()
 {
     ArrayDin tries = MakeArrayDin(), lib = read(lib, "lib.txt");
     int chances = 10;
     Word guess, ans;
+    int score;
     ArrayDin tes = lib;
 
     printf("==============================\n");
@@ -138,7 +139,7 @@ int Hangman(int *score)
 
             if (q == true)
             {
-                (*score) += ans.Length;
+                score += ans.Length;
                 DeleteAt(&lib, SearchArrayDin(lib, ans));
                 DeallocateArrayDin(&tries);
                 win = true;
@@ -146,8 +147,9 @@ int Hangman(int *score)
         }
     }
     printf("==============================\n");
-    printf("PERMAINAN SELESAI!\nSkor Kamu : %d\n", (*score));
+    printf("PERMAINAN SELESAI!\nSkor Kamu : %d\n", score);
     printf("==============================\n");
+    return score;
 }
 
 // int main() {
