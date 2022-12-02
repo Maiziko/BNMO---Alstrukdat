@@ -372,7 +372,7 @@ int main()
 
                 // Ini game Dinner DASH
                 pushGame(&History, toKata("Diner DASH"));
-                DinnerDash(&score);
+                dinerDASH(&score);
                 printf("SILAHKAN MASUKKAN USERNAME MU : ");
                 STARTCOMMAND();
             }
@@ -472,7 +472,7 @@ int main()
                     {
                         // wordStringCopy(kata, Game.buffer[Game.idxHead]);
                         pushGame(&History, toKata("Diner DASH"));
-                        DinnerDash(&score);
+                        dinerDASH(&score);
                         printf("SILAHKAN MASUKKAN USERNAME MU : ");
                         STARTCOMMAND();
                     }
