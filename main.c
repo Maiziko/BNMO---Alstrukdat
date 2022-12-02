@@ -32,9 +32,9 @@
 /*****************************************************************Fungsi SAVE & LOAD **********************************************/
 
 /* *** ******* ******* ******* ******** ******* ******** Program Utama ******* ******** *** ******* ******* ******* ******** */
-int main()
+int main() 
 {
-    system("cls");
+
     printf("\t \t +===============================================================================================================+\n");
     printf("\n");
     printf(" \t \t | \t \t \t \t BBBBBBBBBBBBBB        NNNNNNNNNN            NNNNNNNN \t \t \t \t | \n");
@@ -81,7 +81,7 @@ int main()
     printf("\n");
     printf("SILAHKAN  MASUKKAN  COMMAND (START/LOAD <namafil.txt>) :  ");
     STARTCOMMAND();
-    system("cls");
+
 
     char namafil[100];
     char nas[100];
@@ -134,7 +134,7 @@ int main()
         printf("\n");
         printf("SILAHKAN  MASUKKAN  COMMAND (START/LOAD <namafil.txt>) : ");
         STARTCOMMAND();
-        system("cls");
+    
 
         for (j = 0; j < 4; j++)
         {
@@ -158,11 +158,71 @@ int main()
     else {
         while (!IsKataSama(tempword, toKata("LOAD"))) {
             printf("\nMasukkan salah!\n");   
-            printf("SILAHKAN  MASUKKAN  COMMAND (START/LOAD <namafil.txt>) : ");
+            printf("SILAHKAN  MASUKKAN  COMMAND (START/LOAD <namafile.txt>) : ");
             STARTCOMMAND();
             tempword = copyword(CCommand);
         }
-        Load(readfilename(CCommand),file,dataplayer,history);
+            char filetext[100];
+            i = 0;
+            int j = 0, n = 5;
+
+            filetext[0] = 'D';
+            filetext[1] = 'a';
+            filetext[2] = 't';
+            filetext[3] = 'a';
+            filetext[4] = '/';
+
+            for (j = 0; j < readfilename(CCommand).Length; j++)
+            {
+                filetext[n] = readfilename(CCommand).TabWord[j];
+                n++;
+            }
+            filetext[n] = '\0';
+
+            STARTWORD(filetext);
+
+            int totalgame = toInt(currentWord.TabWord[0]);
+            for(int i = 0; i < totalgame; i++) {
+                ADVWORD();
+                InsertAt(&file, currentWord, i);
+            }
+
+            ADVWORD();
+            int temp = toInt(currentWord.TabWord[0]);
+            for(int i = 0; i < temp; i++) {
+                ADVWORD();
+                pushGame(&history, currentWord);
+            }
+
+            for (int i = 0; i < totalgame; i++) { //total game
+                ADVWORD();
+                data tempdata; createEmptyData(&tempdata);
+                tempdata.game = file.A[i];
+                temp = toInt(currentWord.TabWord[0]);
+                for(int j = 0; j < temp; j++) { // total players
+                    Word tempname, tempscore;
+                    tempscore.Length = 0;
+                    tempname.Length = 0;
+                    ADVWORD();
+                    int k = 0;
+                    for(int n = 0; n < currentWord.Length; n++){ // data players
+                        if (currentWord.TabWord[n] == ' ') {
+                            for(int p = 0; p < currentWord.Length-n; p++){           
+                                tempscore.TabWord[p] = currentWord.TabWord[n+1];
+                                tempscore.Length++;
+                                n++;
+                            } continue;
+                        }
+                        tempname.TabWord[k] = currentWord.TabWord[n];
+                        tempname.Length++;
+                        k++;
+                    }
+                    tempdata.Element[i].name = tempname;
+                    tempdata.game = file.A[i];
+                    tempdata.Element[i].score = toInteger(tempscore);
+                    InsertDataAt(&dataplayer, tempdata, i);          
+                }
+            }
 
         printf("\n");
         printf("+==================================================================+\n");
@@ -182,7 +242,7 @@ int main()
     //         printf("\n");
     //         printf("SILAHKAN  MASUKKAN  COMMAND (START/LOAD <namafil.txt>) : ");
     //         STARTCOMMAND();
-    //         system("cls");
+    //        
     //         for (j = 0; j < CCommand.Length; j++)
     //         {
     //             namafil[j] = CCommand.TabWord[j + 5];
@@ -233,7 +293,7 @@ int main()
         printf("SILAHKAN  MASUKKAN  COMMAND  \n");
         printf("ENTER COMMAND : ");
         STARTCOMMAND();
-        system("cls");
+    
         for (i = 0; i < CCommand.Length; i++)
         {
             kata1[i] = CCommand.TabWord[i];

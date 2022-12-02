@@ -362,8 +362,8 @@ Word copyword(Word CCommand){
         i++;
     }
     return tempword;
-char *KatakeString(Word kata)
-{
+
+char *KatakeString(Word kata) {
     /*KAMUS LOKAL*/
     int i;
     /*ALGORITMA*/

@@ -1,7 +1,5 @@
 #include "load.h"
 
-// char toKar()
-
 void Load(Word kata, ArrayDin file, ArrayData dataplayer, History history)
 {
     char filetext[100];
@@ -29,6 +27,10 @@ void Load(Word kata, ArrayDin file, ArrayData dataplayer, History history)
         ADVWORD();
         InsertAt(&file, currentWord, i);
     }
+    // for (int i = 0; i < file.Neff; i++)
+    // {
+    //     PrintWord(file.A[i]);
+    // }
 
     ADVWORD();
     int temp = toInt(currentWord.TabWord[0]);

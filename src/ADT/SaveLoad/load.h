@@ -6,6 +6,6 @@
 #include "../../ADT/map/map.h"
 #include "../../ADT/set/set.h"
 
-void Load(Word kata, ArrayDin gamefile, ArrayData dataplayer, History history);
+void Load(Word kata, ArrayDin file, ArrayData dataplayer, History history);
 /* I.S. : File eksternal terdefinisi */
 /* F.S. : Mengembalikan arraydin yang berisi data dari file eksternal */
