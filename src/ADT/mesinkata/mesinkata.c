@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <math.h>
 #include <stdlib.h>
 #include "mesinkata.h"
 
@@ -261,6 +262,7 @@ char toChar(Word COMAND)
     return output;
 }
 
+
 int toInt(char kata)
 {
     switch (kata)
@@ -298,6 +300,19 @@ int toInt(char kata)
     }
 }
 
+<<<<<<< HEAD
+int toInteger(Word kata)
+{
+    int i = kata.Length-1;
+    int result = 0, exp = 0;
+    while (i >= 0)
+    {
+        result = result + toInt(kata.TabWord[i]) * pow(10, exp);
+        i--;
+        exp++;
+    }
+    return result;
+=======
 char *convertInttoStr(int x)
 {
     int i, copy, digit;
@@ -321,4 +336,5 @@ char *convertInttoStr(int x)
     }
     str[len] = '\0';
     return str;
+>>>>>>> c1d8909d851e51d8431fdd59eedb439cf0d36aa6
 }

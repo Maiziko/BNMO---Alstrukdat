@@ -84,7 +84,7 @@ int RandPosisi()
     return (rand() % 5) + 1;
 }
 
-int SnakeOnMeteor(int *score)
+int SnakeOnMeteor()
 {
     /**/
 
@@ -110,6 +110,7 @@ int SnakeOnMeteor(int *score)
     printf("\n");
     printf("===================\n");
     map papan;
+    int score;
     char pemain = 'H';
     char food = 'O';
     char meteor = 'm';
@@ -172,5 +173,5 @@ int SnakeOnMeteor(int *score)
         printf("SILAHKAN  MASUKKAN  COMMAND (w/a/s/d) : ");
         STARTCOMMAND();
     }
-    return (*score);
+    return (score);
 }

@@ -8,9 +8,6 @@
 int random(int x);
 /* Mengembalikan nilai random */
 
-int toInteger(Word kata);
-/* Mengembalikan nilai integer dari kata */
-
-int RNG(int *score);
+int RNG();
 /* I.S. Sembarang */
 /* F.S. Mengembalikan nilai random */

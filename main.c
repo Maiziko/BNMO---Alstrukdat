@@ -369,9 +369,12 @@ int main()
             }
             else if (IsKataSama(Game.buffer[Game.idxHead], toKata("Diner DASH")))
             {
-                DinnerDash(&score);
+
                 // Ini game Dinner DASH
                 pushGame(&History, toKata("Diner DASH"));
+                DinnerDash(&score);
+                printf("SILAHKAN MASUKKAN USERNAME MU : ");
+                STARTCOMMAND();
             }
             else if (IsKataSama(Game.buffer[Game.idxHead], toKata("Tower Of Hanoi")))
             {
@@ -379,22 +382,29 @@ int main()
                 printf("\n");
                 printf("Selamat datang di game %s\n", kata);
                 TowerOfHanoi(&score);
+                printf("SILAHKAN MASUKKAN USERNAME MU : ");
+                STARTCOMMAND();
             }
             else if (IsKataSama(Game.buffer[Game.idxHead], toKata("Kerang Ajaib")))
             {
                 pushGame(&History, toKata("Kerang Ajaib"));
                 KerangAjaib(&score);
+                printf("SILAHKAN MASUKKAN USERNAME MU : ");
+                STARTCOMMAND();
             }
             else if (IsKataSama(Game.buffer[Game.idxHead], toKata("Hangman")))
             {
                 pushGame(&History, toKata("Hangman"));
-                score = Hangman(&score);
-                printf("%d\n", score);
+                Hangman(&score);
+                printf("SILAHKAN MASUKKAN USERNAME MU : ");
+                STARTCOMMAND();
             }
             else if (IsKataSama(Game.buffer[Game.idxHead], toKata("Snake On Meteor")))
             {
                 pushGame(&History, toKata("Snake on Meteor"));
                 SnakeOnMeteor(&score);
+                printf("SILAHKAN MASUKKAN USERNAME MU : ");
+                STARTCOMMAND();
             }
             else if (IsKataSama(Game.buffer[Game.idxHead], toKata("DINOSAUR IN EARTH")) || IsKataSama(toKata(kata), toKata("RISEWOMAN")) || IsKataSama(toKata(kata), toKata("EIFFEL TOWER")) && Game.idxHead != IDX_UNDEF)
             {
@@ -463,28 +473,38 @@ int main()
                         // wordStringCopy(kata, Game.buffer[Game.idxHead]);
                         pushGame(&History, toKata("Diner DASH"));
                         DinnerDash(&score);
+                        printf("SILAHKAN MASUKKAN USERNAME MU : ");
+                        STARTCOMMAND();
                     }
                     else if (IsKataSama(Game.buffer[Game.idxHead], toKata("Tower Of Hanoi")))
                     {
                         printf("Selamat datang di game %s\n", kata);
                         pushGame(&History, toKata("Tower of Hanoi"));
                         TowerOfHanoi(&score);
+                        printf("SILAHKAN MASUKKAN USERNAME MU : ");
+                        STARTCOMMAND();
                     }
                     else if (IsKataSama(Game.buffer[Game.idxHead], toKata("Kerang Ajaib")))
                     {
                         pushGame(&History, toKata("Kerang Ajaib"));
                         KerangAjaib(&score);
+                        printf("SILAHKAN MASUKKAN USERNAME MU : ");
+                        STARTCOMMAND();
                     }
                     else if (IsKataSama(Game.buffer[Game.idxHead], toKata("Hangman")))
                     {
                         // printf("Game Hangman belum tersedia \n");
                         pushGame(&History, toKata("Hangman"));
                         score = Hangman(&score);
+                        printf("SILAHKAN MASUKKAN USERNAME MU : ");
+                        STARTCOMMAND();
                     }
                     else if (IsKataSama(Game.buffer[Game.idxHead], toKata("Snake On Meteor")))
                     {
                         pushGame(&History, toKata("Snake on Meteor"));
                         SnakeOnMeteor(&score);
+                        printf("SILAHKAN MASUKKAN USERNAME MU : ");
+                        STARTCOMMAND();
                     }
                     else if (IsKataSama(Game.buffer[Game.idxHead], toKata("DINOSAUR IN EARTH")) || IsKataSama(toKata(kata), toKata("RISEWOMAN")) || IsKataSama(toKata(kata), toKata("EIFFEL TOWER")) && Game.idxHead != IDX_UNDEF)
                     {

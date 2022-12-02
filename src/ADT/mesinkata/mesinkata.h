@@ -98,5 +98,5 @@ char toChar(Word COMAND);
 
 int toInt(char kata);
 
-char *convertInttoStr(int x);
+int toInteger(Word kata);
 #endif
