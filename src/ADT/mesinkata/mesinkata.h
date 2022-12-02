@@ -99,4 +99,7 @@ char toChar(Word COMAND);
 int toInt(char kata);
 
 int toInteger(Word kata);
+
+char *convertInttoStr(int x);
+char *KatakeString(Word kata);
 #endif
