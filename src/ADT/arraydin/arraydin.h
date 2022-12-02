@@ -35,17 +35,20 @@ typedef struct
     IdxType ketahanan;
     IdxType HaRga;
 } element;
+
 typedef struct
 {
     element *Dinner_temp;
     int Capacity;
     int Neff;
 } Dinner_Temp;
+
 /**
  * Konstruktor
  * I.S. sembarang
  * F.S. Terbentuk ArrayDin kosong dengan ukuran InitialSize
  */
+
 ArrayDin MakeArrayDin();
 
 ArrayData MakeArrayData();
@@ -55,6 +58,7 @@ ArrayData MakeArrayData();
  * I.S. ArrayDin terdefinisi
  * F.S. array->A terdealokasi
  */
+
 void DeallocateArrayDin(ArrayDin *array);
 
 /**

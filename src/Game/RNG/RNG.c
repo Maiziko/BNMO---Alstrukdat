@@ -1,11 +1,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-#include "../../ADT/mesinkata/mesinkata.c"
-#include "../../ADT/mesinkarakter/mesinkarakter.c"
+#include "../../ADT/mesinkata/mesinkata.h"
+#include "../../ADT/mesinkarakter/mesinkarakter.h"
 // #include "../../ADT/boolean.c"
 // #include "../../ADT/map/map.h"
-int generateRandom(int x)
+int random(int x)
 {
     srand((unsigned)time(0));
     return (rand() % x) + 1;
@@ -19,7 +19,7 @@ int RNG()
     printf("+=========================================================================================================================+\n");
     printf("\n");
     int score, angka = 100;
-    int RandAngka = generateRandom(angka);
+    int RandAngka = random(angka);
     int hitung = 0;
     printf("+============================+\n");
     printf(" MASUKKAN ANGKA TEBAKANMU : ");
@@ -73,9 +73,9 @@ int RNG()
         printf("\n");
         printf("KAMU MENEBAK ANGKANYA DALAM %d KALI PERCOBAAN {^-^} !!! \n", hitung); // Percobaan menebak yang gagal
         printf("\n");
-        (*score) = 100 - hitung;
+        score = 100 - hitung;
         printf("+============================+\n");
-        printf("    SCORE  KAMU  ADALAH %d\n", (*score));
+        printf("    SCORE  KAMU  ADALAH %d\n", score);
         printf("+============================+\n");
         return printf("\n");
     }

@@ -1,4 +1,4 @@
-#include "Hangman.h"
+#include "hangman.h"
 
 ArrayDin read(ArrayDin dest, char *filename)
 {
@@ -152,6 +152,6 @@ int Hangman()
     return score;
 }
 
-// int main() {
-//     Hangman();
-// }
+int main() {
+    int i = Hangman();
+}

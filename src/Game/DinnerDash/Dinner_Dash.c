@@ -38,7 +38,7 @@ int dinerDASH()
     int jlh = 0;
     int i = 0;
     int a = 0;
-    int harga;
+    int harga, score;
     int Durasi;
     int Ketahanan;
     int count_m = 0;
@@ -257,8 +257,8 @@ int dinerDASH()
                 printf("\n");
                 printf("================================================================\n");
                 printf("SAYANG SEKALI ANTRIAN SUDAH PENUH\n");
-                (*score) = saldo / 1000;
-                printf("SCORE ANDA ADALAH %d \n", (*score));
+                score = saldo / 1000;
+                printf("SCORE ANDA ADALAH %d \n", score);
                 printf("================================================================\n");
                 printf("\n");
             }
@@ -271,4 +271,5 @@ int dinerDASH()
             STARTCOMMAND();
         }
     }
+    return score;
 }

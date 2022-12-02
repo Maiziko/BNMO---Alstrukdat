@@ -16,6 +16,7 @@ typedef struct{
     int Length;
 } Set;
 
+/* Konstruktor */
 void CreateSet(Set *S);
 
 boolean isSetEmpty(Set S);

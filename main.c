@@ -367,7 +367,7 @@ int main()
             }
             else if (IsKataSama(Game.buffer[Game.idxHead], toKata("Diner DASH")))
             {
-                DinnerDash(&score);
+                // DinnerDash(&score);
                 // Ini game Dinner DASH
                 pushGame(&History, toKata("Diner DASH"));
             }
@@ -459,7 +459,7 @@ int main()
                     {
                         // wordStringCopy(kata, Game.buffer[Game.idxHead]);
                         pushGame(&History, toKata("Diner DASH"));
-                        DinnerDash(&score);
+                        // DinnerDash(&score);
                     }
                     else if (IsKataSama(Game.buffer[Game.idxHead], toKata("Tower Of Hanoi")))
                     {

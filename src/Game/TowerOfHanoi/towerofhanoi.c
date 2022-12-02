@@ -1,8 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "../../ADT/stack/stack.h"
-#include "../../ADT/mesinkata/mesinkata.h"
-#include "../../ADT/mesinkarakter/mesinkarakter.h"
+#include "../../ADT/stack/stack.c"
+#include "../../ADT/mesinkata/mesinkata.c"
+#include "../../ADT/mesinkarakter/mesinkarakter.c"
 
 void displayTower(Stack S, char X)
 {
@@ -85,7 +85,7 @@ int TowerOfHanoi()
     displayTower(B, 'B');
     displayTower(C, 'C');
 
-    while (!isFull(C))
+    while (IDX_TOP(C)!=4)
     {
 
         printf("==============================\n");
@@ -350,4 +350,8 @@ int TowerOfHanoi()
         data.score = 0;
     }
     return data.score;
+}
+
+int main(){
+    int i = TowerOfHanoi();
 }
