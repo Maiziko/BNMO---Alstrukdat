@@ -7,14 +7,14 @@
 #include "../../ADT/map/map.h"
 #include "../../ADT/set/set.h"
 
-ArrayDin read(ArrayDin dest, char * filename);
+ArrayDin read(ArrayDin dest, char *filename);
 
 Word getRandom(ArrayDin list);
 
-boolean isDone(Word ans, ArrayDin * tries);
+boolean isDone(Word ans, ArrayDin *tries);
 
 boolean isIn(Word ans, Word guess);
 
 // void addPlayerData()
 
-void Hangman();
+int Hangman(int *score);
