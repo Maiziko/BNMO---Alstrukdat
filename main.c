@@ -673,20 +673,22 @@ int main()
             STARTCOMMAND();
             while (!IsKataSama(CCommand, toKata("YA")) || !IsKataSama(CCommand, toKata("TIDAK")))
             {
-                if (IsKataSama(CCommand, toKata("YA")))
+                printf("Command yang dimasukkan tidak valid, silahkan input ulang\n");
+                STARTCOMMAND();
+            }
+            if (IsKataSama(CCommand, toKata("YA")))
+            {
+                CreateHistory(&History);
+            }
+            else if (IsKataSama(CCommand, toKata("TIDAK")))
+            {
+                printf("Reset history dibatalkan\n");
+                printf("Berikut daftar historymu yang belum direset : \n");
+                for (int i = 0; i < IDX_TOP(History); i++)
                 {
-                    CreateHistory(&History);
-                }
-                else if (IsKataSama(CCommand, toKata("TIDAK")))
-                {
-                    printf("Reset history dibatalkan\n");
-                    printf("Berikut daftar historymu yang belum direset : \n");
-                    for (int i = 0; i < IDX_TOP(History); i++)
-                    {
-                        printf("%d. ", i + 1);
-                        PrintWord(TOP(History));
-                        popGame(&History, &TOP(History));
-                    }
+                    printf("%d. ", i + 1);
+                    PrintWord(TOP(History));
+                    popGame(&History, &TOP(History));
                 }
             }
 
