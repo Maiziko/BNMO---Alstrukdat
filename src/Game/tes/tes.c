@@ -72,5 +72,5 @@ void loadData(char * filename){
 }
 
 int main(){
-    load("config.txt");
+    loadData("config.txt");
 }

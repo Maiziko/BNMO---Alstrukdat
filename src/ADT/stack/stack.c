@@ -10,7 +10,8 @@ void CreateStack(Stack *s)
     IDX_TOP(*s) = IDX_UNDEF;
 }
 
-void CreateHistory(History *h){
+void CreateHistory(History *h)
+{
     IDX_TOP(*h) = IDX_UNDEF;
 }
 
@@ -21,7 +22,8 @@ boolean isEmpty(Stack s)
     return IDX_TOP(s) == IDX_UNDEF;
 }
 
-boolean isHistEmpty(Stack h){
+boolean isHistEmpty(Stack h)
+{
     return IDX_TOP(h) == IDX_UNDEF;
 }
 
@@ -42,10 +44,11 @@ void push(Stack *s, ElTType val)
     TOP(*s) = val;
 }
 
-void pushGame(History *h, GameType game){
+void pushGame(History *h, GameType game)
+{
     IDX_TOP(*h)
     ++;
-    TOP(*h) = game;    
+    TOP(*h) = game;
 }
 
 /* ************ Menghapus sebuah elemen Stack ************ */
@@ -59,8 +62,21 @@ void pop(Stack *s, ElTType *val)
     --;
 }
 
-void popGame(History *h, GameType *game){
+/*prosedur untuk menghapus history game*/
+void popGame(History *h, GameType *game)
+{
     *game = TOP(*h);
     IDX_TOP(*h)
-    --;    
+    --;
+}
+
+/*Untuk menampilkan history permainan*/
+void displayHistory(History h)
+{
+    int i;
+    for (i = 0; i < (h.idxTop + 1); i++)
+    {
+        printf("%d. ", i + 1);
+        PrintWord(h.buffer[i]);
+    }
 }
