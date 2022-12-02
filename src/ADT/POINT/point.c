@@ -2,8 +2,6 @@
 #include <math.h>
 #include "point.h"
 
-// Nama : Gyan Maiziko
-// NIM : 18221008
 // Deskripsi : Implementasi dari point.h
 
 POINT MakePOINT(float X, float Y)
