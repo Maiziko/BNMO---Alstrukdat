@@ -685,6 +685,7 @@ int main()
                     {
                         printf("%d. ", i + 1);
                         PrintWord(TOP(History));
+                        popGame(&History, &TOP(History));
                     }
                 }
             }
