@@ -379,3 +379,4 @@ char *KatakeString(Word kata)
     C[i] = '\0';
     return C;
 }
+}

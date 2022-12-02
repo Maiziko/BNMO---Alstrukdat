@@ -58,7 +58,7 @@ boolean isIn(Word ans, Word guess)
 int Hangman()
 {
     ArrayDin tries = MakeArrayDin(), lib = read(lib, "lib.txt");
-    int chances = 10, score;
+    int chances = 10;
     Word guess, ans;
     ArrayDin tes = lib;
     int score = 0;

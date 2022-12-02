@@ -79,11 +79,11 @@ int main()
     printf("\n");
     HELP();
     printf("\n");
-    printf("SILAHKAN  MASUKKAN  COMMAND (START/LOAD <namafile.txt>) :  ");
+    printf("SILAHKAN  MASUKKAN  COMMAND (START/LOAD <namafil.txt>) :  ");
     STARTCOMMAND();
     system("cls");
 
-    char namafile[100];
+    char namafil[100];
     char nas[100];
     char nas1[100];
     char kata[100];
@@ -91,7 +91,7 @@ int main()
     char num[10];
     char nummm[10];
     char namagame[50];
-    int score = 0;
+    int score;
 
     // ArrayDin file = MakeArrayDin();
     ArrayData dataplayer = MakeArrayData();
@@ -115,9 +115,9 @@ int main()
 
     for (j = 0; j < CCommand.Length; j++)
     {
-        namafile[j] = CCommand.TabWord[j + 5];
+        namafil[j] = CCommand.TabWord[j + 5];
     }
-    namafile[j] = '\0';
+    namafil[j] = '\0';
 
     for (j = 0; j < CCommand.Length; j++)
     {
@@ -132,7 +132,7 @@ int main()
         printf("\n");
         printf("COMMAND KAMU TIDAK VALID T_T !!!\n");
         printf("\n");
-        printf("SILAHKAN  MASUKKAN  COMMAND (START/LOAD <namafile.txt>) : ");
+        printf("SILAHKAN  MASUKKAN  COMMAND (START/LOAD <namafil.txt>) : ");
         STARTCOMMAND();
         system("cls");
 
@@ -148,49 +148,6 @@ int main()
 
     if (IsKataSama(tempword, toKata("START"))){
         Load(toKata("config.txt"),file,dataplayer,history);
-        while (IsKataSama(toKata(namafile), toKata(namafile)) && file.Neff == 0)
-        {
-            printf("\n");
-            printf("File %s tidak ditemukan\n", namafile);
-            printf("\n"); 
-            printf("SILAHKAN  MASUKKAN  COMMAND (START/LOAD <namafile.txt>) : ");
-            STARTCOMMAND();
-            system("cls");
-            for (j = 0; j < CCommand.Length; j++)
-            {
-                namafile[j] = CCommand.TabWord[j + 5];
-            }
-            namafile[j] = '\0';
-
-            file = Load(CCommand);
-        }
-        if (IsKataSama(toKata(namafile), toKata(namafile)) && file.Neff != 0)
-        {
-            file = Load(CCommand);
-            printf("\n");
-            printf("+==================================================================+\n");
-            printf("| SAVE %s BERHASIL DIBACA, BNMO BERHASIL DIJALANKAN {^-^} |\n", namafile);
-            printf("+==================================================================+\n");
-            printf("\n");
-        }
-    }
-
-    /* *** ******* ******* ******* ******** ******* ******** Ketika Command START ******* ******** *** ******* ******* ******* ******** */
-    else if (IsKataSama(CCommand, toKata("START")))
-    {
-        int i = 0;
-        STARTGAME("Data/config.txt");
-        while (!EndWord)
-        {
-            for (int j = 0; j < currentWord.Length; j++)
-            {
-                file.A[i].TabWord[j] = currentWord.TabWord[j];
-            }
-            file.A[i].Length = currentWord.Length;
-            ADVWORD();
-            i++;
-        }
-        file.Neff = i;
         printf("\n");
         printf("+================================================================+\n");
         printf("|    BERHASIL  MENJALANKAN BNMO  DAN MEMBACA FILE KONFIGURASI    |\n");
@@ -201,44 +158,45 @@ int main()
     else {
         while (!IsKataSama(tempword, toKata("LOAD"))) {
             printf("\nMasukkan salah!\n");   
-            printf("SILAHKAN  MASUKKAN  COMMAND (START/LOAD <namafile.txt>) : ");
+            printf("SILAHKAN  MASUKKAN  COMMAND (START/LOAD <namafil.txt>) : ");
             STARTCOMMAND();
             tempword = copyword(CCommand);
         }
         Load(readfilename(CCommand),file,dataplayer,history);
+
         printf("\n");
         printf("+==================================================================+\n");
-        printf("| SAVE %s BERHASIL DIBACA, BNMO BERHASIL DIJALANKAN {^-^} |\n", namafile);
+        printf("| SAVE %s BERHASIL DIBACA, BNMO BERHASIL DIJALANKAN {^-^} |\n", namafil);
         printf("+==================================================================+\n");
         printf("\n");
     }
     
     // if ((IsKataSama(toKata(nas), toKata("LOAD"))))
     // {
-    //     Load(toKata(namafile),file,dataplayer,history);
+    //     Load(toKata(namafil),file,dataplayer,history);
         
-    //     while (IsKataSama(toKata(namafile), toKata(namafile)) && file.Neff == 0)
+    //     while (IsKataSama(toKata(namafil), toKata(namafil)) && file.Neff == 0)
     //     {
     //         printf("\n");
-    //         printf("File %s tidak ditemukan\n", namafile);
+    //         printf("File %s tidak ditemukan\n", namafil);
     //         printf("\n");
-    //         printf("SILAHKAN  MASUKKAN  COMMAND (START/LOAD <namafile.txt>) : ");
+    //         printf("SILAHKAN  MASUKKAN  COMMAND (START/LOAD <namafil.txt>) : ");
     //         STARTCOMMAND();
     //         system("cls");
     //         for (j = 0; j < CCommand.Length; j++)
     //         {
-    //             namafile[j] = CCommand.TabWord[j + 5];
+    //             namafil[j] = CCommand.TabWord[j + 5];
     //         }
-    //         namafile[j] = '\0';
+    //         namafil[j] = '\0';
 
-    //         Load(toKata(namafile),file,dataplayer,history);
+    //         Load(toKata(namafil),file,dataplayer,history);
     //     }
-    //     if (IsKataSama(toKata(namafile), toKata(namafile)) && file.Neff != 0)
+    //     if (IsKataSama(toKata(namafil), toKata(namafil)) && file.Neff != 0)
     //     {
-    //         Load(toKata(namafile),file,dataplayer,history);
+    //         Load(toKata(namafil),file,dataplayer,history);
     //         printf("\n");
     //         printf("+==================================================================+\n");
-    //         printf("| SAVE %s BERHASIL DIBACA, BNMO BERHASIL DIJALANKAN {^-^} |\n", namafile);
+    //         printf("| SAVE %s BERHASIL DIBACA, BNMO BERHASIL DIJALANKAN {^-^} |\n", namafil);
     //         printf("+==================================================================+\n");
     //         printf("\n");
     //     }
@@ -301,9 +259,9 @@ int main()
 
         for (j = 0; j < CCommand.Length; j++)
         {
-            namafile[j] = CCommand.TabWord[j + 5];
+            namafil[j] = CCommand.TabWord[j + 5];
         }
-        namafile[j] = '\0';
+        namafil[j] = '\0';
         for (j = 0; j < CCommand.Length; j++)
         {
             nas1[j] = CCommand.TabWord[j + 5];
@@ -323,7 +281,10 @@ int main()
             printf("\n");
             printf("================================================\n");
             printf("\n");
-            ListGame(file);
+            for(int i = 0; i < file.Neff; i++) {
+                printf("%d. ", i+1);
+                PrintWord(file.A[i]);
+            }
             printf("\n");
             printf("================================================\n");
             printf("\n");
@@ -435,7 +396,7 @@ int main()
             {
                 pushGame(&History, toKata("RNG"));
                 printf("\n");
-                score = RNG();
+                RNG();
                 printf("SILAHKAN MASUKKAN USERNAME MU : ");
                 STARTCOMMAND();
             }
@@ -452,28 +413,28 @@ int main()
                 pushGame(&History, toKata("Tower of Hanoi"));
                 printf("\n");
                 printf("Selamat datang di game %s\n", kata);
-                score = TowerOfHanoi();
+                TowerOfHanoi();
                 printf("SILAHKAN MASUKKAN USERNAME MU : ");
                 STARTCOMMAND();
             }
             else if (IsKataSama(Game.buffer[Game.idxHead], toKata("Kerang Ajaib")))
             {
                 pushGame(&History, toKata("Kerang Ajaib"));
-                score = KerangAjaib();
+                KerangAjaib();
                 printf("SILAHKAN MASUKKAN USERNAME MU : ");
                 STARTCOMMAND();
             }
             else if (IsKataSama(Game.buffer[Game.idxHead], toKata("Hangman")))
             {
                 pushGame(&History, toKata("Hangman"));
-                score = Hangman();
+                // Hangman();
                 printf("SILAHKAN MASUKKAN USERNAME MU : ");
                 STARTCOMMAND();
             }
             else if (IsKataSama(Game.buffer[Game.idxHead], toKata("Snake On Meteor")))
             {
                 pushGame(&History, toKata("Snake on Meteor"));
-                score = SnakeOnMeteor();
+                SnakeOnMeteor();
                 printf("SILAHKAN MASUKKAN USERNAME MU : ");
                 STARTCOMMAND();
             }
@@ -543,7 +504,7 @@ int main()
                     {
                         // wordStringCopy(kata, Game.buffer[Game.idxHead]);
                         pushGame(&History, toKata("Diner DASH"));
-                        score = dinerDASH();
+                        // dinerDASH();
                         printf("SILAHKAN MASUKKAN USERNAME MU : ");
                         STARTCOMMAND();
                     }
@@ -551,14 +512,14 @@ int main()
                     {
                         printf("Selamat datang di game %s\n", kata);
                         pushGame(&History, toKata("Tower of Hanoi"));
-                        score = TowerOfHanoi();
+                        TowerOfHanoi();
                         printf("SILAHKAN MASUKKAN USERNAME MU : ");
                         STARTCOMMAND();
                     }
                     else if (IsKataSama(Game.buffer[Game.idxHead], toKata("Kerang Ajaib")))
                     {
                         pushGame(&History, toKata("Kerang Ajaib"));
-                        score = KerangAjaib();
+                        KerangAjaib();
                         printf("SILAHKAN MASUKKAN USERNAME MU : ");
                         STARTCOMMAND();
                     }
@@ -566,14 +527,14 @@ int main()
                     {
                         // printf("Game Hangman belum tersedia \n");
                         pushGame(&History, toKata("Hangman"));
-                        score = Hangman();
+                        // score = Hangman();
                         printf("SILAHKAN MASUKKAN USERNAME MU : ");
                         STARTCOMMAND();
                     }
                     else if (IsKataSama(Game.buffer[Game.idxHead], toKata("Snake On Meteor")))
                     {
                         pushGame(&History, toKata("Snake on Meteor"));
-                        score = SnakeOnMeteor();
+                        SnakeOnMeteor();
                         printf("SILAHKAN MASUKKAN USERNAME MU : ");
                         STARTCOMMAND();
                     }
@@ -702,7 +663,7 @@ int main()
             SAVE(file, CCommand);
             printf("\n");
             printf("+====================================+\n");
-            printf("| FILE %s BERHASIL DISIMPAN |\n", namafile);
+            printf("| FILE %s BERHASIL DISIMPAN |\n", namafil);
             printf("+====================================+\n");
             printf("\n");
         }
@@ -741,18 +702,12 @@ int main()
         }
         else if (IsKataSama(CCommand, toKata("RESET HISTORY")))
         {
-            printf("History yang sudah direset tidak dapat dikembalikan, Apakah kamu yakin ingin mereset historymu? (YA/TIDAK)\n");
-            STARTCOMMAND();
-            while (!IsKataSama(CCommand, toKata("YA")) || !IsKataSama(CCommand, toKata("TIDAK")))
-            {
-                printf("Command yang dimasukkan tidak valid, silahkan input ulang\n");
-                STARTCOMMAND();
-            }
-            if (IsKataSama(CCommand, toKata("YA")))
+            printf("History yang sudah direset tidak dapat dikembalikan, Apakah kamu yakin ingin mereset historymu?\n");
+            if ("Ya")
             {
                 CreateHistory(&History);
             }
-            else if (IsKataSama(CCommand, toKata("TIDAK")))
+            else if ("Tidak")
             {
                 printf("Reset history dibatalkan\n");
                 printf("Berikut daftar historymu yang belum direset : \n");
@@ -760,10 +715,8 @@ int main()
                 {
                     printf("%d. ", i + 1);
                     PrintWord(TOP(History));
-                    popGame(&History, &TOP(History));
                 }
             }
-
         }
 
         /* *** ******* ******* ******* ******** ******* ******** QUIT ******* ******** *** ******* ******* ******* ******** */
