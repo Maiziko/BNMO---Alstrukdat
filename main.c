@@ -669,21 +669,26 @@ int main()
         }
         else if (IsKataSama(CCommand, toKata("RESET HISTORY")))
         {
-            printf("History yang sudah direset tidak dapat dikembalikan, Apakah kamu yakin ingin mereset historymu?\n");
-            if ("Ya")
+            printf("History yang sudah direset tidak dapat dikembalikan, Apakah kamu yakin ingin mereset historymu? (YA/TIDAK)\n");
+            STARTCOMMAND();
+            while (!IsKataSama(CCommand, toKata("YA")) || !IsKataSama(CCommand, toKata("TIDAK")))
             {
-                CreateHistory(&History);
-            }
-            else if ("Tidak")
-            {
-                printf("Reset history dibatalkan\n");
-                printf("Berikut daftar historymu yang belum direset : \n");
-                for (int i = 0; i < IDX_TOP(History); i++)
+                if (IsKataSama(CCommand, toKata("YA")))
                 {
-                    printf("%d. ", i + 1);
-                    PrintWord(TOP(History));
+                    CreateHistory(&History);
+                }
+                else if (IsKataSama(CCommand, toKata("TIDAK")))
+                {
+                    printf("Reset history dibatalkan\n");
+                    printf("Berikut daftar historymu yang belum direset : \n");
+                    for (int i = 0; i < IDX_TOP(History); i++)
+                    {
+                        printf("%d. ", i + 1);
+                        PrintWord(TOP(History));
+                    }
                 }
             }
+
         }
 
         /* *** ******* ******* ******* ******** ******* ******** QUIT ******* ******** *** ******* ******* ******* ******** */
