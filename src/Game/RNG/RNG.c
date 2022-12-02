@@ -18,7 +18,7 @@ int RNG()
     printf("| S E L A M A T   D A T A N G  D I  G A M E  R N G  U J I  K E B E R U N T U N G A N M U  D E N G A N  M E N E B A K   X. |\n");
     printf("+=========================================================================================================================+\n");
     printf("\n");
-    int score, angka = 100;
+    int score = 0, angka = 100;
     int RandAngka = random(angka);
     int hitung = 0;
     printf("+============================+\n");

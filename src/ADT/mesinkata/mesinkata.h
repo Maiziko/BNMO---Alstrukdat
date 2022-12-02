@@ -104,4 +104,6 @@ Word readfilename(Word currentWord);
 
 Word copyword(Word CCommand);
 
+char *convertInttoStr(int x);
+char *KatakeString(Word kata);
 #endif

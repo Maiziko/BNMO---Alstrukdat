@@ -85,7 +85,7 @@ int TowerOfHanoi()
     displayTower(B, 'B');
     displayTower(C, 'C');
 
-    while (IDX_TOP(C)!=4)
+    while (IDX_TOP(C) != 4)
     {
 
         printf("==============================\n");
@@ -339,16 +339,15 @@ int TowerOfHanoi()
     data.name = CCommand;
     if (step == 31)
     {
-        score = 100;
+        data.score = 100;
     }
     else if (step > 31 && step <= 69)
     {
-        score = 100 - (step - 31);
+        data.score = 100 - (step - 31);
     }
     else
     {
         data.score = 0;
-        score = 0;
     }
-    return score;
+    return (data.score);
 }

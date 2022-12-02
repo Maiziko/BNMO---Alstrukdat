@@ -61,6 +61,7 @@ int Hangman()
     int chances = 10, score;
     Word guess, ans;
     ArrayDin tes = lib;
+    int score = 0;
 
     printf("==============================\n");
     printf("\t   HANGMAN  \t\n");

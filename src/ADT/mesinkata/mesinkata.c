@@ -362,4 +362,20 @@ Word copyword(Word CCommand){
         i++;
     }
     return tempword;
+char *KatakeString(Word kata)
+{
+    /*KAMUS LOKAL*/
+    int i;
+    /*ALGORITMA*/
+    char *C = malloc(kata.Length * sizeof(char));
+    while (C == NULL)
+    {
+        C = malloc(kata.Length * sizeof(char));
+    }
+    for (i = 0; i < kata.Length; i++)
+    {
+        C[i] = kata.TabWord[i];
+    }
+    C[i] = '\0';
+    return C;
 }

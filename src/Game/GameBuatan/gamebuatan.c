@@ -1,14 +1,15 @@
 #include <stdio.h>
 #include <time.h>
 #include <stdlib.h>
-#include "../../ADT/mesinkata/mesinkata.h"
-#include "../../ADT/mesinkarakter/mesinkarakter.h"
+#include "../../ADT/mesinkata/mesinkata.c"
+#include "../../ADT/mesinkarakter/mesinkarakter.c"
 #include "../../ADT/boolean.h"
-#include "../RNG/RNG.h"
+#include "../RNG/RNG.c"
 
 int KerangAjaib()
 {
-    int score, i = 0;
+    int score = 0;
+    int i = 0;
     int abstrak = random(10);
     printf("\n");
     printf("+==================================================================================+\n");

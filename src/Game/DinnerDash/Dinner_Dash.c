@@ -14,7 +14,8 @@ int tointeger(char kat)
 }
 
 int dinerDASH()
-{
+{   
+    int score = 0;
     printf("\n");
     printf("+========================================================================================+\n");
     printf("|                          SELAMAT DATANG DI GAME Diner DASH <^-^>                       |\n");
@@ -38,7 +39,7 @@ int dinerDASH()
     int jlh = 0;
     int i = 0;
     int a = 0;
-    int harga, score;
+    int harga;
     int Durasi;
     int Ketahanan;
     int count_m = 0;
