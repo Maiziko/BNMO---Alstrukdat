@@ -23,7 +23,7 @@ int toInteger(Word kata)
     return result;
 }
 
-void RNG()
+int RNG(int *score)
 {
     system("cls");
     printf("+=========================================================================================================================+\n");
@@ -85,17 +85,17 @@ void RNG()
         printf("\n");
         printf("KAMU MENEBAK ANGKANYA DALAM %d KALI PERCOBAAN {^-^} !!! \n", hitung); // Percobaan menebak yang gagal
         printf("\n");
+        (*score) = 100 - hitung;
         printf("+============================+\n");
-        printf("    SCORE  KAMU  ADALAH %d\n", 100 - hitung);
+        printf("    SCORE  KAMU  ADALAH %d\n", (*score));
         printf("+============================+\n");
         printf("\n");
-        printf("MASUKKAN USERNAME YANG INGIN DIGUNAKAN : ");
-        STARTCOMMAND();
     }
     if (100 - hitung <= 0)
     {
         printf("\n");
         printf("KAMU TIDAK MENDAPATKAN SKOR, KARENA KAMU TIDAK BERHASIL MENEBAK ANGKANYA (T-T).\n");
+        (*score) = 0;
         printf("\n");
     }
 }

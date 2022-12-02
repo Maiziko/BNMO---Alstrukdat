@@ -57,11 +57,12 @@ boolean isTowerAvail(Stack awal, Stack S1, Stack S2)
     return (TOP(S1) > TOP(awal) || TOP(S2) > TOP(awal) || isEmpty(S1) || isEmpty(S2));
 }
 
-void TowerOfHanoi()
+int TowerOfHanoi(int *score)
 {
-    typedef struct {
-    int score;
-    Word name;
+    typedef struct
+    {
+        int scoree;
+        Word name;
     } player;
     player data;
     int val, step = 0;
@@ -71,212 +72,284 @@ void TowerOfHanoi()
     CreateStack(&B);
     CreateStack(&C);
 
-    for (int i = 4; i >= 0; i--) {
-        push(&A, (2*i+1));
+    for (int i = 4; i >= 0; i--)
+    {
+        push(&A, (2 * i + 1));
     }
-    
+
     printf("==============================\n");
     printf("\tTOWER OF HANOI\t\n");
-    printf("==============================\n"); 
+    printf("==============================\n");
 
     displayTower(A, 'A');
     displayTower(B, 'B');
-    displayTower(C, 'C'); 
+    displayTower(C, 'C');
 
-    while (!isFull(C)) {
+    while (!isFull(C))
+    {
 
         printf("==============================\n");
         printf("Tiang Asal : ");
         STARTCOMMAND();
         awal = toABC(CCommand);
-        while (toABC(CCommand) == ' ') {
+        while (toABC(CCommand) == ' ')
+        {
             printf("Masukkan tidak valid!\n");
             printf("Tiang Asal : ");
             STARTCOMMAND();
             awal = toABC(CCommand);
         }
 
-        if (awal == 'A' && isEmpty(A)) {
-            while (awal == 'A' && isEmpty(A)) {
+        if (awal == 'A' && isEmpty(A))
+        {
+            while (awal == 'A' && isEmpty(A))
+            {
                 printf("Tiang Kosong.\nMasukkan tidak valid!\n");
                 printf("Tiang Asal : ");
                 STARTCOMMAND();
                 awal = toABC(CCommand);
-            }      
+            }
         }
-        
-        else if (awal == 'B' && isEmpty(B)) {
-            while (awal == 'B' && isEmpty(B)) {
-                printf("Tiang Kosong.\nMasukkan tidak valid!\n");
-                printf("Tiang Asal : ");
-                STARTCOMMAND();
-                awal = toABC(CCommand);
-            }      
-        }  
 
-        else if (awal == 'C' && isEmpty(C)) {
-            while (awal == 'C' && isEmpty(C)) {
+        else if (awal == 'B' && isEmpty(B))
+        {
+            while (awal == 'B' && isEmpty(B))
+            {
                 printf("Tiang Kosong.\nMasukkan tidak valid!\n");
                 printf("Tiang Asal : ");
                 STARTCOMMAND();
                 awal = toABC(CCommand);
-            }      
+            }
+        }
+
+        else if (awal == 'C' && isEmpty(C))
+        {
+            while (awal == 'C' && isEmpty(C))
+            {
+                printf("Tiang Kosong.\nMasukkan tidak valid!\n");
+                printf("Tiang Asal : ");
+                STARTCOMMAND();
+                awal = toABC(CCommand);
+            }
         }
 
         printf("Tiang Tujuan : ");
         STARTCOMMAND();
         akhir = toABC(CCommand);
-        while (toABC(CCommand) == ' ') {
+        while (toABC(CCommand) == ' ')
+        {
             printf("Masukkan tidak valid!\n");
             printf("Tiang Tujuan: ");
             STARTCOMMAND();
             akhir = toABC(CCommand);
         }
 
-        if (awal == 'A') {
-            if (isTowerAvail(A, B, C)) {
-                while (akhir == 'A') {
-                printf("\nMasukkan tidak valid!\n");
-                printf("Tiang Tujuan: ");
-                STARTCOMMAND();
-                akhir = toABC(CCommand); 
-                }
-            if (akhir == 'B') {
-                if (TOP(B) > TOP(A) || isEmpty(B)) {
-                    push(&B, TOP(A));
-                    printf("Memindahkan piringan ke B...\n");
-                    step++;
-                } else {
-                    while (akhir == 'B' || akhir == 'A') {
-                        printf("Masukkan tidak valid!\n");
-                        printf("Tiang Tujuan: ");
-                        STARTCOMMAND();
-                        akhir = toABC(CCommand);
-                    } push(&C, TOP(A));
-                }
-            } else if (akhir == 'C') {
-                if (TOP(C) > TOP(A) || isEmpty(C)) {
-                    push(&C, TOP(A));
-                    printf("Memindahkan piringan ke C...\n");
-                    step++;
-                } else {
-                    while (akhir == 'C' || akhir == 'A') {
-                        printf("Masukkan tidak valid!\n");
-                        printf("Tiang Tujuan: ");
-                        STARTCOMMAND();
-                        akhir = toABC(CCommand);
-                    } push(&B, TOP(A));
-                }
-            }
-            pop(&A, &val);            
-            } else {
-                printf("Masukkan tidak valid!\n");
-                continue;
-            }
-        }
-        
-        else if (awal == 'B') {
-            if (isTowerAvail(B, A, C)) {
-                while (akhir == 'B') {
+        if (awal == 'A')
+        {
+            if (isTowerAvail(A, B, C))
+            {
+                while (akhir == 'A')
+                {
                     printf("\nMasukkan tidak valid!\n");
                     printf("Tiang Tujuan: ");
                     STARTCOMMAND();
-                    akhir = toABC(CCommand); 
+                    akhir = toABC(CCommand);
                 }
-                if (akhir == 'A') {
-                    if (TOP(A) > TOP(B) || isEmpty(A)) {
-                        push(&A, TOP(B));
-                        printf("Memindahkan piringan ke A...\n");
+                if (akhir == 'B')
+                {
+                    if (TOP(B) > TOP(A) || isEmpty(B))
+                    {
+                        push(&B, TOP(A));
+                        printf("Memindahkan piringan ke B...\n");
                         step++;
-                    } else {
-                        while (akhir == 'A' || akhir == 'B') {
+                    }
+                    else
+                    {
+                        while (akhir == 'B' || akhir == 'A')
+                        {
                             printf("Masukkan tidak valid!\n");
                             printf("Tiang Tujuan: ");
                             STARTCOMMAND();
                             akhir = toABC(CCommand);
-                        } push(&C, TOP(B));
+                        }
+                        push(&C, TOP(A));
                     }
-                } else if (akhir == 'C') {
-                    if (TOP(C) > TOP(B) || isEmpty(C)) {
-                        push(&C, TOP(B));
+                }
+                else if (akhir == 'C')
+                {
+                    if (TOP(C) > TOP(A) || isEmpty(C))
+                    {
+                        push(&C, TOP(A));
                         printf("Memindahkan piringan ke C...\n");
                         step++;
-                    } else {
-                        while (akhir == 'C' || akhir == 'B') {
+                    }
+                    else
+                    {
+                        while (akhir == 'C' || akhir == 'A')
+                        {
                             printf("Masukkan tidak valid!\n");
                             printf("Tiang Tujuan: ");
                             STARTCOMMAND();
                             akhir = toABC(CCommand);
-                        } push(&A, TOP(B));
+                        }
+                        push(&B, TOP(A));
                     }
                 }
-                pop(&B, &val);            
-            } else {
+                pop(&A, &val);
+            }
+            else
+            {
                 printf("Masukkan tidak valid!\n");
                 continue;
             }
         }
 
-        else if (awal == 'C') {
-            if (isTowerAvail(C, B, A)) {
-                while (akhir == 'C') {
-                    printf("Tiang Tujuantidak boleh sama\ndengan tiang awal.\nMasukkan tidak valid!\n");
+        else if (awal == 'B')
+        {
+            if (isTowerAvail(B, A, C))
+            {
+                while (akhir == 'B')
+                {
+                    printf("\nMasukkan tidak valid!\n");
                     printf("Tiang Tujuan: ");
                     STARTCOMMAND();
-                    akhir = toABC(CCommand); 
+                    akhir = toABC(CCommand);
                 }
-                if (akhir == 'A') {
-                    if (TOP(A) > TOP(C) || isEmpty(A)) {
-                        push(&A, TOP(C));
+                if (akhir == 'A')
+                {
+                    if (TOP(A) > TOP(B) || isEmpty(A))
+                    {
+                        push(&A, TOP(B));
                         printf("Memindahkan piringan ke A...\n");
                         step++;
-                    } else {
-                        while (akhir == 'A' || akhir == 'C') {
-                            printf("Masukkan tidak valid!\n");
-                            printf("Tiang Tujuan: ");
-                            STARTCOMMAND();
-                            akhir = toABC(CCommand);
-                        } push(&B, TOP(C));
                     }
-                } else if (akhir == 'B') {
-                    if (TOP(B) > TOP(C) || isEmpty(B)) {
-                        push(&B, TOP(C));
-                        printf("Memindahkan piringan ke B...\n");
-                        step++;
-                    } else {
-                        while (akhir == 'B' || akhir == 'C') {
+                    else
+                    {
+                        while (akhir == 'A' || akhir == 'B')
+                        {
                             printf("Masukkan tidak valid!\n");
                             printf("Tiang Tujuan: ");
                             STARTCOMMAND();
                             akhir = toABC(CCommand);
-                        } push(&A, TOP(B));
+                        }
+                        push(&C, TOP(B));
                     }
                 }
-                pop(&C, &val);                
-            } else {
+                else if (akhir == 'C')
+                {
+                    if (TOP(C) > TOP(B) || isEmpty(C))
+                    {
+                        push(&C, TOP(B));
+                        printf("Memindahkan piringan ke C...\n");
+                        step++;
+                    }
+                    else
+                    {
+                        while (akhir == 'C' || akhir == 'B')
+                        {
+                            printf("Masukkan tidak valid!\n");
+                            printf("Tiang Tujuan: ");
+                            STARTCOMMAND();
+                            akhir = toABC(CCommand);
+                        }
+                        push(&A, TOP(B));
+                    }
+                }
+                pop(&B, &val);
+            }
+            else
+            {
                 printf("Masukkan tidak valid!\n");
                 continue;
             }
-        }        
+        }
+
+        else if (awal == 'C')
+        {
+            if (isTowerAvail(C, B, A))
+            {
+                while (akhir == 'C')
+                {
+                    printf("Tiang Tujuantidak boleh sama\ndengan tiang awal.\nMasukkan tidak valid!\n");
+                    printf("Tiang Tujuan: ");
+                    STARTCOMMAND();
+                    akhir = toABC(CCommand);
+                }
+                if (akhir == 'A')
+                {
+                    if (TOP(A) > TOP(C) || isEmpty(A))
+                    {
+                        push(&A, TOP(C));
+                        printf("Memindahkan piringan ke A...\n");
+                        step++;
+                    }
+                    else
+                    {
+                        while (akhir == 'A' || akhir == 'C')
+                        {
+                            printf("Masukkan tidak valid!\n");
+                            printf("Tiang Tujuan: ");
+                            STARTCOMMAND();
+                            akhir = toABC(CCommand);
+                        }
+                        push(&B, TOP(C));
+                    }
+                }
+                else if (akhir == 'B')
+                {
+                    if (TOP(B) > TOP(C) || isEmpty(B))
+                    {
+                        push(&B, TOP(C));
+                        printf("Memindahkan piringan ke B...\n");
+                        step++;
+                    }
+                    else
+                    {
+                        while (akhir == 'B' || akhir == 'C')
+                        {
+                            printf("Masukkan tidak valid!\n");
+                            printf("Tiang Tujuan: ");
+                            STARTCOMMAND();
+                            akhir = toABC(CCommand);
+                        }
+                        push(&A, TOP(B));
+                    }
+                }
+                pop(&C, &val);
+            }
+            else
+            {
+                printf("Masukkan tidak valid!\n");
+                continue;
+            }
+        }
 
         printf("==============================\n");
         printf("\t  steps : %d\n", step);
         displayTower(A, 'A');
         displayTower(B, 'B');
-        displayTower(C, 'C');  
+        displayTower(C, 'C');
     }
     printf("==============================\n");
     printf("\tKamu Berhasil!  \n");
     printf("\t  steps : %d\n", step);
-    printf("==============================\n");        
+    printf("==============================\n");
     printf("MASUKKAN USERNAME : ");
     STARTCOMMAND();
     data.name = CCommand;
-    if (step == 31) {
-        data.score = 100;
-    } else if (step > 31 && step <= 69) {
-        data.score = 100-(step - 31);
-    } else {
-        data.score = 0;
-    } 
+    if (step == 31)
+    {
+        data.scoree = 100;
+        (*score) = data.scoree;
+    }
+    else if (step > 31 && step <= 69)
+    {
+        data.scoree = 100 - (step - 31);
+        (*score) = data.scoree;
+    }
+    else
+    {
+        data.scoree = 0;
+        (*score) = data.scoree;
+    }
 }
