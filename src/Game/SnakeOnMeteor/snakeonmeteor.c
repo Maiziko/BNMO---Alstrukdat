@@ -84,7 +84,7 @@ int RandPosisi()
     return (rand() % 5) + 1;
 }
 
-int main()
+int SnakeOnMeteor(int *score)
 {
     /**/
     printf("\n");
@@ -171,4 +171,5 @@ int main()
         printf("SILAHKAN  MASUKKAN  COMMAND (w/a/s/d) : ");
         STARTCOMMAND();
     }
+    return (*score);
 }

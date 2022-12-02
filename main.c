@@ -386,12 +386,12 @@ int main()
             else if (IsKataSama(Game.buffer[Game.idxHead], toKata("Hangman")))
             {
                 pushGame(&History, toKata("Hangman"));
-                Hangman(&score);
+                score = Hangman(&score);
             }
             else if (IsKataSama(Game.buffer[Game.idxHead], toKata("Snake On Meteor")))
             {
                 pushGame(&History, toKata("Snake on Meteor"));
-                SnakeOnMeteor();
+                SnakeOnMeteor(&score);
             }
             else if (IsKataSama(Game.buffer[Game.idxHead], toKata("DINOSAUR IN EARTH")) || IsKataSama(toKata(kata), toKata("RISEWOMAN")) || IsKataSama(toKata(kata), toKata("EIFFEL TOWER")) && Game.idxHead != IDX_UNDEF)
             {
@@ -476,12 +476,12 @@ int main()
                     {
                         // printf("Game Hangman belum tersedia \n");
                         pushGame(&History, toKata("Hangman"));
-                        Hangman(&score);
+                        score = Hangman(&score);
                     }
                     else if (IsKataSama(Game.buffer[Game.idxHead], toKata("Snake On Meteor")))
                     {
                         pushGame(&History, toKata("Snake on Meteor"));
-                        SnakeOnMeteor();
+                        SnakeOnMeteor(&score);
                     }
                     else if (IsKataSama(Game.buffer[Game.idxHead], toKata("DINOSAUR IN EARTH")) || IsKataSama(toKata(kata), toKata("RISEWOMAN")) || IsKataSama(toKata(kata), toKata("EIFFEL TOWER")) && Game.idxHead != IDX_UNDEF)
                     {
@@ -614,7 +614,7 @@ int main()
         }
 
         /* *** ******* ******* ******* ******** ******* ******** SCOREBOARD ******* ******** *** ******* ******* ******* ******** */
-        else if ((IsKataSama(toKata(nas), toKata("SCOREBOARD"))))
+        else if ((IsKataSama(CCommand, toKata("SCOREBOARD"))))
         {
             printf("\n");
             printf("+========================================================================================+\n");
