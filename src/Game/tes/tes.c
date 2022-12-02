@@ -11,40 +11,50 @@
 void loadData(char * filename){
     ArrayDin gamefile = MakeArrayDin();
     ArrayData dataplayer = MakeArrayData();
-    History history; CreateHistory(&history);
+    History history;
+    CreateHistory(&history);
     STARTWORD(filename);
 
     int totalgame = toInteger(currentWord);
-    for(int i = 0; i < totalgame; i++) {
+    for (int i = 0; i < totalgame; i++)
+    {
         ADVWORD();
         InsertAt(&gamefile, currentWord, i);
     }
 
     ADVWORD();
     int temp = toInteger(currentWord);
-    for(int i = 0; i < temp; i++) {
+    for (int i = 0; i < temp; i++)
+    {
         ADVWORD();
         pushGame(&history, currentWord);
     }
 
-    for (int i = 0; i < totalgame; i++) { //total game
+    for (int i = 0; i < totalgame; i++)
+    { // total game
         ADVWORD();
-        data tempdata; createEmptyData(&tempdata);
+        data tempdata;
+        createEmptyData(&tempdata);
         tempdata.game = gamefile.A[i];
         temp = toInt(currentWord.TabWord[0]);
-        for(int j = 0; j < temp; j++) { // total players
+        for (int j = 0; j < temp; j++)
+        { // total players
             Word tempname, tempscore;
             tempscore.Length = 0;
             tempname.Length = 0;
             ADVWORD();
             int k = 0;
-            for(int n = 0; n < currentWord.Length; n++){ // data players
-                if (currentWord.TabWord[n] == ' ') {
-                    for(int p = 0; p < currentWord.Length-n; p++){           
-                        tempscore.TabWord[p] = currentWord.TabWord[n+1];
+            for (int n = 0; n < currentWord.Length; n++)
+            { // data players
+                if (currentWord.TabWord[n] == ' ')
+                {
+                    for (int p = 0; p < currentWord.Length - n; p++)
+                    {
+                        tempscore.TabWord[p] = currentWord.TabWord[n + 1];
                         tempscore.Length++;
                         n++;
-                    } break;
+                    }
+                    break;
                 }
                 tempname.TabWord[k] = currentWord.TabWord[i];
                 tempname.Length++;
@@ -52,11 +62,17 @@ void loadData(char * filename){
             }
             tempdata.Element[i].name = tempname;
             tempdata.Element[i].score = toInteger(tempscore);
-            InsertDataAt(&dataplayer, tempdata, i);          
+            InsertDataAt(&dataplayer, tempdata, i);
         }
     }
 }
+// <<<<<<< HEAD
+//     // }
 
-int main(){
-    loadData("config.txt");
-}
+// =======
+// }
+
+// int main(){
+//     loadData("config.txt");
+// >>>>>>> 16a56fa7bef3ca82765f9d0c2272e7e3b97da6b8
+// }

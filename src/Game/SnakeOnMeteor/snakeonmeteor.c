@@ -1,10 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-#include "../../ADT/map/map.c"
-#include "../../ADT/mesinkata/mesinkata.c"
-#include "../../ADT/mesinkarakter/mesinkarakter.c"
-#include "../../ADT/listlinier/listlinier.c"
+#include "../../ADT/map/map.h"
+#include "../../ADT/mesinkata/mesinkata.h"
+#include "../../ADT/mesinkarakter/mesinkarakter.h"
+#include "../../ADT/listlinier/listlinier.h"
 
 void MoveUp(map new, char pemain, char makanan)
 {
@@ -109,6 +109,7 @@ int SnakeOnMeteor()
     printf("\n");
     printf("===================\n");
     map papan;
+    int score;
     char pemain = 'H';
     char food = 'O';
     char meteor = 'm';
@@ -171,4 +172,5 @@ int SnakeOnMeteor()
         printf("SILAHKAN  MASUKKAN  COMMAND (w/a/s/d) : ");
         STARTCOMMAND();
     }
+    return (score);
 }

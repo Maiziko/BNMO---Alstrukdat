@@ -367,7 +367,7 @@ int main()
             }
             else if (IsKataSama(Game.buffer[Game.idxHead], toKata("Diner DASH")))
             {
-                // Dinner_Dash();
+                DinnerDash(&score);
                 // Ini game Dinner DASH
                 pushGame(&History, toKata("Diner DASH"));
             }
@@ -386,12 +386,12 @@ int main()
             else if (IsKataSama(Game.buffer[Game.idxHead], toKata("Hangman")))
             {
                 pushGame(&History, toKata("Hangman"));
-                Hangman(&score);
+                score = Hangman(&score);
             }
             else if (IsKataSama(Game.buffer[Game.idxHead], toKata("Snake On Meteor")))
             {
                 pushGame(&History, toKata("Snake on Meteor"));
-                SnakeOnMeteor();
+                SnakeOnMeteor(&score);
             }
             else if (IsKataSama(Game.buffer[Game.idxHead], toKata("DINOSAUR IN EARTH")) || IsKataSama(toKata(kata), toKata("RISEWOMAN")) || IsKataSama(toKata(kata), toKata("EIFFEL TOWER")) && Game.idxHead != IDX_UNDEF)
             {
@@ -450,33 +450,38 @@ int main()
                     {
                         wordStringCopy(kata, Game.buffer[Game.idxHead]);
                         printf("\n");
+                        pushGame(&History, toKata("RNG"));
                         score = RNG(&score);
                         printf("SILAHKAN MASUKKAN USERNAMEMU : ");
                         STARTCOMMAND();
-                        
                     }
                     else if (IsKataSama((Game.buffer[Game.idxHead]), toKata("Diner DASH")) && !ISEMPTY(Game))
                     {
                         // wordStringCopy(kata, Game.buffer[Game.idxHead]);
-                        // Dinner_Dash();
+                        pushGame(&History, toKata("Diner DASH"));
+                        DinnerDash(&score);
                     }
                     else if (IsKataSama(Game.buffer[Game.idxHead], toKata("Tower Of Hanoi")))
                     {
                         printf("Selamat datang di game %s\n", kata);
+                        pushGame(&History, toKata("Tower of Hanoi"));
                         TowerOfHanoi(&score);
                     }
                     else if (IsKataSama(Game.buffer[Game.idxHead], toKata("Kerang Ajaib")))
                     {
+                        pushGame(&History, toKata("Kerang Ajaib"));
                         KerangAjaib(&score);
                     }
                     else if (IsKataSama(Game.buffer[Game.idxHead], toKata("Hangman")))
                     {
                         // printf("Game Hangman belum tersedia \n");
-                        Hangman(&score);
+                        pushGame(&History, toKata("Hangman"));
+                        score = Hangman(&score);
                     }
                     else if (IsKataSama(Game.buffer[Game.idxHead], toKata("Snake On Meteor")))
                     {
-                        SnakeOnMeteor();
+                        pushGame(&History, toKata("Snake on Meteor"));
+                        SnakeOnMeteor(&score);
                     }
                     else if (IsKataSama(Game.buffer[Game.idxHead], toKata("DINOSAUR IN EARTH")) || IsKataSama(toKata(kata), toKata("RISEWOMAN")) || IsKataSama(toKata(kata), toKata("EIFFEL TOWER")) && Game.idxHead != IDX_UNDEF)
                     {
@@ -493,6 +498,7 @@ int main()
                     {
                         int RandAngka = random(100);
                         wordStringCopy(kata, Game.buffer[Game.idxHead]);
+                        pushGame(&History, toKata(kata));
                         printf("\n");
                         printf("Score anda atas game %s adalah %d\n", kata, RandAngka);
                         printf("\n");
@@ -608,7 +614,7 @@ int main()
         }
 
         /* *** ******* ******* ******* ******** ******* ******** SCOREBOARD ******* ******** *** ******* ******* ******* ******** */
-        else if ((IsKataSama(toKata(nas), toKata("SCOREBOARD"))))
+        else if ((IsKataSama(CCommand, toKata("SCOREBOARD"))))
         {
             printf("\n");
             printf("+========================================================================================+\n");
@@ -625,11 +631,36 @@ int main()
             printf("|                                    DAFTAR HISTORY (^-^)                                |\n");
             printf("+========================================================================================+\n");
             printf("\n");
-            for (int i = 0; i <= IDX_TOP(History); i++)
+            if (IDX_TOP(History) == Nill)
             {
-                printf("%d. ", i + 1);
-                PrintWord(TOP(History));
-                popGame(&History, &TOP(History));
+                printf("Wah belum ada game yang dimainkan :(\n");
+            }
+            else
+            {
+                for (int i = 0; i <= IDX_TOP(History); i++)
+                {
+                    printf("%d. ", i + 1);
+                    PrintWord(TOP(History));
+                    popGame(&History, &TOP(History));
+                }
+            }
+        }
+        else if (IsKataSama(CCommand, toKata("RESET HISTORY")))
+        {
+            printf("History yang sudah direset tidak dapat dikembalikan, Apakah kamu yakin ingin mereset historymu?\n");
+            if ("Ya")
+            {
+                CreateHistory(&History);
+            }
+            else if ("Tidak")
+            {
+                printf("Reset history dibatalkan\n");
+                printf("Berikut daftar historymu yang belum direset : \n");
+                for (int i = 0; i < IDX_TOP(History); i++)
+                {
+                    printf("%d. ", i + 1);
+                    PrintWord(TOP(History));
+                }
             }
         }
 

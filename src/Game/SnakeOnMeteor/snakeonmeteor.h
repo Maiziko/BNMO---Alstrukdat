@@ -27,6 +27,6 @@ void PrintMap(map new, int score);
 int RandPosisi();
 /* Menghasilkan posisi random untuk makanan*/
 
-void SnakeOnMeteor();
+int SnakeOnMeteor(int *score);
 
 /**/

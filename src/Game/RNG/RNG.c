@@ -73,11 +73,11 @@ int RNG()
         printf("\n");
         printf("KAMU MENEBAK ANGKANYA DALAM %d KALI PERCOBAAN {^-^} !!! \n", hitung); // Percobaan menebak yang gagal
         printf("\n");
-        score = 100 - hitung;
+        (*score) = 100 - hitung;
         printf("+============================+\n");
-        printf("    SCORE  KAMU  ADALAH %d\n", score);
+        printf("    SCORE  KAMU  ADALAH %d\n", (*score));
         printf("+============================+\n");
-        printf("\n");
+        return printf("\n");
     }
     if (100 - hitung <= 0)
     {

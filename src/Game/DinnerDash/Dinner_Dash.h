@@ -9,3 +9,4 @@
 
 int tointeger(char kat);
 /* Mengubah karakter menjadi integer */
+int DinnerDash(int *score);
