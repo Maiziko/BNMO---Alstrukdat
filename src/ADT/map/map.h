@@ -50,6 +50,7 @@ typedef struct {
 
 typedef struct {
     player Element[MaxEl];
+    Word game;
     addresss Count;
 } data;
 
