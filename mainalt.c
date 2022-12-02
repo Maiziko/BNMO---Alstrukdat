@@ -44,23 +44,6 @@ Word copyword(Word CCommand){
     return tempword;
 }
 
-Word readfilename(Word currentWord){
-    int i = 0;
-    int n = 0;
-    Word tempword;
-    tempword.Length = 0;
-    while (i < CCommand.Length && CCommand.TabWord[i] != ' ') {
-        i++;
-    }
-    i++;
-    while (i < CCommand.Length && CCommand.TabWord[i] != '\n') {
-        tempword.TabWord[n] = CCommand.TabWord[i];
-        tempword.Length++;
-        i++;
-        n++;
-    }
-    return tempword;
-}
 
 /* *** ******* ******* ******* ******** ******* ******** Program Utama ******* ******** *** ******* ******* ******* ******** */
 int main()
@@ -87,9 +70,6 @@ int main()
             tempword = copyword(CCommand);
         }
         Load(readfilename(CCommand),gamefile,dataplayer,history);
-        for(int i = 0; i < gamefile.Neff; i++) {
-            PrintWord(gamefile.A[i]);
-        }
     }
 
 }

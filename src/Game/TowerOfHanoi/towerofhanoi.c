@@ -1,8 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "../../ADT/stack/stack.c"
-#include "../../ADT/mesinkata/mesinkata.c"
-#include "../../ADT/mesinkarakter/mesinkarakter.c"
+#include "../../ADT/stack/stack.h"
+#include "../../ADT/mesinkata/mesinkata.h"
+#include "../../ADT/mesinkarakter/mesinkarakter.h"
 
 void displayTower(Stack S, char X)
 {
@@ -57,7 +57,7 @@ boolean isTowerAvail(Stack awal, Stack S1, Stack S2)
     return (TOP(S1) > TOP(awal) || TOP(S2) > TOP(awal) || isEmpty(S1) || isEmpty(S2));
 }
 
-int TowerOfHanoi(int *score)
+int TowerOfHanoi()
 {
     typedef struct
     {
@@ -65,7 +65,7 @@ int TowerOfHanoi(int *score)
         Word name;
     } player;
     player data;
-    int val, step = 0;
+    int val, score, step = 0;
     Stack A, B, C, finish;
     char awal, akhir;
     CreateStack(&A);
@@ -339,22 +339,16 @@ int TowerOfHanoi(int *score)
     data.name = CCommand;
     if (step == 31)
     {
-        data.score = 100;
-        (*score) = 100;
+        score = 100;
     }
     else if (step > 31 && step <= 69)
     {
-        data.score = 100 - (step - 31);
-        (*score) = 100 - (step - 31);
+        score = 100 - (step - 31);
     }
     else
     {
         data.score = 0;
-        (*score) = 0;
+        score = 0;
     }
-    return (*score);
-}
-
-int main(){
-    int i = TowerOfHanoi();
+    return score;
 }

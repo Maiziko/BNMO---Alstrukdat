@@ -9,4 +9,4 @@
 
 int tointeger(char kat);
 /* Mengubah karakter menjadi integer */
-int dinerDASH(int *score);
+int dinerDASH();

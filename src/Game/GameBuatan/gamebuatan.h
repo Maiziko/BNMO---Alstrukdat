@@ -6,4 +6,4 @@
 #include "../../ADT/boolean.h"
 #include "../RNG/RNG.h"
 
-int KerangAjaib(int *score);
+int KerangAjaib();

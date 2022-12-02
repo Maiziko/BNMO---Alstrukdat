@@ -99,4 +99,9 @@ char toChar(Word COMAND);
 int toInt(char kata);
 
 int toInteger(Word kata);
+
+Word readfilename(Word currentWord);
+
+Word copyword(Word CCommand);
+
 #endif

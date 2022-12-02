@@ -10,4 +10,4 @@ char toABC(Word kata);
 
 boolean isTowerAvail(Stack awal, Stack S1, Stack S2);
 
-int TowerOfHanoi(int *score);
+int TowerOfHanoi();

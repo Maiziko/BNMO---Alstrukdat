@@ -6,9 +6,9 @@
 #include "../../ADT/boolean.h"
 #include "../RNG/RNG.h"
 
-int KerangAjaib(int *score)
+int KerangAjaib()
 {
-    int i = 0;
+    int score, i = 0;
     int abstrak = random(10);
     printf("\n");
     printf("+==================================================================================+\n");
@@ -98,10 +98,10 @@ int KerangAjaib(int *score)
     {
         printf("\n");
         printf("MAKASIH UDAH MAIN KERANG AJAIB, .....!!!\n");
-        (*score) += 10;
-        printf("Score kamu adalah %d", (*score));
+        score += 10;
+        printf("Score kamu adalah %d", score);
     }
 
     printf("\n");
-    return (*score);
+    return score;
 }
