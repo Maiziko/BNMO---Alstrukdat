@@ -66,10 +66,12 @@ int DinnerDash(int *score)
             if (pesan.Din[i].Harga == IDX_UNDEf)
             {
                 harga = (rand() % 40 + 10) * 1000;
+                pesan.Din[i].Harga = harga;
                 Durasi = rand() % 5 + 1;
+                pesan.Din[i].Durasi = Durasi;
                 Ketahanan = rand() % 5 + 1;
+                pesan.Din[i].Ketahanan = Ketahanan;
                 pesan.Din[i].ID = i;
-                entermenu(&pesan, i, harga, Durasi, Ketahanan);
             }
             printf("M%d \t\t | %d\t\t\t | %d\t\t | %d\t\n", pesan.Din[i].ID, pesan.Din[i].Durasi, pesan.Din[i].Ketahanan, pesan.Din[i].Harga);
         }
