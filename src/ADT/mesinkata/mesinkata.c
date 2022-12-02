@@ -335,3 +335,21 @@ char *convertInttoStr(int x)
     str[len] = '\0';
     return str;
 }
+
+char *KatakeString(Word kata)
+{
+    /*KAMUS LOKAL*/
+    int i;
+    /*ALGORITMA*/
+    char *C = malloc(kata.Length * sizeof(char));
+    while (C == NULL)
+    {
+        C = malloc(kata.Length * sizeof(char));
+    }
+    for (i = 0; i < kata.Length; i++)
+    {
+        C[i] = kata.TabWord[i];
+    }
+    C[i] = '\0';
+    return C;
+}
