@@ -103,6 +103,7 @@ int main()
     History History;
     CreateHistory(&History);
     int skip = 0;
+    int score = 0;
     int i = 0;
     int j = 0;
     for (j = 0; j < 4; j++)
@@ -363,7 +364,7 @@ int main()
             {
                 pushGame(&History, toKata("RNG"));
                 printf("\n");
-                RNG(&score);
+                score = RNG();
                 printf("SILAHKAN MASUKKAN USERNAME MU : ");
                 STARTCOMMAND();
             }
@@ -371,7 +372,7 @@ int main()
             {
                 // Ini game Dinner DASH
                 pushGame(&History, toKata("Diner DASH"));
-                dinerDASH(&score);
+                score = dinerDASH();
                 printf("SILAHKAN MASUKKAN USERNAME MU : ");
                 STARTCOMMAND();
             }
@@ -380,28 +381,28 @@ int main()
                 pushGame(&History, toKata("Tower of Hanoi"));
                 printf("\n");
                 printf("Selamat datang di game %s\n", kata);
-                TowerOfHanoi(&score);
+                score = TowerOfHanoi();
                 printf("SILAHKAN MASUKKAN USERNAME MU : ");
                 STARTCOMMAND();
             }
             else if (IsKataSama(Game.buffer[Game.idxHead], toKata("Kerang Ajaib")))
             {
                 pushGame(&History, toKata("Kerang Ajaib"));
-                KerangAjaib(&score);
+                score = KerangAjaib();
                 printf("SILAHKAN MASUKKAN USERNAME MU : ");
                 STARTCOMMAND();
             }
             else if (IsKataSama(Game.buffer[Game.idxHead], toKata("Hangman")))
             {
                 pushGame(&History, toKata("Hangman"));
-                Hangman(&score);
+                score = Hangman();
                 printf("SILAHKAN MASUKKAN USERNAME MU : ");
                 STARTCOMMAND();
             }
             else if (IsKataSama(Game.buffer[Game.idxHead], toKata("Snake On Meteor")))
             {
                 pushGame(&History, toKata("Snake on Meteor"));
-                SnakeOnMeteor(&score);
+                score = SnakeOnMeteor();
                 printf("SILAHKAN MASUKKAN USERNAME MU : ");
                 STARTCOMMAND();
             }
@@ -463,7 +464,7 @@ int main()
                         wordStringCopy(kata, Game.buffer[Game.idxHead]);
                         printf("\n");
                         pushGame(&History, toKata("RNG"));
-                        score = RNG(&score);
+                        score = RNG();
                         printf("SILAHKAN MASUKKAN USERNAMEMU : ");
                         STARTCOMMAND();
                     }
@@ -471,7 +472,7 @@ int main()
                     {
                         // wordStringCopy(kata, Game.buffer[Game.idxHead]);
                         pushGame(&History, toKata("Diner DASH"));
-                        dinerDASH(&score);
+                        score = dinerDASH();
                         printf("SILAHKAN MASUKKAN USERNAME MU : ");
                         STARTCOMMAND();
                     }
@@ -479,14 +480,14 @@ int main()
                     {
                         printf("Selamat datang di game %s\n", kata);
                         pushGame(&History, toKata("Tower of Hanoi"));
-                        TowerOfHanoi(&score);
+                        score = TowerOfHanoi();
                         printf("SILAHKAN MASUKKAN USERNAME MU : ");
                         STARTCOMMAND();
                     }
                     else if (IsKataSama(Game.buffer[Game.idxHead], toKata("Kerang Ajaib")))
                     {
                         pushGame(&History, toKata("Kerang Ajaib"));
-                        KerangAjaib(&score);
+                        score = KerangAjaib();
                         printf("SILAHKAN MASUKKAN USERNAME MU : ");
                         STARTCOMMAND();
                     }
@@ -494,14 +495,14 @@ int main()
                     {
                         // printf("Game Hangman belum tersedia \n");
                         pushGame(&History, toKata("Hangman"));
-                        score = Hangman(&score);
+                        score = Hangman();
                         printf("SILAHKAN MASUKKAN USERNAME MU : ");
                         STARTCOMMAND();
                     }
                     else if (IsKataSama(Game.buffer[Game.idxHead], toKata("Snake On Meteor")))
                     {
                         pushGame(&History, toKata("Snake on Meteor"));
-                        SnakeOnMeteor(&score);
+                        score = SnakeOnMeteor();
                         printf("SILAHKAN MASUKKAN USERNAME MU : ");
                         STARTCOMMAND();
                     }
